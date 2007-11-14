@@ -9,19 +9,19 @@
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
-# the following conditions: 
-# 
+# the following conditions:
+#
 # The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software. 
-# 
+# included in all copies or substantial portions of the Software.
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 # IN NO EVENT SHALL Ka-Ping Yee OR Udanax.com BE LIABLE FOR ANY CLAIM,
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
-# THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-# 
+# THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 # Except as contained in this notice, "Udanax", "Udanax.com", and the
 # transcluded-U logo shall not be used in advertising or otherwise to
 # promote the sale, use or other dealings in this Software without
@@ -84,7 +84,7 @@ def strl(longnum):
     """Convert a long integer to a string without the trailing L."""
     strval = str(longnum)
     if strval[-1] not in string.digits:
-    	return strval[:-1]
+        return strval[:-1]
     return strval
 
 class Tumbler:
@@ -284,7 +284,7 @@ class Span:
     def __str__(self):
         return "<Span at " + str(self.start) + " for " + str(self.width) + ">"
 
-    def __len__(self):  
+    def __len__(self):
         return self.width
 
     def __nonzero__(self):
@@ -310,9 +310,9 @@ class Span:
             if self.end in span:
                 return Span(self.start, self.width)
             else:
-                return Span(self.start, span.end())
-        elif self.end() in span:
-            return Span(span.start, self.end())
+                return Span(self.start, span.end)
+        elif self.end in span:
+            return Span(span.start, self.end)
         elif span.start in self:
             return Span(span.start, span.width)
         else:
@@ -516,7 +516,7 @@ class SpecSet:
         if not istype(Span, spec) and not istype(VSpec, spec):
             raise TypeError, "%s is not a span or a vspec" % spec
         self.specs.append(spec)
-        
+
     def write(self, stream):
         """Write a specset to an 88.1 protocol stream."""
         stream.write("%d~" % (len(self.specs)))
@@ -723,7 +723,7 @@ class XuSession:
         for i in range(self.xc.Number()):
             links.append(self.xc.Address())
         return links
-    
+
     def follow_link(self, linkid, linkend):
         try:
             self.xc.command(18, linkend, linkid)
@@ -953,7 +953,7 @@ class MethodWrapper:
         self.base = base
         self.log = log
 
-    def __call__(self, *args):
+    def __call__(self, *args, **kwds):
         indent = debugindent[self.log]
         if debugmidline[self.log]:
             self.log.write("\n")
@@ -966,7 +966,7 @@ class MethodWrapper:
         debugindent[self.log] = indent + "  "
 
         try:
-            result = apply(self.method, args)
+            result = apply(self.method, args, kwds)
 
             if not debugmidline[self.log]:
                 basename = self.base.__class__.__name__

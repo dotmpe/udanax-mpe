@@ -9,19 +9,19 @@
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
-# the following conditions: 
-# 
+# the following conditions:
+#
 # The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software. 
-# 
+# included in all copies or substantial portions of the Software.
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 # IN NO EVENT SHALL Ka-Ping Yee OR Udanax.com BE LIABLE FOR ANY CLAIM,
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
-# THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-# 
+# THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 # Except as contained in this notice, "Udanax", "Udanax.com", and the
 # transcluded-U logo shall not be used in advertising or otherwise to
 # promote the sale, use or other dealings in this Software without
@@ -463,7 +463,7 @@ class Browser(Notifier, Frame):
             self.editable and NORMAL or DISABLED)
         self.edit_menu.entryconfigure(5, state=clipboard.marked() and \
             self.editable and clipboard.movable and NORMAL or DISABLED)
-        
+
     def updatelinkmenu(self):
         """Update the Link menu to reflect the selection state."""
         linkends = self.sourceends or self.targetends
@@ -564,22 +564,33 @@ class Browser(Notifier, Frame):
     # keyboard event handlers
 
     def eh_key(self, event):
-        #warn("entering eh_key foo")
         """Handle a keypress in the text editing area."""
+
+        #warn("entering eh_key char:%s;state:%d;keysym:%s" %
+        #       (event.char, event.state, event.keysym))
+
         if event.keysym[-2:] in ["_L", "_R"]: # Ignore keypress on modifiers.
-            #warn("entering eh_key bar")
+            #warn("in eh_key ignoring modifier")
             return
 
-        if event.state & 4 and event.char: # Ignore Ctrl-* editing commands.
-            #warn("in eh_key leaving with good state %d" % event.state)
+        # Filter out some modified keypresses
+        if event.state & 1: # Allow Shift
+            pass
+        elif event.state & 2: # Allow Caps Lock
+            pass
+        elif event.state & 4: # Ignore Ctrl-*
+            #warn("in eh_key ignoring ctrl %d" % event.state)
             return "break"
-        elif  event.state & ~1: # Pass through if any other modifier is on.
-            #warn("in eh_key leaving with bad state %d" % event.state)
+        elif event.state & 8: # Ignore mod1: Alt-* on my machine
             return
-        #warn("eh_key %c " % event.char )
-        #warn("eh_key  %d" % event.state)
-        #warn("eh_key  %s" % event.keysym)
+        elif event.state & 16: # Allow mod2: Numlock
+            pass
+        elif event.state: # Ignore if any other modifier is on.
+            #warn("in eh_key ignoring other modifier %d" % event.state)
+            return
+
         if event.char in ["\010", "\177"]:
+            #warn("in eh_key delete char %s" % event.char)
             if not self.editable: return "break"
             return self.deletechar(event.char)
         elif event.char >= " " or event.char in ["\t", "\r"]:
@@ -646,10 +657,9 @@ class Browser(Notifier, Frame):
         return "break"
 
     def eh_destroy(self, event):
-        if event.widget is not self: return
+        if not event.widget == str(self): return
         try: self.closedoc()
         except (IOError, x88.XuError): pass
-        return
 
     # toolbar callbacks and event handlers
 
@@ -735,7 +745,7 @@ class Browser(Notifier, Frame):
                     #print "opened the file \"%s\"." % os.path.join(dirpath,file)
                 except IOError:
                      print "Could not open the file \"%s\"." % os.path.join(dirpath,file)
-                 
+
     def cb_importdocument(self):
         """Read a file or the output of a command, and either insert it
         into the current document if it's editable, or put it into a new
@@ -771,7 +781,7 @@ class Browser(Notifier, Frame):
                         "Could not open the file \"%s\"." % file,
                         "Import Failed")
                     return
-            
+
             if self.editable:
                 self.reload()
             else:
@@ -908,7 +918,7 @@ class Browser(Notifier, Frame):
                     if result: return None # not unique
                     else: result = vspan
         return result
-        
+
     def eh_linkend(self, event):
         """Traverse a link when the user clicks on a link end in the text."""
         self.finishedit()
@@ -1188,7 +1198,7 @@ class BrowserWindow(Toplevel):
 
     def eh_destroy(self, event):
         """Close the window; quit the application if this is the last one."""
-        if event.widget is not self: return
+        if not event.widget == str(self): return
         try: self.browser.closedoc()
         except (IOError, x88.XuError): pass
 
@@ -1393,7 +1403,7 @@ class TwoBrowserWindow(BrowserWindow):
         for index in range(len(self.sharedspans)):
             self.browser.doc_text.tag_delete("left-%d" % index)
             self.browser2.doc_text.tag_delete("right-%d" % index)
-            
+
         self.trans_canvas.delete("all")
         self.trans_canvas.config(background=DEFAULTBG)
         self.trans_canvas.bind("<Configure>", "")
@@ -1406,7 +1416,7 @@ class TwoBrowserWindow(BrowserWindow):
         self.comparing = 0
 
     def eh_destroy(self, event):
-        if event.widget is not self: return
+        if not event.widget == str(self): return
         if self.browser2 is not None:
             try: self.browser2.closedoc()
             except (IOError, x88.XuError): pass
@@ -1419,7 +1429,7 @@ if __name__ == "__main__":
     print "Udanax project.  Please see http://www.udanax.com/ for details."
     print
 
-    dir = os.getcwd()
+    cwd = os.getcwd()
     if not os.path.isdir("be"):
         print "There is no directory named \"be\" in which to run the Udanax"
         print "server.  Please create it, and also create the file (or link)"
@@ -1455,7 +1465,7 @@ if __name__ == "__main__":
         xs = x88.tcpconnect(host,port)
     else:
         xs = x88.pipeconnect("./backend")
-    os.chdir(dir)
+    os.chdir(cwd)
 
     Tk().withdraw()
     clipboard = Clipboard(xs)
