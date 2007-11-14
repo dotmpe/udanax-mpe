@@ -82,7 +82,10 @@ def Content_read(stream):
 # ----------------------------------------------------------------- Tumbler
 def strl(longnum):
     """Convert a long integer to a string without the trailing L."""
-    return str(longnum)[:-1]
+    strval = str(longnum)
+    if strval[-1] not in string.digits:
+    	return strval[:-1]
+    return strval
 
 class Tumbler:
     """A numbering system that permits addressing within documents
@@ -639,7 +642,8 @@ class XuConn:
         for arg in args: self.write(arg)
         try:
             response = self.Number()
-        except ValueError:
+        except ValueError, ( errno):
+            print "ValueError: %s ::\n\n\n" % ( errno) #zzzz
             raise XuError, "error response to %d from back-end" % code
         if response != code:
             raise XuError, "non-matching response to %d from back-end" % code
@@ -736,8 +740,8 @@ class XuSession:
             width = self.xc.Offset()
             doca, locala = starta.split()
             docb, localb = startb.split()
-            sharedspans.append(VSpan(doca, Span(locala, width)),
-                               VSpan(docb, Span(localb, width)))
+            sharedspans.append((VSpan(doca, Span(locala, width)),
+                               VSpan(docb, Span(localb, width))))
         return collapse_sharedspans(sharedspans)
 
     def find_documents(self, specset):
@@ -868,7 +872,7 @@ class TcpStream(XuStream):
         self.host = hostname
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect(hostname, port)
+        self.socket.connect((hostname, port))
         self.open = 1
 
     def __repr__(self):

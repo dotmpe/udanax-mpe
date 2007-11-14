@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # Copyright 1999 by Ka-Ping Yee.  All rights reserved.
 # This file is part of the Udanax Green distribution.
@@ -27,10 +27,10 @@
 # promote the sale, use or other dealings in this Software without
 # prior written authorization from Udanax.com.
 
-import sys, os, string, x88, tktrans
+import sys, os, string, x88, tktrans, time
 from Tkinter import *
 
-REVISION = "$Revision: 2.31 $"
+REVISION = "$Revision: 2.3"
 VERSION = x88.Address(string.split(REVISION)[1])
 PROGRAM = "pyxi v" + str(VERSION)
 SMALLFONT = "-*-helvetica-medium-r-normal-*-10-*-75-75-*-*-iso8859-1"
@@ -496,6 +496,7 @@ class Browser(Notifier, Frame):
 
     def insertchar(self, ch):
         """Handle a single insert operation and buffer it."""
+        #warn("entering insertchar")
         if self.editstate != INSERTING:
             self.finishedit()
             if self.doc_text.selected():
@@ -546,7 +547,9 @@ class Browser(Notifier, Frame):
 
     def finishedit(self):
         """Flush the current editing operation to the back-end."""
+        #warn("entering finishedit")
         if self.editstate != NOTEDITING:
+            #warn("inside finishedit")
             if self.editstate == INSERTING:
                 text = string.join(self.inschars, "")
                 self.xs.insert(self.docid, self.insaddr, [text])
@@ -561,15 +564,21 @@ class Browser(Notifier, Frame):
     # keyboard event handlers
 
     def eh_key(self, event):
+        #warn("entering eh_key foo")
         """Handle a keypress in the text editing area."""
         if event.keysym[-2:] in ["_L", "_R"]: # Ignore keypress on modifiers.
+            #warn("entering eh_key bar")
             return
 
         if event.state & 4 and event.char: # Ignore Ctrl-* editing commands.
+            #warn("in eh_key leaving with good state %d" % event.state)
             return "break"
-        elif event.state & ~1: # Pass through if any other modifier is on.
+        elif  event.state & ~1: # Pass through if any other modifier is on.
+            #warn("in eh_key leaving with bad state %d" % event.state)
             return
-
+        #warn("eh_key %c " % event.char )
+        #warn("eh_key  %d" % event.state)
+        #warn("eh_key  %s" % event.keysym)
         if event.char in ["\010", "\177"]:
             if not self.editable: return "break"
             return self.deletechar(event.char)
@@ -783,9 +792,9 @@ class Browser(Notifier, Frame):
         if not file: return
         #print self.doc_text.get("0.0","end")
 
-	output = open(file,"w")
-	output.write(self.doc_text.get("0.0","end"))
-	output.close();
+        output = open(file,"w")
+        output.write(self.doc_text.get("0.0","end"))
+        output.close();
 
     def cb_createversion(self):
         """Create a new version of the current document and open it for
@@ -1435,14 +1444,14 @@ if __name__ == "__main__":
     elif ('-s', '') in opts:
         
         port = 55146
-        host = "ooba"
+        host = "localhost"
         ps = x88.DebugWrapper(x88.TcpStream(host,port), sys.stderr)
         xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
         xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
 #        ps.write("34~0.1.0.1.1~")
     elif ('-t', '') in opts:
         port = 55146
-        host = "ooba"
+        host = "localhost"
         xs = x88.tcpconnect(host,port)
     else:
         xs = x88.pipeconnect("./backend")
@@ -1458,3 +1467,4 @@ if __name__ == "__main__":
     for window in windows.keys():
         window.quit()
     xs.quit()
+    time.sleep(10.0)
