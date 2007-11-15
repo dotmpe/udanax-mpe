@@ -30,7 +30,7 @@
 import sys, os, string, x88, tktrans, time
 from Tkinter import *
 
-REVISION = "$Revision: 2.3"
+REVISION = "$Revision: 2.3.1"
 VERSION = x88.Address(string.split(REVISION)[1])
 PROGRAM = "pyxi v" + str(VERSION)
 SMALLFONT = "-*-helvetica-medium-r-normal-*-10-*-75-75-*-*-iso8859-1"
@@ -1429,44 +1429,74 @@ if __name__ == "__main__":
     print "Udanax project.  Please see http://www.udanax.com/ for details."
     print
 
-    cwd = os.getcwd()
-    if not os.path.isdir("be"):
-        print "There is no directory named \"be\" in which to run the Udanax"
-        print "server.  Please create it, and also create the file (or link)"
-        print "be/backend (the back-end executable)."
-        sys.exit(1)
-    if not os.path.isfile("be/backend"):
-        print "There is no file at be/backend.  Please put a copy or a link"
+    # Defaults
+    backend = os.path.join('be', 'backend')
+    host = "localhost"
+    use_fifo = True
+    port = 55146
+    debug = False
+
+    # Parse argv
+    import getopt
+    opts, extra = getopt.getopt(sys.argv[1:], ":dt:b:s")
+    for o in opts:
+        if '-b' in o:
+            backend = o[1]
+        elif '-d' in o:
+            debug = True
+        elif '-t' in o or '-s' in o:
+            use_fifo = False
+            if o[1]:
+                tcp_addr = o[1].split(':')
+                host, port = tcp_addr[0], int(tcp_addr[1])
+
+    pyxi_dir = os.path.dirname(sys.argv[0])
+    if not os.path.exists(backend): # try...
+        backend = os.path.join(pyxi_dir, backend)
+
+    # Check existence of backend, enfilade
+    if not os.path.exists(backend):
+        print "There is no file at %s.  Please put a copy or a link" % (backend,)
         print "to the server executable there."
         sys.exit(1)
-    if not os.path.exists("be/enf.enf"):
-        print "No enfilade file at be/enf.enf; copying in the default."
-        os.system("cp -f ../enfs/sample.enf be/enf.enf")
-        
-    os.chdir("be")
 
-    import getopt
-    opts, extra = getopt.getopt(sys.argv[1:], ":dst")
-    if ('-d', '') in opts:
-        ps = x88.DebugWrapper(x88.PipeStream("./backend"), sys.stderr)
+    be_dir = os.path.dirname(backend)
+    be = os.path.basename(backend)
+
+    # Work from backend dir
+    cwd = os.getcwd()
+    os.chdir(be_dir)
+
+    enf = 'enf.enf'
+    if use_fifo and not os.path.exists(enf):
+        print "No enfilade file at %s; trying to copy default..." % \
+            (os.path.join(be_dir, enf))
+        sample_enf = "../../enfs/sample.enf"
+        os.system("cp -f %s %s" % (sample_enf, enf.encode('string-escape')))
+        if not os.path.exists(enf):
+            print "Unable copy enfilade from %s;" % (sample_enf)
+            print "please copy one from the udanax dist."
+            sys.exit(2)
+
+    # Get Xanadu 88.1 session
+    if debug:
+        if use_fifo:
+            ps = x88.PipeStream(be)
+            print "Using FIFO: %s < %s" % (be, ps.fifo)
+        else:
+            print "Using TCP: %s:%s" % (host, port)
+            ps = x88.TcpStream(host, port)
+        print
+        ps = x88.DebugWrapper(ps, sys.stderr)
         xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
         xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
-    elif ('-s', '') in opts:
-        
-        port = 55146
-        host = "localhost"
-        ps = x88.DebugWrapper(x88.TcpStream(host,port), sys.stderr)
-        xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
-        xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
-#        ps.write("34~0.1.0.1.1~")
-    elif ('-t', '') in opts:
-        port = 55146
-        host = "localhost"
-        xs = x88.tcpconnect(host,port)
+        # ps.write("34~0.1.0.1.1~")
+    elif use_fifo:
+        xs = x88.pipeconnect(be)
     else:
-        xs = x88.pipeconnect("./backend")
-    os.chdir(cwd)
+        xs = x88.tcpconnect(host, port)
 
+    # Start Tkinter
     Tk().withdraw()
     clipboard = Clipboard(xs)
     windows = {}
@@ -1474,7 +1504,15 @@ if __name__ == "__main__":
     addr = (extra + ["1.1.0.1.0.1"])[0]
     window.browser.goto(x88.Address(addr))
     mainloop()
+
+    warn("exiting...")
     for window in windows.keys():
         window.quit()
+
+    # Let x88 clean up (fifo for PipeStream sessions)
     xs.quit()
-    time.sleep(10.0)
+    os.chdir(cwd)
+
+    # Not sure how long this should be
+    # but 10 seconds was too much testing my patience
+    time.sleep(3)

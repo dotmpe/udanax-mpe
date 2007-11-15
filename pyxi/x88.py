@@ -382,7 +382,7 @@ class VSpan:
     def __and__(self, span):
         """Return the intersection of this span with another span."""
         return self.globalize() & span
-    
+
     def start(self):
         return self.docid.globalize(self.span.start)
 
@@ -897,7 +897,7 @@ class PipeStream(XuStream):
     """Stream interface to a piped shell command."""
 
     def __init__(self, command):
-        self.fifo = "pyxi.%d" % os.getpid()
+        self.fifo = "x88.%d" % os.getpid()
         try: os.unlink(self.fifo)
         except: pass
         os.mkfifo(self.fifo)
@@ -1000,13 +1000,13 @@ class DebugWrapper:
     def __setattr__(self, name, value):
         base = self.__dict__["__base__"]
         setattr(base, name, value)
-                
+
 # =============================================================== FUNCTIONS
 def tcpconnect(hostname, port):
     return XuSession(XuConn(TcpStream(hostname, port)))
 
 def pipeconnect(command):
     return XuSession(XuConn(PipeStream(command)))
-   
+
 def testconnect():
     return XuSession(XuConn(FileStream(sys.stdin, sys.stdout)))
