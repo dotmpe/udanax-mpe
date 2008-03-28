@@ -403,7 +403,7 @@ class VSpan:
 class VSpec:
     """A set of ranges within a given document.  Immutable."""
 
-    def __init__(self, docid, spans):
+    def __init__(self, docid, spans=[]):
         """Construct from a document address and a list of spans."""
         if not istype(Address, docid):
             raise TypeError, "%s is not a tumbler address" % repr(docid)
@@ -915,7 +915,10 @@ class PipeStream(XuStream):
             return "<%s closed>" % result
 
     def __del__(self):
-        os.unlink(self.fifo)
+        if self.fifo:
+            try: os.unlink(self.fifo)
+            except:
+                print >>sys.stderr, "Could not unlink <%s>" % self.fifo
 
     def read(self, length):
         return self.inpipe.read(length)
@@ -927,7 +930,9 @@ class PipeStream(XuStream):
     def close(self):
         self.inpipe.close()
         self.outpipe.close()
-        try: os.unlink(self.fifo)
+        try: 
+            os.unlink(self.fifo)
+            self.fifo = None
         except: pass
         self.open = 0
 
@@ -1007,6 +1012,11 @@ def tcpconnect(hostname, port):
 
 def pipeconnect(command):
     return XuSession(XuConn(PipeStream(command)))
+
+def pipeconnect_debug(command, out):
+    ps = DebugWrapper(PipeStream(command), out)
+    xc = DebugWrapper(XuConn(ps), out)
+    return DebugWrapper(XuSession(xc), out)
 
 def testconnect():
     return XuSession(XuConn(FileStream(sys.stdin, sys.stdout)))

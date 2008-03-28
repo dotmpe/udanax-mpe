@@ -1170,9 +1170,40 @@ class Browser(Notifier, Frame):
         clipboard.unmark(self.doc_text)
         self.send("closedoc")
 
+class DocumentList(Frame):
+    pass
+
+class DocumentWindow(Toplevel):
+    """A window containing a document list and transliterature web-scraper."""
+    def __init__(self, xusession, title=PROGRAM):
+        Toplevel.__init__(self)
+        windows[self] = 1
+        self.title(title)
+        self.documents = DocumentList(self, xusession, scrollside=LEFT)
+        self.documents.pack(fill=BOTH, expand=1)
+        self.bind("<Destroy>", self.eh_destroy)
+        self.bind("<Alt-q>", self.eh_quit)
+
+    def quit(self):
+        try: self.browser.closedoc()
+        except (IOError, x88.XuError): pass
+        Toplevel.quit(self)
+
+    def eh_quit(self, event):
+        self.quit()
+
+    def eh_destroy(self, event):
+        """Close the window; quit the application if this is the last one."""
+        if not event.widget == str(self): return
+
+        if windows.has_key(self):
+            del windows[self]
+            if not windows.keys(): self.quit()
+        else:
+            return "break"
+
 class BrowserWindow(Toplevel):
     """BrowserWindow - a Window containing a single Browser."""
-
     def __init__(self, xusession, title=PROGRAM):
         Toplevel.__init__(self)
         windows[self] = 1
