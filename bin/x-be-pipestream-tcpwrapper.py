@@ -1,13 +1,16 @@
-"""Experiment wrapping pipestream in TCP server to circumvent backenddeamon bug
+#!/usr/bin/env python
+"""Experiment wrapping pipestream in TCP server to circumvent networked
+backenddeamon bug.
 
-limitation: only one pipestream possible at a time.
+limitation: only one pipestream possible at a time, so server can handle one
+client at a time..
 
 todo: reinit pipestream after discon
 """
 
 import os
 import sys
-from x88 import *
+from pyxi.x88 import *
 import SocketServer
 
 
@@ -241,16 +244,21 @@ class XuProxy(XuConn):
 
 class WrappedPipeHandler(SocketServer.BaseRequestHandler):
     def handle(self):
-        print 'conn'
+        print "\x1b[32mConnected\x1b[0m from \x1b[31m%s\x1b[0m:\x1b[31m%s\x1b[0m" %  (self.client_address)
 
         # Get Xanadu 88.1 session
         ps = PipeStream(self.server.backend)
+        print "\x1b[33m%s\x1b[0m %s" % (ps, ps.fifo)
 
-        server = StreamDebug(ps, sys.stderr)
-        client = StreamDebug(FileStream(self.request.makefile(mode='a+')), sys.stderr)
+        if self.server.log:
+            server = StreamDebug(ps, sys.stderr)
+        else:
+            server = ps
+        client = FileStream(self.request.makefile(mode='a+'))
 
         fe = XuProxy(client)
         be = XuConn(server)
+        print "\x1b[36m%s\x1b[0m <-> \x1b[32m%s\x1b[0m" % (be, fe)
 
         # prep cmd to read protocol from fe
         p = fe.forward_handshake()
@@ -268,42 +276,55 @@ class WrappedPipeHandler(SocketServer.BaseRequestHandler):
             if r:
                 break;
 
-        self.request.close()
         ps.close()
-        print 'discon'
+        print "\x1b[33m%s\x1b[0m" % ps
+        self.request.close()
+        print "\x1b[36mDisconnected\x1b[0m from \x1b[31m%s\x1b[0m:\x1b[31m%s\x1b[0m" %  (self.client_address)
 
 
-class StreamDebug:
+class StreamDebug(XuStream):
+    """Stream wrapper with debug printing
+    """
+
     readbuf, writebuf = '', ''
     def __init__(self, base, log):
         self.__dict__["__base__"] = base
         self.__dict__["__log__"] = log
+        readb = ''
+        writeb = ''
+        self.__dict__["__buffers__"] = readb, writeb
 
     def read(self, length):
         base = self.__dict__["__base__"]
-        if self.writebuf:
+        readb, writeb = self.__dict__["__buffers__"]
+        if writeb:
             self.flush_writebuf()
+            writeb = ''
         r = base.read(length)
-        self.readbuf += r
+        readb += r
+        self.__dict__["__buffers__"] = readb, writeb
         return r
 
     def flush_readbuf(self):
         log = self.__dict__["__log__"]
-        log.write("\x1b[36m<\x1b[0m %s" % shortrepr(self.readbuf))
-        self.readbuf = ''
+        readb, writeb = self.__dict__["__buffers__"]
+        log.write("\x1b[36m<\x1b[0m %s\n" % readb.strip())
 
     def write(self, data):
         base = self.__dict__["__base__"]
-        if self.readbuf:
+        readb, writeb = self.__dict__["__buffers__"]
+        if readb:
             self.flush_readbuf()
+            readb = ''
         r = base.write(data)
-        self.writebuf += data
+        writeb += data
+        self.__dict__["__buffers__"] = readb, writeb
         return r
 
     def flush_writebuf(self):
         log = self.__dict__["__log__"]
-        log.write("\x1b[32m>\x1b[0m %s" % shortrepr(self.writebuf))
-        self.writebuf = ''
+        readb, writeb = self.__dict__["__buffers__"]
+        log.write("\x1b[32m>\x1b[0m %s\n" % writeb.strip())
 
     def __getattr__(self, name):
         base = self.__dict__["__base__"]
@@ -353,14 +374,17 @@ if __name__ == "__main__":
     backend = os.path.join('be', 'backend')
     host = "localhost"
     port = 55146
+    log = False
 
     # Parse argv
     import getopt
-    opts, extra = getopt.getopt(sys.argv[1:], "t:b:")
+    opts, extra = getopt.getopt(sys.argv[1:], "t:b:l")
     for o in opts:
-        if '-b' in o:
+        if '-b' in o: # -b <backend-path>
             backend = o[1]
-        elif '-t' in o:
+        elif '-l' in o: # -l(logging) 
+            log = True
+        elif '-t' in o: # -t <host:port>
             tcp_addr = o[1].split(':')
             host, port = tcp_addr[0], int(tcp_addr[1])
 
@@ -389,9 +413,13 @@ if __name__ == "__main__":
         os.system("cp -f %s %s" % (sample_enf, enf.encode('string-escape')))
         if not os.path.exists(enf):
             print "Unable copy enfilade from %s;" % (sample_enf)
-            print "please copy one from the udanax dist."
+            print "please copy one from the udanax dist to %s." % os.path.realpath(enf)
             sys.exit(2)
+
+    print "Using backend at\n\t<%s>\nwith enfilade from\n\t<%s>" % tuple(map(os.path.realpath, (be, enf)))
 
     srv = SocketServer.ThreadingTCPServer((host, port), WrappedPipeHandler)
     srv.backend = be
+    srv.log = log
+    print "Waiting for x88.1 connection on %s:%s" % (host, port)
     srv.serve_forever()

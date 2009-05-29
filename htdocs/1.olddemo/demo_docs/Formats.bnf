@@ -1,0 +1,67 @@
+ 
+
+ 
+
+ 
+
+            Appendix III  Formats for 
+information exchanged between the 
+back-end and the front-end in the 
+current implementation of the Xanadu 
+hypertext system. 
+
+<wdelim>  ::= '0 
+
+Tumblers 
+
+  <tumbler>      ::= <texp> 
+<tumblerdigit>* <wdelim> 
+  <texp>         ::= <integer> 
+  <tumblerdigit> ::= <tdelim> 
+<integer> 
+  <tdelim>       ::= '.' 
+
+Addresses 
+
+  <doc id>    ::= <tumbler> 
+  <doc set>   ::= <ndocs> <doc id>* 
+  <link id>   ::= <tumbler> 
+  <doc vsa>   ::= <tumbler> 
+  <span set>  ::= <nspans> <span>* 
+  <span>      ::= <tumbler> <tumbler> 
+  <spec set>  ::= <nspecs> <spec>* 
+  <spec>      ::= <spec id> { <vspec> 
+| <span> } 
+  <spec id>   ::= { 's' | 'v' } 
+<wdelim> 
+                  /* v for vspec, s 
+for span */ 
+  <vspec set> ::= <nvspecs> <vspec>* 
+  <vspec>     ::= <doc id> <vspan 
+set> 
+  <vspan set> ::= <nspans> <vspan>* 
+  <vspan>     ::= <span> 
+  <ndocs>     ::= <integer> <wdelim> 
+  <nspecs>    ::= <integer> <wdelim> 
+  <nvspecs>   ::= <integer> <wdelim> 
+  <nspans>    ::= <integer> <wdelim> 
+
+Stuff 
+
+  <vstuffset> ::= <nthings> <vthing>* 
+  <vthing>    ::= <text> | <link id> 
+  <text set>  ::= <ntexts> <text>* 
+  <ntexts>    ::= <integer> <wdelim> 
+  <text>      ::= <textflag> <nchars> 
+<char>* ?<wdelim> 
+  <textflag>  ::= 't' 
+  <nchars>    ::= <integer> <wdelim> 
+  <nthings>   ::= <integer> <wdelim> 
+
+Link stuff 
+
+  <from set> ::= <spec set> 
+  <to set>   ::= <spec set> 
+  <home set> ::= <spec set> 
+  <link set> ::= <nlinks> <link id>* 
+  <nlinks>   ::= <integer> <wdelim> 

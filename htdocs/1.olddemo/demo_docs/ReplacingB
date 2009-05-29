@@ -1,0 +1,202 @@
+THE LITERARY PARADIGM  
+      A piece of writing--say, a 
+sheet of typed paper on the table-- 
+looks  alone and independent.  This 
+is quite misleading.  Solitary it may 
+be, but it  is probably also part of 
+a literature.  
+      By "a literature" we do not 
+mean anything to do with 
+belles-lettres or  leather-bound 
+books.  We mean it in the same broad 
+sense of "the scientific  
+literature", or that graduate-school 
+question, "Have you looked at the  
+literature?"  
+      A literature is a system of 
+interconnected writings.  We do not 
+offer  this as our definition, but as 
+a discovered fact.  And almost all 
+writing is  part of a literature.  
+      The way people write is based 
+in large part on these 
+interconnections.   A person reads an 
+article.  He says to himself, "Where 
+have I seen something  like that 
+before? Oh yes--," and the previous 
+connection is brought mentally  into 
+play.  
+      Consider how it works in 
+science.  A genetic theorist, say, 
+reads  current writings in the 
+journals.  These refer back, 
+explicitly, to other  writings; if he 
+chooses to question the sources, or 
+review their meaning, he  is 
+following links as he gets the book 
+and refers to it.  He may correspond  
+with colleagues, mentioning in his 
+letters what he has read, and 
+receiving  replies suggesting that he 
+read other things.  (Again, the 
+letters are  implicitly connected to 
+these other writings by implicit 
+links.)  Seeking to  refresh his 
+ideas, he goes back to Darwin and 
+also derives inspiration from  other 
+things he reads--the Bible, science 
+fiction.  These are linked to his  
+work in his mind.  
+      In his own writing he quotes 
+and cites the things he has read.  
+(Again,  explicit links are being 
+made.)  Other readers, taking 
+interest in his  sources, read them 
+(following the links).  
+      In our Western cultural 
+tradition, writings in principle 
+remain  continuously available--both 
+as recently quoted, and in their 
+original  inviolable incarnations--in 
+a great procession.  
+      So far we have stressed some of 
+the processes of referral and 
+linkage.   But also of great 
+importance are controversy and 
+disagreement and  reevaluation.  
+Everyone argues over the 
+interpretation of former writing, 
+even  our geneticists.  One author 
+will cite (or link to) a passage in 
+Darwin to  prove Darwin thought one 
+thing, another will find another 
+passage to try to  prove he thought 
+another.  
+      And views of a field, and the 
+way a field's own past is viewed 
+within  it, change.  A formerly 
+forgotten researcher may come to 
+light (like Mendel),  or a highly 
+respected researcher may be 
+discredited (Cyril Burt).  And so it  
+goes, on and on.  The past is 
+continually changing--or at least 
+seems to be,  as we view it.  
+
+      There is no predicting the use 
+future people will make of what is  
+written.  Any summary, any particular 
+view, is exactly that: the 
+perspective  of a particular 
+individual (or school of thought) at 
+a particular time.  We  cannot know 
+how things will be seen in the 
+future.  We can assume there will  
+never be a final and definitive view 
+of anything.  
+      And yet this system functions.  
+
+      In other words, even though in 
+every field there is an ever-changing 
+flux of emphasis and perspective and 
+distortion, and an ever-changing 
+fashion  in content and approach, the 
+ongoing mechanism of written and 
+published text  furnishes a flexible 
+vehicle for this change, continually 
+adapting.  Linkage  structure between 
+documents forms a flux of invisible 
+threads and rubber bands  that hold 
+the thought together.  
+      Linkage structure and its 
+ramification are surprisingly similar 
+in the  world of business.  
+      A business letter will say, "In 
+reply to your letter of the 13th..." 
+or  a business form, another key 
+communication, may say in effect, "In 
+response to  your order of the 24th 
+of last month, we can supply only 
+half of what you have  asked for, but 
+can fill the rest of the order with 
+such-and-such item from our  
+catalog."  All of these citations may 
+be thought of as cross-linkages among 
+documents.  
+      The point is clear, whether in 
+science or business or  belles 
+lettres.   Within bodies of writing, 
+everywhere, there are linkages we 
+tend not to see.   The individual 
+document, at hand, is what we deal 
+with; we do not see the  total linked 
+collection of them all at once.  But 
+they are there, the  documents not 
+present as well as those that are, 
+and the grand cat's-cradle  among 
+them all.  
+      From this fundamental insight, 
+we of Project Xanadu have endeavored 
+to  create a system for text editing 
+and retrieval that will receive, and 
+handle,  and present documents with 
+links between them.  We believe there 
+is something  very right about the 
+existing system of literature; indeed 
+we suspect that  there are things 
+about it that we don't even know, as 
+with Nature. And so we  have tried to 
+mirror, and replicate, and extend 
+existing literary structure as  we 
+have here described it.  
+      But as we said earlier, the 
+design of virtuality is a dialectic.  
+First  we must study what there is; 
+then we must venture a design in 
+response to what  is.  And that 
+design is not dictated by what we 
+have seen, any more than the  design 
+of a house is dictated by a hillside. 
+There are only hints.  
+
+  
+ THE SYSTEM DESIGN  
+      By the "design" of the system 
+we mean its conceptual architecture: 
+the  basic ideas of it.  But with 
+many systems the general system of 
+concepts is  filtered through 
+innumerable complications and 
+accidental features.  In this  system 
+the basic ideas are the  only  ideas. 
+      Our approach, then is to 
+consider all documents as 
+interconnected, or  potentially 
+interconnected.  Not just documents, 
+but linkages as well, are the  
+fundamental elements of the system.  
+(Links are actually parts of 
+documents,  as will be seen later.)  
+It is the different types of links 
+that give both  power and 
+complication to the system.  
+      Our system, the Xanadu 
+Hypertext System (tm), is intended to 
+store a  body of writings as an 
+interconnected whole, with linkages, 
+and to provide  instantaneous access 
+to any writings within that body.  
+      For this system we have 
+formulated a basic linkage structure 
+that we  think meets all the needs of 
+literature as we understand it, 
+including  business literature.  
+      Beyond this general idea there 
+is little further to expound, except 
+the  link structure and the document 
+conventions, which are all the user 
+really has  to learn.  
+      Since the network is 
+essentially invisible, all we have to 
+discuss are  these links and links 
+and documents.  

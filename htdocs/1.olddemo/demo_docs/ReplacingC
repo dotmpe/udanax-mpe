@@ -1,0 +1,330 @@
+Links And Compound Objects   
+
+        A link is simply a connection 
+between parts of text.  It is put in 
+by  a  human.   
+
+        A user, on contemplating any 
+two pieces of text, may make a link  
+between  them.  Thereafter, when he 
+displays either piece of text, and 
+*asks  to see the  links*, a 
+link-symbol is displayed, and the 
+other attached text--  if he wishes  
+to see it.   
+
+   
+
+The Special Links   
+
+        This is essentially the basic 
+system.  However, its extensions and  
+ramifications, and the unfolding 
+link-types and their capabilities, 
+hold many   non-obvious challenges.  
+Certain link types, which we call the 
+"literary set,"  are the main ones.  
+This is because they have direct 
+analogies in existing   literature as 
+everyone knows it.   
+
+        They are (1) the jump-link, 
+corresponding to the footnote; (2) 
+the   quote-link, corresponding to 
+the printed quotation; and (3) the 
+correlink,   resembling the marginal 
+note, or "corresponding part."  A 
+fourth type, the   equilink, will be 
+discussed a little later.   
+
+        The *jump-link* is 
+essentially a pointer to a related 
+item, something  like a  footnote.  A 
+reader, after satisfying himself by 
+reading the related  item, may  push 
+a "return" button to return to the 
+main text.   
+
+        The *quote-link* makes it 
+possible for a piece of text to be in 
+two  places at  one time, but with 
+the document of origin still master 
+of the  quoted material.  
+(Quote-links are automatically 
+maintained by the system, and  
+automatically  preserved through a 
+variety of editorial changes, even 
+those  involving  fragmentation.)   
+
+        The *correlink* places a 
+segment of one document "next to" a 
+segment  of  another document.  
+(Unlike quote-links, correlinks are 
+put in by the user,  and  in a sense 
+resemble index-tabs or highlighting, 
+being markers to  accentuate  
+structural relationships.  While 
+correlinks survive fragmentation,  it 
+is with  some difficulties.)   
+
+        Correlinks may be used for 
+annotations, or to mark 
+correspondences of  any  kind.  They 
+may also be used to connect parts 
+which correspond to other  parts  or 
+wholes, as a title corresponds to its 
+document.   
+
+        These structures may of 
+course nest.  This makes possible 
+compound  documents  to any remove, 
+where one document links to another, 
+and so on.  One  document,  embracing 
+another, takes it into itself.   
+
+        (Many other types of link are 
+allowed within the system.  In 
+principle  we  allow any types of 
+link to be defined by the 
+sophisticated user.  These   include 
+point-to-point links, point-to-span, 
+and span-to-span, having any   
+seperate names and functions desired. 
+We also allow links with multiple   
+endpoints.  However, the functions of 
+the literary links are utterly 
+unique,   and we wish to focus on 
+them here.)   
+
+        It should be noted that 
+quote-link and correlink are 
+unusually  priviledged,  in that they 
+may be applied to parts and to other 
+links to any  remove.  They  are also 
+extensible to all other forms of 
+computer-stored  information:  
+graphics, musical scores, and any 
+other form of symbolic  materials, 
+whose  interrelationships may be 
+shown by these links.   
+
+   
+
+ The Document Convention   
+
+        An interesting choice has 
+been made in the design of this 
+structure.  We call  a thing a 
+"document" whether it contains text, 
+or links, or both.  A  document  is 
+something designated by a person to 
+be a document, containing  text 
+and/or  links he has created.  The 
+links are part of the document, 
+though  whatever  else they *link to* 
+may not be.   
+
+        By this convention, then, 
+everything in the system is a 
+document and  has an  owner.  No 
+free-floating materials exist.   
+
+        Through the same document 
+conventions, the compound structures  
+mentioned  earlier maintain the same 
+conventions of integrity and 
+ownership.  But one  document can be 
+built upon another, and yet another 
+document can be  built upon  that 
+one, each having links to what was 
+already in place.   
+
+   
+
+Orderliness, Extensibility, and 
+Generality   
+
+        Many have admired Vannevar 
+Bush's postulated "memex" of 1945, 
+but most  have  supposed out of hand 
+that it was impossible.  Bush, it may 
+be recalled,  spoke  of a 
+hypothetical console that would hold 
+all the documents a person  ever read 
+or wrote, and allow him to study 
+"trails" of documents, and put in  
+new trails  himself.   
+
+        The memex was meant to be a 
+microfilm device, but many have 
+wondered  how the  basic ideas in its 
+design could be transposed to a 
+computer  technology. This  has been 
+a large force behind "information 
+retrieval," but  that effort has  
+turned much more to techniques of 
+indexing.  The fundamental  question, 
+however, is no longer whether such a 
+thing could be done, but haw  such a 
+thing  might be structured.   
+
+        Our system is an answer.  
+Essentially, it is a full-blown memex 
+system  with  an orderly set of 
+conventions.  But where Bush 
+conceived *his* memex as   chiefly a 
+personal microfilm collection, we see 
+ours as a potentially   universal 
+system for both public and private 
+use.  It has been designed for   
+indefinate expansion.   
+
+        Because of this contemplated 
+scale, the system obviously has to be 
+extremely  orderly in concept.  This 
+we think we have achieved.   
+
+        The system seems to offer 
+power for the ordering of the most 
+complex  mental  problems with a 
+minimum of complication and 
+distraction.  (At the same  time,  as 
+already mentioned, it abolishes many 
+of the trivial complexities of  
+keeping  track of evolving files.)   
+
+        As an example, let us 
+consider using it as a programmer's 
+console.  Suppose  that a programmer 
+begins with a written description of 
+the program he  intends  to write.  
+(Sometimes this is called a 
+functional specification.)   This  
+description is entered into the 
+system.  He then creates a detailed  
+breakdown  of the the parts this 
+program is to have; this description 
+too is  entered into  the system, and 
+correlinked to the functional 
+specification.   
+
+        Let us say our programmer now 
+begins to write code.  He simply 
+enters  it  side-by-side with the 
+structural specification.  This "side 
+by side"  relation  is maintained by 
+the system throught he correlink 
+mechanism.  Even  though the  
+programmer may rearrange his 
+materials to his heart's content, the 
+"besideness" is maintained among all 
+the appropriate pieces.   
+
+        Now the programmer tries 
+compiling part of the program, and 
+gets  object code.  This too is 
+filed, correlinked to the source 
+code.  All the work  in progress  is 
+maintained automatically in this 
+side-by-side structure, no  matter 
+what  organization or alternative 
+versions are created.  Even error  
+messages  engendered by the compiled 
+code may be automatically 
+correlinked.   
+
+        Each of these seperate 
+correlinked pieces may be thought of 
+as a  "column" of  text, whose 
+portions are "next to" their relevant 
+companions in  other columns,  though 
+their sequences can be different.   
+
+        Note that if the programmer 
+choses to write a program two 
+different  ways,  effectively 
+creating alternate versions of it, 
+the different versions  may  neatly 
+be shown on his display device and 
+their appropriate parts  referred to  
+and compared as he may wish.   
+
+        While we need not go 
+indefinately into this example, it 
+should be  clear that  this design 
+furnishes a flexible container for 
+reading back and  forth between  the 
+relevant levels and structures of a 
+typical complex  activity.   
+
+   
+
+ Copies and Backups, Historicals and 
+Alternatives   
+
+        Our system does not merely 
+handle a document as text and links.  
+Rather, it  stores the document 
+canonically as a system of evolving 
+and  alternative  versions, instantly 
+constructed as needed from the stored 
+fragments, pointers,  and lists of 
+our unusual data structure.  Thus, 
+there is  no "main" version of  a 
+thing, just the ongoing accumulation 
+of pieces and  changes, some of whose 
+permutations have names and special 
+linkages.  In  other words, our 
+system  treats all versions of a 
+document as views extracted  from the 
+same aggregated  object.   
+
+        The alternative versions 
+employ one other link-type, not 
+discussed  earlier,  which our data 
+structure uses for alternative and 
+historical  versions.   
+
+        The correspondence between 
+the same thing in two versions of a  
+document is  kept track of 
+automatically.  An abstract link 
+stretches between  these two  parts.  
+
+        This link between the same 
+thing in two versions of the same 
+document  we call  the *equilink*.  
+Our system automatically keeps track 
+of equilinks  when more  than one 
+version of a document is shown.  The 
+equilink differs from  the  
+quote-window in that no occurance of 
+the section has precedence as the   
+original or owning document.  
+(Conversely, the quote-link may thus 
+be seen as   a directional equilink.) 
+
+        The scope and generality of 
+this feature may not be immediately  
+obvious.  To  many programmers it 
+seems like "too much trouble" to 
+create  facilities of this  kind; 
+however, now that it exists, it may 
+be used for any  casual purpose of  
+the user.   
+
+        Anyone who has worked with 
+computers is accustomed to the 
+frequent and  disagreeable problem of 
+keeping backup files.  Many of us 
+also maintain files   of previous 
+versions, and/or alternative versions 
+of files for different   purposes.  
+These trivial problems create endless 
+annoyance because they are   not 
+ordinarily taken care of 
+automatically.   
+
+        The system described would 
+seem to cut to the center of the 
+problem.   

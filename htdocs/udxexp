@@ -1,0 +1,277 @@
+#!/usr/bin/env python
+"""udxexp - Udanax Green Export
+
+This scripts has two modes of operation, the first is:
+
+    % udxexp -f CONTENT_LIST [-l LINK_SCRIPT]
+
+    Export all documents to the filenames listed in CONTENT_LIST.
+    The number of lines in CONTENT_LIST must match the number of 
+    document nodes.
+
+And the second one being:
+
+    % udxexp [-c CONTENT_OUTPUT] [-l LINK_SCRIPT] DOCIDs...
+
+    Export all given document IDs to stdout or the file given with -c.
+
+Use the first to back up all data in an enfilade. The second is 'useful' (YMMV)
+to debug some stuff or to to back up individual nodes.
+
+Details
+-------
+For the first mode, each line from the file provided with '-f' is interpreted
+as a filename while the line-number is taken to correspond to the Enfilade
+document id. Content is exported from this document id back to the file
+whenever there has are differences between contents. If so, contents are
+written to the filename suffixed by a version number.
+
+The second mode simply exports all contents of the given document ids to a
+single stream: stdout or the filename provided with '-c'.
+
+Both modes will export all links from these documents and write these as a FeBe
+script to stdout or the filename provided by '-l'.
+
+Output of the first mode can be used to recreate the enfilade, possibly after
+some manual editing. Names of new versions of files are printed to sys.stderr
+and need to be resolved by hand before importing again. (be careful because of
+the links!)
+
+Notes/issues
+------------
+- Commit to be editing the files through the front-end or be prepared to discard
+  the links for that document node (or edit them by hand).
+- The Pyxi front-end doesn't handle multibyte character encodings so just stick
+  with US-ASCII for now.
+- Transclusion is lost, shared spans are simply redundantly written to the
+  different files.
+
+Todo
+----
+- Versions of documents are completely ignored for now.
+- A better export format that can handle transclusion would be nice but seems
+  difficult to map to files.
+
+"""
+import os
+import sys
+sys.path.append('../pyxi/')
+from pyxi import x88, udxutil
+from udxutil import ENTIRE_DOC, mutter
+
+def newfileversion(fn):
+    revision = 1
+    new_fn = fn + '.' + `revision`
+    while os.path.exists(new_fn):
+        revision += 1
+        new_fn = fn + '.' + `revision`
+    return new_fn
+
+def doc_exists(xs, addr):
+    try:
+        xs.open_document(addr, x88.READ_ONLY, x88.CONFLICT_FAIL)
+    except:
+        return False
+    xs.close_document(addr)
+    return True
+
+def export_content(xs, fn, addr, overwrite=False):
+    xs.open_document(addr, x88.READ_ONLY, x88.CONFLICT_FAIL)
+
+    # export entire text space
+    specset = x88.SpecSet(x88.VSpec(addr, [ENTIRE_DOC]))
+
+    shared = xs.find_documents(specset)
+    if len(shared)>1:
+        mutter(0, "merged transclusion in", fn)
+        mutter(1, "\t%s spans, %s\n\t" % (len(shared), map(str, shared)))
+
+    data = "".join(xs.retrieve_contents(specset))
+
+
+    if open(fn).read() != data:
+        if overwrite:
+            mutter(0, "overwriting", fn)
+            fh = open(fn, 'w+')
+            fh.truncate()
+            fh.write("".join(data))
+            fh.close()
+        else:
+            fn_new = newfileversion(fn)
+            mutter(0, "writing", addr, "to", fn_new)
+            fh_new = open(fn_new, 'w')
+            fh_new.write("".join(data))
+            fh_new.close()
+    else:
+        mutter(1, "no changes to file", fn)
+
+    xs.close_document(addr)
+
+def export_links(xs, xc_out, addr):
+    assert isinstance(addr, x88.Address)
+
+    xs.open_document(addr, x88.READ_ONLY, x88.CONFLICT_FAIL)
+
+    links= []
+    # Get all end sets in given document
+    textspec = x88.SpecSet(x88.VSpec(addr, [ENTIRE_DOC]))
+    srcspecs, trgtspecs, tpspecs = xs.retrieve_endsets(textspec)
+    if srcspecs:
+        links += xs.find_links(srcspecs)
+    if trgtspecs:
+        links += xs.find_links(x88.NOSPECS, trgtspecs)
+    if tpspecs:
+        links += xs.find_links(x88.NOSPECS, x88.NOSPECS, tpspecs)
+
+    # Filter out duplicate link addresses
+    filtered = []
+    for laddr in links:
+        if not laddr in filtered:
+            try:
+                # try to localize, raises error if link is in another doc
+                local = addr.localize(laddr)
+
+                filtered.append(laddr)
+            except Exception, e:
+                mutter(3, e)
+        else:
+            mutter(2, 'ignoring duplicate link', laddr)
+    links = filtered
+
+    if not links: return
+
+    # Start link-script output: open doc for writing
+    xc_out.write(35)
+    xc_out.write(addr)
+    xc_out.write(2)
+    xc_out.write(1)
+    xc_out.stream.write('\n')
+
+    for laddr in links:
+        srcspecs = xs.follow_link(laddr, x88.LINK_SOURCE)
+        trgtspecs = xs.follow_link(laddr, x88.LINK_TARGET)
+        tpspecs = xs.follow_link(laddr, x88.LINK_TYPE)
+
+        mutter(2, addr, srcspecs, trgtspecs, tpspecs)
+
+        # Link-script: write links
+        x88.Number_write(27, xc_out.stream)
+        for a in (addr, srcspecs, trgtspecs, tpspecs):
+            xc_out.write(a)
+        xc_out.stream.write('\n')
+
+    # Link-script: close doc
+    xc_out.write(36)
+    xc_out.write(addr)
+    xc_out.stream.write('\n')
+
+    return
+
+
+def main(argv):
+    # parse argv
+    import getopt
+    opts, args = getopt.getopt(argv[1:], "vd:b:l:f:", ["overwrite"])
+
+    backend = '../pyxi/be/backend'
+    content_list = ''
+    file_list = []
+    doc_list = None
+    links_outf = None
+    content_outf = None
+    overwrite = False
+    for o in opts:
+        if '-b' in o:
+            backend = o[1]
+        elif '-c' in o:
+            content_outf = open(o[1], 'w') # write content to single file
+        elif '-d' in o:
+            udxutil.chatty = int(o[1])
+        elif '-v' in o:
+            udxutil.chatty += 1
+        elif '-f' in o:
+            content_dir = os.path.dirname(o[1])
+            file_list = open(o[1]).readlines() # write contents to all these files
+            links_outf = open(os.path.join(content_dir, 'init-links.febe'), 'w')
+        elif '-l' in o:
+            links_outf = open(o[1], 'w') # write link FeBe script to file
+        elif '--overwrite' in o:
+            overwrite = True
+
+    if not hasattr(content_outf, 'write'):
+        content_outf = sys.stdout
+    else:
+        content_outf.truncate()
+
+    if not hasattr(links_outf, 'write'):
+        links_outf = sys.stdout
+    else:
+        links_outf.truncate()
+
+    # option sanity...
+    if args:
+        assert not file_list
+        doc_list = args
+
+    # backend location sanity...
+    assert os.path.exists(backend)
+    be_dir = os.path.dirname(backend)
+    be = os.path.basename(backend)
+    assert os.path.exists(os.path.join(be_dir, 'enf.enf'))
+
+    cwd = os.getcwd()
+    os.chdir(be_dir)
+
+    # get x88 session
+    if udxutil.chatty>3:
+        ps = x88.DebugWrapper(x88.PipeStream(be), sys.stderr)
+        xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
+        xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
+    else:
+        xs = x88.pipeconnect(be)
+
+    # get x88 connection for links output
+    xc_out = x88.XuConn(links_outf)
+
+    # Start links FeBe script
+    xc_out.stream.write('\n')
+    for m in ('P0',), ('34', '0.1.1.0.1'):#, ('35', '0.1.1.0.1.0.2', '2', '2'):
+        for c in m:
+            xc_out.stream.write(c+'~')
+        xc_out.stream.write('\n')
+
+    # export links and contents
+    if doc_list:
+        for addr in doc_list:
+            docid = x88.Address(addr)
+            export_links(xs, xc_out, docid)
+            export_content(xs, content_outf, docid)
+
+    elif file_list:
+        os.chdir(cwd)
+        os.chdir(content_dir)
+
+        doc = 0
+        for fn in file_list:
+            fn = fn.strip()
+            # same as line number from file list
+            doc += 1
+
+            docid = x88.Address("1.1.0.1.0.%i" % doc)
+            if not doc_exists(xs, docid):
+                break
+            export_links(xs, xc_out, docid)
+            export_content(xs, fn, docid, overwrite)
+
+        os.chdir(cwd)
+        os.chdir(be_dir)
+
+    # finish links script
+    xc_out.write(16)
+    xc_out.stream.write('\n')
+
+    xs.quit()
+    os.chdir(cwd)
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))

@@ -1,0 +1,50 @@
+ 
+
+ 
+
+ 
+
+     Appendix VI Tumblers, their 
+arithmetic and spans. 
+
+     A span is a region of the 
+system's information  space.   For 
+the  text version of the system, a 
+span is a one-dimensional vector, 
+with a starting address and a length. 
+Spans do not have any data associated 
+with them.  To find the data that the 
+span specifies, you use the retrieve 
+request. 
+
+ ... resolution 
+
+        spec 
+          doc 0.0.1        1.1 
+          span           + 0.100 
+            start 1.1    ------- 
+            width 0.100    1.100 
+gives the first 100 characters of doc 
+0.0.1 
+
+        spec 
+          doc 0.0.1        1.1 
+          span           + 1 
+            start 1.1    ------ 
+            width 1        2 gives 
+the entire text of doc 0.0.1 
+
+        span 
+          doc 0.1.0.1 
+        width 0.0.1 gives the ids of 
+all of author 0.1's documents. 
+
+ 
+       0.0.1         0.0.0.0.2     
+0.0.1     0.0.1.0.2 
+     + 0.0.0.0.2   + 0.0.1       + 
+0.0.2   + 0.0.2.0.3 
+       ---------     ---------     
+-----     --------- 
+       0.0.1.0.2     0.0.1         
+0.0.3     0.0.3.0.3 

@@ -1,0 +1,13 @@
+Udanax Green + Pyxi + .mpe hacks
+Berend van Berkum <berend@dotmpe.com>
+
+Xu88.1 is found at http://udanax.com/green/
+
+- x-be-pipestream-tcpwrapper.py, circumvent bug and have single user network
+  access.
+- udxdot, create dot network diagrams for nodes/links
+- htdoc with some tools to generate and backup enfilades
+- XuDiff - handle simple remove/insertions.. muse on rearrangements. Plain text
+  editor FeBe adapter based on standard file diffs.
+
+

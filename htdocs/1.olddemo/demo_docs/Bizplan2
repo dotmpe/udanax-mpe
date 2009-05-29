@@ -1,0 +1,235 @@
+
+
+
+
+
+
+B. The Company. 
+
+The Company, XOC, Inc., was incorporated in Michigan on October 14, 1982.
+While the Company is new, its antecedents date to the early 1960's when Ted
+Nelson, one the nation's leading and best known computer visionaries,
+conceived of a special kind of computer-based information handling tool and 
+introduced the term "hypertext" to the English language. 
+
+In 1974 Nelson published Computer Lib/Dream Machines, in which he anticipated
+the advent of the personal computer and outlined his vision of the ideal
+hypertext system. He called this system "Xanadu." The book, though
+controversial in both form and content, attracted a significant following
+among computer experts around the world. In lectures to lay and professional
+groups and in professional and popular articles, Nelson continued to advance
+the notion of a hypertext system. 
+
+In 1979, convinced that hypertext was the right way to automate reading,
+writing, and libraries, five of the nation's brightest young computer wizards
+gathered with Nelson in Swarthmore, Pennsylvania to form Project Xanadu.  The
+work of the project centered upon the design and implementation of the Xanadu 
+Hypertext System. Nelson and these five--Roger Gregory, Mark Miller, Stuart
+Green, Roland King, and Eric Hill--began writing the software for the system
+they designed. In the following excerpt from "Replacing the Printed Word,"
+cited earlier, Nelson talks about the group's design philosophy. 
+
+INTERACTIVE SYSTEMS AND THE DESIGN OF VIRTUALITY 
+
+Our approach to a computer design we call "the design of virtuality." By
+virtuality we mean the seeming of an object or system, its conceptual
+structure, its atmospherics and its feel. 
+
+Every object has a virtuality, a seeming. Natural objects are more or less
+what they seem to be; man-made objects are not. The virtuality of a house, or
+an automobile, is what the designer made it--the structure and qualities that
+were chosen, and the techniques by which they were realized. 
+
+The closest analogy to the design of interactive computer systems, I think, is
+the making of movies. What counts is effects, not techniques.  We are not
+concerned with just how a certain effect is to be achieved, so much as with 
+what effect is wanted. 
+
+An effect is something intended to take place in the mind.  Suppose the movie
+effect desired is a sense of a monster approaching. This can be done by
+showing a man in a lizard suit--yaargh--or animated puppets, or by showing the
+fright of a person who sees the monster.  In other words, a variety of
+techniques may be selected toward a common effect. 
+
+The design of an interactive computer environment, similarly, should not be
+based on particular hardware, or a particular display device, or a programming
+technique.  It should be based on the intended effect in the mind and heart of
+the viewer. ("Heart" here is added because we are too seldom mindful of the
+emotional component in a user's reaction.) 
+
+Another way of saying this is that the "systems analysis" for an interactive
+system should deal with the mental space of the user's experience. 
+
+The process is a cycle: study, and design. First we must study the approximate
+structure of whatever we are designing, and roughly what it is about.  Then we
+design, that is, look to see how the computer's capacities may be made to
+assume a similar conceptual shape. 
+
+There is one other key constraint in system design: conceptual simplicity.  If
+any but highly trained people are to use a system, it must be extremely simple. It must be simpler by far than anything computer people are accustomed to
+designing--a factor of ten, let us say, simpler than what a computer hacker
+considers "simple." 
+
+Popular lore in the computer field holds that simple systems are not
+"powerful"--where powerful seems to mean "allowing concise macro-language
+programming." (This is evidently the view of those who consider TECO a
+powerful text editor, or, indeed, a text editor.)  We believe that true power,
+meaning easy and focused control by the user on what he means to do, is not 
+merely compatible with simplicity, it requires it. 
+
+This has been a preface to understanding our design.  Our approach to
+electronic text has been to look for the hidden nature of writing as a whole,
+and the way it is used, to find a paradigm for this design.  The virtuality we
+ have designed reflects this endeavor. (In point of historical fact, this 
+philosophy of virtuality and simplicity arose in parallel with the development
+of the design, but we think we now know how to design any other system on the
+same basis.) 
+
+THE LITERARY PARADIGM 
+
+A piece of writing--say, a sheet of typed paper on the table--looks alone and
+independent. This is quite misleading. Solitary it may be, but it is probably
+also part of a literature. 
+
+By "a literature" we do not mean anything to do with belles-lettres or
+leather-bound books. We mean it in the same broad sense of "the scientific
+literature," or that graduate-school question, "Have you looked at the
+literature?" 
+
+A literature is a system of interconnected writings.  We do not offer this as
+our definition, but as a discovered fact.  And almost all writing is part of a
+literature. 
+
+The way people write is based in large part on these interconnections.  A
+person reads an article.  He says to himself, "Where have I seen something
+like that before? "Oh yes--," and the previous connection is brought mentally
+into play. 
+
+Consider how it works in science. A genetic theorist, say, reads current
+writings in the journals. These refer back, explicitly, to other writings; if
+he chooses to question the sources, or review their meaning, he is following
+links as he gets the book and refers to it.  He may correspond with colleagues,
+mentioning in his letters what he has read, and receiving replies suggesting
+that he read other things.  (Again, the letters are implicitly connected to
+these other writings by implicit links.) Seeking to refresh his ideas, he goes
+back to Darwin and also derives inspiration from other things he reads--the
+Bible, science fiction.  These are linked to his work in his mind.
+
+In his own writing he quotes and cites the things he has read.  (Again,
+explicit links are being made.) Other readers, taking interest in his sources,
+read them (following the links).
+
+In our Western cultural tradition, writings in principle remain continuously 
+available--both as recently quoted, and in their original inviolable
+incarnations--in a great procession.
+
+So far we have stressed some of the processes of referral and linkage.  But
+also of great importance are controversy and disagreement and reevaluation.
+Everyone argues over the interpretation of former writing, even our
+geneticists.  One author will cite (or link to) a passage in Darwin to prove
+Darwin thought one thing, another will find another passage to try to prove he
+thought another.
+
+And views of a field, and the way a field's own past is viewed within it,
+change.  A formerly forgotten researcher may come to light (like Mendel), or a
+highly respected researcher may be discredited (Cyril Burt). And so it goes,
+on and on.  The past is continually changing--or at least seems to be, as we
+view it.
+
+There is no predicting the use future people will make of what is written.
+Any summary, any particular view, is exactly that: the perspective of a
+particular individual (or school of thought) at a particular time.  We cannot
+know how things will be seen in the future.  We can assume there will never be
+a final and definitive view of anything.
+
+And yet this system functions.
+
+           LITERATURE IS DEBUGGED.
+
+
+In other words, even though in every field there is an ever-changing flux of
+emphasis and perspective and distortion, and an ever-changing fashion in
+content and approach, the ongoing mechanism of written and published text
+furnishes a flexible vehicle for this change, continually adapting.  Linkage
+structure between documents forms a flux of invisible threads and rubber bands
+that hold the thought together.
+
+Linkage structure and its ramifications are surprisingly similar in the world
+of business.
+
+A business letter will say, "In reply to your letter of the 13th..." or a
+business form, another key communication, may say in effect, "In response to
+your order of the 24th of last month, we can supply only half of what you have
+asked for, but can fill the rest of the order with such-and-such item from our
+catalog." All of these citations may be thought of as cross- linkages among
+documents.
+
+The point is clear, whether in science or business or belles lettres.  Within
+bodies of writing, everywhere, there are linkages we tend not to see.  The
+individual document, at hand, is what we deal with; we do not see the total
+linked collection of them all at once.  But they are there, the documents not
+present as well as those that are, and the grand cat's-cradle among them all.
+
+From this fundamental insight, we of Project Xanadu have endeavored to create a
+system for text editing and retrieval that will receive, and handle, and
+present documents with links between them.  We believe there is something very
+right about the existing system of literature; indeed we suspect that there are
+things about it that we don't even know, as with Nature.  And so we have tried
+to mirror, and replicate, and extend existing literary structure as we have
+here described it.
+
+But as we said earlier, the design of virtuality is a dialectic.  First we
+must study what there is; then we must venture a design in response to what is.
+And that design is not dictated by what we have seen, any more than the design
+of a house is dictated by a hillside.  There are only hints.
+
+THE SYSTEM DESIGN
+
+By the "design" of the system we mean its conceptual architecture: the basic
+ideas of it.  But with many systems the general system of concepts is filtered
+through innumerable complications and accidental features.  In this system
+the basic ideas are the only ideas.
+
+Our approach, then, is to consider all documents as interconnected, or
+potentially interconnected.  Not just documents, but linkages as well, are
+the fundamental elements of the system.  (Links are actually parts of
+documents, as will be seen later.)  It is the different types of links that
+give both power and complication to the system.
+
+Our system, the Xanadu Hypertext System (tm), is intended to store a body of
+writings as an interconnected whole, with linkages, and to provide
+instantaneous access to any writings within that body.
+
+For this system we have formulated a basic linkage structure that we think
+meets all the needs of literature as we understand it, including business
+literature.
+
+In 1980, in order to take advantage of the concentration of computer facilities
+and expertise available in the area and to be more accessible to those
+interested in the hypertext system, Gregory, King, and Hill moved Project
+Xanadu to Ann Arbor, Michigan to complete the system development work.
+Meanwhile, Miller and Green joined the Texas-based Datapoint Corporation, where
+they were joined a year later by Nelson, to provide on-going capital to fund
+the Project.
+
+In 1981, Nelson published Literary Machines, a book about advanced information
+management techniques, Project Xanadu, and the Xanadu Hypertext System.  The
+book attracted (and continues to attract) considerable interest from major
+American corporations whose information management problems have become severe.
+Basic business organizational structure was formalized in the same year.  Under 
+this structure a parent company, Project Xanadu, Inc. (PXI) will be formed to
+own and control the system source code and various trade secrets.  PXI is a
+closely held corporation of which Nelson will own 51 percent.  It will hold the
+rights to the proprietary data structures.  A second company, XOC, has been
+formed to market the commercial aspects of the Xanadu Hypertext System under a
+license from PXI.  PXI will hold 10% of XOC.  Software engineer Charles B.
+Morningstar joined Project Xanadu at this time.
+
+In 1982 King left the project on a leave of absence and four people joined the
+group, bringing the number of key personnel to eight. The newcomers were
+Margaret Woodcock, J.D., in-house legal counsel; David Woodcock, systems
+programmer; Susan Letwin, technical writer and manager; and Robert Lovell,
+marketing manager, application engineer and contract administrator.
+
+Implementation slowed due to lack of resources, so the group purchased a Sun
+68000 workstation to help complete development work.

@@ -1,0 +1,36 @@
+
+Xanadu Front-End Commands
+
+      These are the commands that currently work.
+
+
+    CURSOR CONTROL
+
+
+^W or uparrow      move up a line
+^Z or downarrow    move down a line
+^A or leftarrow    move back a character
+^S or rightarrow   move forward a character
+
+^R    top of document
+^F    down one page
+
+
+    LINK HANDLING
+
+^Y    follow link
+
+        Link starting points are back-lit.
+        Link destinations are underlined.
+
+^U    return from following link.
+
+
+    CONTROL
+
+^T    exit program
+
+
+
+
+      Follow this link to get to the index of documents

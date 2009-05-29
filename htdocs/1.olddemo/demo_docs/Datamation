@@ -1,0 +1,1010 @@
+  
+  
+  
+   A NEW HOME FOR THE MIND        by 
+TED NELSON  
+     Simplicity almost never happens 
+by itself; it must be designed. There 
+are  many computer programs for 
+dealing with complexity.  
+Unfortunately, as a rule,  they 
+generate more complexity.  Many 
+systems that start out simply, like 
+order  processing or invoicing, are 
+appallingly complex in their 
+full-blown computer  regalia.  As a 
+result, many computer people see 
+their jobs as the management  
+and perpetuation of this complexity.  
+     An alternative to this care and 
+feeding of ever more complex systems  
+based on simplistic frameworks is to 
+seek a framework that holds and deals 
+with ideas and their relationships in 
+their natural form and structure, in  
+their full and exact intricacy.  To 
+face squarely and early the natural  
+implications of a process brings 
+simplicity in the long run.  
+     A situation where this choice 
+can be made is upon us now with the 
+arrival  of cheap word processing 
+systems.  These machines help create, 
+manipulate, and  store people's ideas 
+in the form of written documents.  
+Many of these  documents relate to 
+each other, quoting in part or whole, 
+referencing through  footnotes and 
+bibliographies, or merely sharing 
+similar ideas.  It is often  
+necessary to store many copies of one 
+document to assure safety from  
+accidental deletions, provide a means 
+for backtracking through successive  
+states of the document, and for 
+repeated use by other documents.  
+     The safety of documents should 
+be taken care of automatically; that 
+it is  still a problem shows the low 
+state of the art.  Backtracking is an 
+important  consideration.  Although 
+we do not need to go back through 
+previous material  often, we should 
+be able to do it right when we do.  
+Here is what doing it  right entails: 
+     Suppose we create an automatic 
+storage system that takes care of  
+backtracking automatically.  As a 
+user makes changes, they go directly 
+into  the storage system, filed 
+chronologically.  The user may then 
+refer not merely  to the present 
+version of a document, but may go 
+back in time to any previous  
+version.  He must also be able to 
+follow a specific section of a 
+document back  through time, studying 
+its previous states.  We need not go 
+into technical  details here, but it 
+is obvious that such a system departs 
+from conventional  block storage.  It 
+would store material in fragments 
+under control of a master  directory 
+which indexes by time and other 
+factors.  
+     This same scheme can be expanded 
+to handle alternative versions, more  
+than one arrangement of the same 
+materials, a facility that writers 
+and  programmers could certainly use. 
+Alternative versions are important in 
+many  boiler plate applications, such 
+as law and public relations writing, 
+where the  same materials are churned 
+out repeatedly in different 
+arrangements and  variations.  A 
+master indexing scheme could greatly 
+reduce storage  requirements in these 
+applications, and make the relations 
+among documents  much clearer.  
+    Of course, a facility that holds 
+many versions of the same material 
+and  allows historical backtracking 
+is not terribly useful unless it can 
+help  intercompare different versions 
+in detail, unless it can show you, 
+word for  word, what parts of two 
+versions are the same.  
+     Lawyers could use this facility 
+to compare wordings.  Congressmen 
+could  compare different draft 
+versions of legislative bills.  
+Authors could see what  has happened 
+to specific passages in their 
+writings between drafts.   Biologists 
+and anatomists could compare 
+corresponding parts of animals using 
+a  graphical database of physiology 
+that shows evolving structure.  
+    By creating such a capable 
+storage system, we have greatly 
+simplified the  life of the text 
+user.  The nuisance of backup, and 
+the spurious nonsense-task  of 
+finding names for backup files, is 
+eliminated.  More importantly, we 
+have  unified all versions (previous 
+and alternative) in a single 
+structure for  ready reference.  The 
+user could scroll through any two 
+versions to see  corresponding parts, 
+and much more.  
+     So far we imagine a new 
+reading-and-writing box that behaves 
+pretty much  like a high-power word 
+processor.  Let us add one more 
+facility, links.  
+     To begin with, let us think of a 
+link as simply an opportunity to jump 
+away from some point in the text.  A 
+conventional footnote is a good 
+example.   An asterisk, say, signals 
+that "there's something to jump to 
+from here."  If  you point at it with 
+your light-pen (or mouse or 
+whatever), bingo!-you're now  at the 
+footnote, or whatever else the author 
+took you to.  If you don't like  it 
+there, hit a return button and you're 
+back to where the asterisk appeared.  
+No harm has been done.                
+     This simple facility-call it the 
+jumplink capability-leads immediately 
+to  all sorts of new text forms: for 
+scholarship, for teaching, for 
+fiction, for  poetry.                 
+     Marginal notes, like those 
+scribbled in books, are another 
+simple and  important type of link.  
+(Where the "margins" of the computer 
+screen are-that  is, how to show 
+them- is a matter particular to your 
+own screen setup.)  
+     The link facility gives us much 
+more than the attachment of mere odds 
+and  ends.  It permits fully 
+nonsequential writing.  Writings have 
+been sequential  because pages have 
+been sequential.  What is the 
+alternative?  Why,  
+hypertext-nonsequential writing.  
+     Many, perhaps most, writers have 
+been frustrated by the problem of  
+choosing a sequence for the ideas 
+they are presenting.  Any sequence is 
+generally arbitrary, and what is 
+right for one reader may be wrong for 
+another.  Indeed, many writers have 
+experimented with nonsequential 
+forms-one  of my favorites is 
+Nabokov's *Pale Fire*-and I think 
+such forms have proved  gratifying.  
+They are not necessarily easy to work 
+with, however.  That is  because 
+exiting mechanisms push us toward 
+sequency.  Even the best of  
+commercial word processors.    
+     I have so far presented several 
+new capabilities that I think are  
+important:  alternative versions and 
+historical backtrack, both with 
+sameness  display, and links.         
+     These work together; they have 
+to.  The links allow the creation of  
+nonsequential writings and 
+jump-structured graphics of many 
+kinds.  But if you  were going to 
+have links you really need historical 
+backtrack and alternative  versions.  
+Why?  Because if you make some links 
+on Monday and go on making  changes, 
+perhaps on Wednesday, you'd like to 
+follow those links into an  updated 
+version.  They'd better still be 
+attached to the right parts, even  
+though the parts may have moved.  And 
+the sameness display allows the 
+complex  linked alternatives to be 
+studied and intercomputed in depth.   
+     Let us call this Stage One:  a 
+system of computer storage that holds 
+small pieces of a document, not big 
+blocks, and instantly assembles them 
+into  any part of whichever version 
+you ask for.  That allows you to 
+create links of  any kind you want, 
+and shows you which parts are the 
+same between related  versions.  Let 
+us call such a storage system a 
+hyperfile.    
+     Electronic publishing is coming; 
+this much we all agree on.  Just what 
+it  will be is not so clear.  For 
+some five hundred years the public 
+has been  reading from books and 
+magazines of paper.  Now all that may 
+change.  
+     As computer crt screens become 
+more and more available, there is 
+less and  less reason for printing on 
+paper.  The costs of wood pulp and 
+gasoline, the  long lead times of 
+editorship and production, the 
+increasing divergence of  specialized 
+interests, and the lowering cost of 
+computers with screens, of  disk 
+storage, and digital communications, 
+all suggest this.   
+     Beginning thinkers in this area 
+often suppose that what will be 
+offered  to the screen reader will be 
+merely individual stored documents, 
+available  on-line quickly, but based 
+somehow on conventional documents 
+nestling in  conventional sequential 
+computer files.  My view is quite 
+different.  
+     Consider the hyperfile we just 
+finished expounding.  Why can't we 
+extend  it into a full publishing 
+system?  Once the package allows 
+linkage and  backtracking, why not 
+extend it?  Why not allow anyone to 
+create links between  documents, 
+allowing jumps straight from one to 
+another?  If documents can be  
+reached and used on-line by anyone, 
+all we need additionally is the 
+ability to  create links among them- 
+to make our own bookmarks and 
+marginal notes, to  quote from them 
+by direct excision.  And why not, 
+indeed, allow users to  assemble 
+collections of documents into larger 
+ones?                                 
+     Royalties will have to be paid, 
+of course.  Since there is no 
+controlling  what happens at the user 
+end, this royalty should be 
+automatically recorded  and largely 
+based on transmission time.  An hour, 
+five minute, or one second of  a 
+thing, each contribute proportionally 
+to the copyright holder's account.  I 
+will bypass the question of whether 
+different rates of royalty should be  
+allowed.  
+     The logic of such compound 
+documents is simple and derives from 
+the  concept of document ownership.  
+Every document has an owner.  The 
+integrity of  this document is 
+maintained; no one may change it but 
+the owner.  
+     Someone else, however, may 
+create a document which quotes it or 
+revises  it; this document, too, 
+retains its integrity.  That means 
+you can  indefinitely create new 
+documents from old ones, making 
+whatever changes seem  appropriate.  
+Originals remain unchanged.      
+     What's more, since the copyright 
+holder gets an automatic royalty,  
+anything may be quoted without 
+permission.  That is, publishing 
+through such a  net requires implicit 
+permission for your work to be quoted 
+ad lib.  You  publish something, 
+anyone can use it, you always get a 
+royalty automatically.   Fair.  
+Especially if the reader can always 
+say "Show me what this was  
+originally."  
+    But this means a whole new 
+pluralistic publishing form.  If 
+anything which  is already published 
+can be included in anything newly 
+published, any new  viewpoint can be 
+fairly presented.  For example, my 
+great-grandfather, Edmund  Gale 
+Jewett, believed that one word in 
+*Hamlet* was incorrect.  It should 
+have  been "siege," not "sea of 
+troubles," in the well-known 
+soliloquy, he thought.  
+     Very well.  If *Hamlet* is on 
+the system, then E.G. Jewett could 
+publish  his own *Hamlet*, very 
+easily:  a quote-link to the whole 
+original, except for  "sea," which is 
+changed to "siege."  
+             Now, the obvious rules 
+of the road should be  as follows:  
+             1.  Shakespeare's 
+*Hamlet* is of course unchanged and 
+available  instantly.  
+             2.  Jewett's modified 
+version of *Hamlet*, composed almost  
+entirely of the original, is also 
+available instantly. Jewett may give 
+it any  title he wants.  
+             3.  Shakespeare-or 
+presumably some Needy Author's 
+Fund-gets the  royalties for the 
+portion of Shakespeare's *Hamlet* 
+summoned by readers.   
+             4.  When people read 
+Jewett's *Hamlet*, the author's fund 
+still  gets the royalty on 
+Shakespeare's behalf almost all the 
+time.  But Jewett gets  a minute 
+proportion of the royalty for the 
+change he has made, whenever a  
+reader encounters that part.          
+             5.  Anyone reading 
+Jewett's version can say, "Show me 
+the  original of this next to it," or 
+just, "Take me to the original."  
+             6.  Anyone reading 
+Shakespeare's *Hamlet* can say:  
+"What  documents have links to this?" 
+or "Are there any alternative 
+versions?" and  get a list that 
+includes Jewett's version.      
+     Note also the modest cost to 
+Jewett should he "publish" his text:  
+the  storage cost for a few hundred 
+bytes to hold ID, pointers, and 
+changes.  Also,  note that this 
+arrangement is fair, orderly, and 
+simple.  These seem to me  very 
+important features.                   
+     The overarching vision I 
+propose, then, we might call a 
+"hyperworld"-a  vast new realm of 
+published text and graphics, all 
+available instantly; a  grand library 
+that anybody can store anything 
+in-and get a royalty for-with  links, 
+alternate versions, and backtrack 
+available as options to anyone who  
+wishes to publish them.  It is a 
+world:           
+        *whose documents window and 
+link freely to one another;   
+        *where every quotation may be 
+traced instantly, and seen in its  
+original context;  
+        *where minority 
+interpretations and commentary may be 
+found  everywhere;  
+        *where any point of view 
+disagreed with may at once be 
+restated "in  the margin, "with only 
+minor changes," by any commentator; 
+thus good  explanations of everything 
+soon become available;    
+        *where a collage of parts can 
+be assembled by anyone into a new  
+unifying vision, but the doubtful 
+reader may wander off into a 
+constituent  part and not return;  
+        *where an article published 
+on Wednesday is festooned with  
+disagreements by Friday, widely 
+windowed the following week, 
+forgotten the  next year, 
+rediscovered in a decade.             
+     Scholarship becomes plied high 
+with popularizations.  Good 
+quotations,  good diagrams, propagate 
+through this electronic literature 
+like wildfire, as  everybody uses 
+them.  
+     The tangle of links will grow.  
+Professional indexers will create  
+directories of what they think we'll 
+want to see, and collect a whiff of  
+royalty every time you veer through 
+their directory.  (The system must 
+not  have an official directory; that 
+implies an official set of 
+categories-a bias  best left to 
+users.)  
+     Is this chaos?  Not at all.  
+Because at any one time you are 
+within one  specific document, the 
+work of a specific author.  If this 
+work is windowing  to other 
+documents, nevertheless you are still 
+not "in" the others, but  viewing 
+them through the present author's 
+textual filter.  
+     Think of the present document as 
+a sheet of glass.  It may have 
+writing  painted on it by the present 
+author; it may have windows to 
+something else,  but these windows 
+may have, as it were, colored 
+cellophane or opaquing on  them.  It 
+is only when you step through the 
+window-which you may do at any  time- 
+that you reach the original.  But 
+stepping through the window means  
+turning one glass page and going on 
+to the next.  Now you are in another 
+work.    
+     Now reconsider what we said 
+before about simplicity.  Simplicity 
+must be  designed, but it should 
+reflect the true inner structure of 
+something.  Many  approaches to 
+electronic publishing are very 
+complicated.  But that can't work  on 
+a broad scale:  the word publishing 
+itself suggests use by the public.   
+Meaning simplicity.  For thousands of 
+years we have had a tradition we call 
+literature.  Its inner structure has 
+been that of documents, each with an  
+owner/creator, which quote and refer 
+to one another in an ever-growing  
+snowball.  All I am proposing here is 
+to electronify and hasten access to 
+this  very traditional structure but 
+with suitable enhancements arising 
+from  available software techniques.  
+     The result is a seemingly 
+anarchic pool of documents, true, but 
+that's  what literature has been 
+anyhow.  Yet I see this new world as 
+orderly in two  ways.  Its 
+orderliness is not, as some would 
+suppose, imposed by the computer  or 
+its administrators, but by something 
+which arose long ago in the natural  
+structure of literature, and which we 
+are merely retaining.  
+     One kind of order, order on the 
+small scale, is simply the 
+distinction  between documents and 
+the enforcement of ownership.  You 
+know who created  whatever you're 
+looking at; despite the staggering 
+pluralism, each thing is  kept 
+separate and intact because only its 
+author, or publisher, controls it.   
+No one can ever be misquoted except 
+by making a copy, rather than a  
+quotation-link, and that can be 
+easily recognized as suspicious.      
+     The other form of order is the 
+long-term orderliness of ideas, which 
+is  ever created and re-created by 
+commentators, paraphrasers, and 
+anthologizers.  
+     I see a world where people are 
+brought together by the computer, 
+rather  than driven apart by 
+television.  The computer screen is 
+really a very social  instrument.  
+Not many people have noticed that the 
+crt is an ideal two-person  device.  
+Sure, much of the time there's only 
+one person at it, but often there  
+are two.  And when there are two 
+people, the situation is socially  
+interesting:  they are usually in a 
+colleague relationship.  Two people 
+sit,  chat, exchange ideas as they 
+browse, decide together what to do 
+next.  Bossy  authority does not fit 
+well when two people are looking at a 
+tube and  chatting.  "Suppose we try 
+this," one will say, or, "Let's do 
+that."  One may  be officially the 
+other's boss or teacher, but the 
+relationship is softened,  made more 
+sensible and open to ideas from both. 
+One moral is that every  computer 
+screen should have a jump seat.  As 
+crt furniture and mountings are  
+better designed, the computer and 
+screen will no longer be a stack of 
+boxes to  be placed on a wooden desk, 
+but an integrated piece  of furniture 
+with  suspended tube, coordinated 
+work surfaces, and bucket seats.  Or 
+rather a  pilot's bucket seat and a 
+colleague's less comfortable pullout 
+seat.   Kibitzers will have to stand. 
+     As explorable graphics and 
+simulations are added to our 
+hyperworld, the  computer screen will 
+be more and more a new kind of shared 
+social environment.   I see little 
+kids at play in spaceships and far 
+galaxies, but with characters  on the 
+screen that they've borrowed from 
+here and there.  Barbie, the Wizard  
+of Oz, Captain Midnight, and Shaft 
+can be toys in Eriador or the palace 
+of  Ming the Merciless, because 
+graphical pieces may be drawn from 
+everywhere.   The kids build worlds 
+and castles in two-dimensional 
+collages, which can  always be there 
+when they come back, unlike wooden 
+blocks that clutter the  living room.  
+Later, as 3D imaging systems like 
+CHARGE become available, the  
+hyperworld can include 
+three-dimensional data-spaces.       
+     I see adults who were "afraid of 
+science" learning physics at the 
+wheel  of a video game, combining one 
+author's graphics with another's 
+simulations  and still another's 
+sound synthesis; where dings and 
+roars and acceleration  make the 
+ideas come alive.                     
+     I see families together again, 
+actively sharing.  Imagine a kid and 
+her  father browsing through an 
+illustrated hypertext:  
+     "Gee, daddy, a brontosaurus!  
+Let's animate him!"  
+     "Like this?"  The father finds 
+several animations that have been  
+published for this brontosaurus.  
+Choosing one, he makes the 
+brontosaurus walk  and eat.  
+     "I wonder what the bones of the 
+dinosaur look like while he's 
+walking,"  ruminates the child.  
+     Father links to bones while 
+maintaining the animation.  Now the 
+skeleton  walks inside its outline, 
+still munching from trees.  
+     "Oh, save that, daddy!"  
+     Daddy hits a button and a 
+private link is created to the 
+original  dinosaur picture, the 
+animation frame, and the skeleton-all 
+of which may be  brought together 
+again, with time and date, when the 
+child wants to see her  "dinosaur 
+picture."  
+     Hey, here we are in *Snow White 
+and the Seven Dwarfs*.  A Disney 
+vision.   Shall we jump sideways on 
+links to older illustrations?  Yikes, 
+the 19th  century engravings are too 
+sinister.  Let's see if this passage 
+has a  corresponding part in the 
+Donald Barthelme version.  
+     Once we can have full and 
+independent linking and windowing, 
+scholarship  changes dramatically.  A 
+commentator or critic can underline 
+precisely what he  is referring to at 
+any time, and gather together 
+whatever pieces to support  his 
+thesis.  Intercomparison and exegesis 
+become easier to do and easier to  
+follow.  Detailed annotations to 
+existing writings may easily be 
+published,  anthologies of related 
+materials can be easily put together. 
+     Perhaps most important, this 
+richness and completeness becomes 
+available  to students who before 
+have had to deal with simplified, 
+bowdlerized, and  gutless materials.  
+     Consider schools.  From the 
+one-room schoolhouse, a cooperative 
+endeavor  fostering individual goals 
+and abilities in a sharing 
+atmosphere, we went to a  
+batch-processing system with inane 
+fixed curricula, arbitrary and 
+meaningless  standards of success, 
+and failure (what in the hell does a 
+"B" in geometry  mean?), and teaching 
+as a platoon-control process.  Human 
+mentality, even for  the "well 
+educated," has been kept by the 
+educational system and popular  
+outlook far below the levels we can, 
+and ought to, attain.   
+     Why is it that schools are by 
+their nature boring and oppressive, 
+yet  museums, which may cover the 
+same subjects, are liberating and 
+exciting to the  kids?  The answers 
+are fairly simple:  one is dull, the 
+other vivid; one is  confining, the 
+other is free.              
+     Now there ought to be a 
+way-there's going to be a way-to 
+combine the  freedom of a museum with 
+a reasonable criterial system for 
+monitoring  achievement.  
+     Aside from the merest basics, it 
+is not important what you learn, it 
+is  important that you learn, and if 
+there are a lot of choices then you 
+are going  to choose for yourself and 
+succeed for yourself; thus you feel 
+gratified from  the learning process 
+and competent to continue it, and 
+those are two outcomes  the schools 
+have studiously avoided.    
+     How to bring out the excitement, 
+controversy, drama, of all the 
+world's  subjects, put this in a 
+voluntaristic and uncontrolled 
+framework, and keep it  orderly?  By 
+creating, I think, a whole new 
+hyperworld where we fly our crts  
+through text and graphics of every 
+kind, and a social world built around 
+it-  where ideas become important.  
+     There are several key problem 
+areas.   
+     1. Curriculum.  It is 
+unfathomable to me, when so little 
+education is  cumulative, and when 
+adults say over and over that they 
+don't remember what  they "learned" 
+in school, why curriculum is assumed 
+to be of any importance,  thought to 
+be anything other than a pointless 
+and painful charade.  Nobody  learns 
+it anyway; it's simply an 
+administrative runaround. 
+("Curriculum"  originally meant 
+"racetrack.")  
+     2."Subjects."  There are no 
+"subjects."  Everything is deeply  
+intertwingled.  Supposed subjects are 
+arbitrary divisions in the infinite  
+tapestry of human ideas and concerns. 
+The true interconnections of 
+knowledge,  as well as the sweeping 
+disagreements that make scholarship 
+interesting,  should be available to 
+students at all levels.               
+     3. Personal conflicts.  The 
+problems between teacher and student 
+of  personality, authority, and 
+outlook often swamp whatever else is 
+supposed to  be going on.  There has 
+got to be a way around this.  
+     4. Cognitive style.  Different 
+people learn best in different ways, 
+and  anything could be taught in any 
+style-but much energy is wasted on 
+promoting  cognitive style as well.  
+     There is a crucial distinction 
+between hypertext and computer 
+assisted  instruction.  It is simply 
+one of freedom.  In computer assisted 
+instruction,  the author can lock you 
+into a specific situation and there 
+you  are-constrained to do the task 
+that has been set for you, however 
+long it  takes, however oppressive 
+and stupid it may be.  And there is 
+typically no way  to register a 
+disagreement.   
+     In compound hypertext, however, 
+we retain one of the greatest 
+traditions  of Western literature:  
+freedom to turn the page or close the 
+book.  You are  free to write 
+marginalia of disagreement 
+anywhere-which everyone else is in  
+turn free to ignore.  I believe that 
+the rigidity and narrow-mindedness of 
+today's computer assisted instruction 
+will open out into the freedom of  
+hyperworld exploration.     And the 
+two-seat hypertext screen may just 
+restore  the convivial qualities of 
+bygone education and of personal 
+tutoring, as the  teacher drops into 
+the jump seat at the student's 
+computer and makes  suggestions 
+rather than gives orders.  
+     If there is a published, widely 
+pluralistic tapestry of writings on 
+all  topics, then each reader, old or 
+young, can find the style that best 
+suits him  or her for pursuing a 
+specific topic.  
+     One of the dullest subjects I 
+took in school was "history."  It was 
+a  tiresome enumeration of names, 
+wars and dates with no particular 
+meaning.  But  I loved historical 
+movies; they had heroes with a 
+purpose.  Now in fact  historical 
+scholars are often vitally concerned 
+with heroes and their  purposes.  How 
+do the schools manage to make these 
+things dull?           
+     Why shouldn't the students have 
+access to material that makes the  
+motivating controversies, the heroes 
+and high spots of history come 
+alive-and  then link sideways between 
+documents to the more factual 
+material?  By what  paths did the 
+tribes reach Europe? (What universal 
+rules of tribalism are  there, if 
+any?)  Was the legend of Valhalla 
+really inspired by the Roman  
+colosseum?  What really happened 
+before the Thera/Atlantis explosion?  
+What  did the Tower of Babel look 
+like?  
+     We can't know, but we can 
+conjecture; there is an ever-widening 
+tree of  possibilities.  I want to 
+explore it, and I'm sure other kids 
+would love it  too.  
+     Imagine:  Hyper-poetry--collages 
+of pieces of text that cleverly  
+intertwine, or even rhyme.            
+     Hyper-valentines--send a loved 
+one a picture with little doors that 
+open  into all kinds of wonderful 
+places in the hyperworld.  
+     Minority voices-every viewpoint 
+should be easily heard.  Of course, 
+this  does not mean people will 
+listen.  But the problem of "media 
+coverage," a  chafing-point for 
+minorities who feel that their view 
+cannot be heard, is in a  sense 
+solved.      
+     High ideals-what passes for high 
+ideals often isn't worth a gumball.  
+The  drabness of most computer ideals 
+is a downer, like being sprayed with 
+wet  concrete:  "New tools for 
+management," "Better through-put," 
+"Instant file  cards for libraries."  
+This is worth pending your life on?  
+With word  processing and shoot-'em-up 
+arcade games, interactive computing 
+and graphics  have at last reached 
+The People, and indeed threaten to 
+transform society.  But  is this the 
+kind of transformation we ought to be 
+thinking about?            
+     Those of us who grew up 
+believing passionately in ideals that 
+made our  country great, such as 
+liberty and pluralism and the 
+accessibility of ideas,  can hardly 
+ignore the hope of such an 
+opening-out.  Libertarian ideals of  
+accessibility and excitement might 
+unseat the video narcosis that now 
+sits on  our land like a fog.  I want 
+to see the writings of Herodotus, 
+Nostradamus,  and Matthew Brann as 
+accessible as those of Rod McKuen, 
+along with the art of  the Renaissance 
+and movies of tomorrow--an 
+all-encompassing picture-book  
+encyclopedia tumult graffiti-land, 
+the Whole Works.             
+     If this all seems like a wild 
+idea, that means you understand it.  
+These  are times wild with 
+possibility.  In an age of pocket 
+calculators, the Pill,  hydrogen 
+bombs by rocket, and soap opera by 
+satellite, we can try to create  
+whatever wildness we want in our 
+society.     
+     And when the kid start being 
+born up in the space colonies-do we 
+want  them to lose touch?  Paper's 
+too heavy to end up, but hypertext 
+might be about  right.     I say thee 
+worlds are possible soon.  We need 
+them, and they will  make lots of 
+money.  The software is on the way.  
+But what is really lacking  are the 
+visionary artists, writers, 
+publishers, and investors who can see 
+the  possibilities and help carry 
+such ideas into reality.       
+ COMPUTOPIA SOON?           by John 
+W. Verity  
+     Is Xanadu worth waiting for?  
+     That depends, doesn't it, on the 
+value of the hand-bush differential 
+bird  utility ratio.  
+     Ted Nelson's idea for a 
+hypertext publishing system was 14 
+years old when  that Xanadoodle 
+appeared in the now classic *Dream 
+Machines/Computer Lib*, his  1974 
+manifesto for computerdom's 
+underground. Now after several years 
+of  intensive, meagerly financed 
+effort, the wait is over.  Xanadu 
+appears to be a  reality.  
+     Demonstrations of a limited, 
+single-user Xanadu system were slated 
+to  begin by early winter as the 
+start of a marketing plan that will 
+bring the  system before the waiting 
+eyes of the many Xanadu followers 
+and, it is hoped,  some potential 
+customers.  No contracts have been 
+signed yet, the system as  envisioned 
+by Nelson is far from complete and 
+financing continues to be a  problem, 
+but the door into the world of Xanadu 
+has opened for all to see. Two  
+companies, one owning the software 
+and another chartered to market it 
+under a  nonexclusive license, have 
+been set up in Ann Arbor, Mich., the 
+site of much  Xanadu activity in 
+recent years.  Nelson himself has 
+left Swarthmore, Pa., for  San 
+Antonio, where he's working on future 
+office automation products for  
+Datapoint.  He's left the day-to-day 
+Xanadu operations to Roger Gregory, 
+chief  technician on the project.     
+     So far, all that has been 
+developed is the Xanadu back end, 
+described by  Nelson as a large-scale 
+indexing system in which a huge 
+number of documents  can be stored, 
+linked, and retrieved according to 
+parameters submitted to it  by a 
+front end.  The latter, a version of 
+which was scheduled to be completed  
+and shown by press time, will likely 
+be up to the user to supply.  It will 
+probably be a standard word processor 
+or intelligent terminal programmed to 
+move messages to the back end and to 
+display documents as formatted by the 
+user.  Currently, the software is 
+written in the C programming language 
+running under Unix on a Motorola 
+68000-based Onyx desktop computer, 
+according  to Gregory.  The group is 
+looking for a larger machine, he 
+notes.      
+     Project Xanadu, Inc., owns the 
+system software and will continue  
+development of it, Gregory says, 
+while Xanadu Operating Co. will look 
+for  customers and market the system 
+in various forms; licenses for oem 
+use of the  software in object code 
+form and access to a Xanadu service 
+over dial-up and  eventually over 
+public network lines are the main 
+offering planned.  Also,  custom 
+front-end programming will be 
+undertaken for those customers not up 
+to  doing it themselves, says 
+Gregory, noting that front-end work 
+may become a  substantial growth path 
+once central Xanadu sites are in place. 
+He i reluctant to  talk about 
+financing, claiming legal restraint, 
+but outside venture capital has  not 
+been discounted as a future source of 
+revenue.  Meanwhile, money is being  
+invested by the firms' principal.  
+"We're sort of struggling," says 
+Project  Xanadu president Gregory, 
+noting that much of the development 
+effort so far  has been donated.  He 
+adds that experienced marketing 
+personnel will be  required but 
+hiring has been delayed by the money 
+situation.  "We know there's  a lot 
+more we need. We're going to have to 
+get some high-powered business  
+help."       
+     What makes Xanadu work within 
+tolerable processing and real-time 
+limits,  Nelson claims, is a new 
+method for indexing very large 
+numbers of documents  and their 
+criss-crossed links and windows.  The 
+system manages to maintain and  
+navigate through the otherwise 
+uncontrollably large number of 
+pointer values  using a proprietary 
+scheme partially inspired by the 
+Dewey Decimal library  system:  an 
+accordionlike notation-using numbers, 
+"humbers," and  "tumblers"-grows to 
+accommodate document link a they are 
+made without wasting  space on unused 
+values.  In his most recent (1981) 
+book, *Literary Machines*,  Nelson 
+explains much of the thinking behind 
+the Xanadu scheme and delves into  
+the potential legal, marketing, and 
+philosophical aspects of a full-blown 
+Xanadu system.  (The book can be 
+obtained from Nelson at P. O. Box 128 
+Swarthmore, PA  19081.  Project 
+Xanadu's address is P. O. Box 7615 
+Ann Arbor,  MI 480107.)  
+     Applications for Xanadu are 
+expected to be "high end," says 
+Gregory, who  cites documentation of 
+large-scale engineering or 
+programming projects as a  likely 
+area.  "We want to sell expensive 
+systems at first in order to fund the 
+dial-in-services," he notes.  "As 
+soon as we can demonstrate the 
+system, we  have a long list of 
+people to show it to."  He declines 
+to name any prospects,  but Bell Labs 
+is understood to be an interested 
+party.  No contracts have been  
+signed as of Feb. 1, 1982, and only a 
+single-user front end has been  
+developed.  Multi-user versions, 
+additional security, and a 
+backup/recovery  features are next on 
+the development list, he said.  Those 
+features are  necessary to sell the 
+system to corporate users.       
+     In *Literary Machines* Nelson 
+says prices for a VAX Xanadu 
+installation  for in-house use will 
+be in the order of $25,000.  
+Front-end development work  will be 
+extra, but could be handled by the 
+customer.  He also discusses  
+collaborating with established 
+corporations to run his futuristic 
+Silverstands  franchises, similar to 
+McDonalds hamburger shops (complete 
+with golden Xs to  "welcome the 
+mind-hungry traveller") in their 
+efficient on-line Xanadu  hookups:  
+"We would not mind working with Sony, 
+Xerox, Disney, Cromemco,  Storage 
+Technology, Apple, Datapoint, BBN, 
+Lucas films, American Zoetrope,  
+*Whole Earth Catalog*, *Rolling 
+Stone*, *Playboy*, McDonald's, or 
+Holiday Inn,  to name a few."         
+     So far, Nelson claims in 
+*Literary Machines*, he has shunned 
+financial  support from "a variety of 
+shallow creeps who did not share our 
+vision."   Thus, Xanadu has been a 
+long time coming, even in its current 
+no-frills form.   Nelson is quick to 
+credit the many Xanadoers who have 
+volunteered their time  to the 
+effort.  In the meantime, he has 
+published some of computing's most  
+enlightening and entertaining volumes 
+and papers.  His next book, he says,  
+will be *Computopia Now!*, "my most 
+fulminating and free swinging so 
+far." For  many, he epitomizes 
+irreverence to the computer 
+establishment.  "Aren't you  afraid 
+that writing such a flippant book 
+will keep people from taking you  
+seriously?" he asked himself in 
+*Dream Machines*, answering, "I do 
+not want to  be taken seriously in 
+some quarters until it is too late."  
+                                
+--John W. Verity 

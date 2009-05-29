@@ -1,0 +1,389 @@
+ 
+
+ 
+
+ 
+
+      The Operation of the Xanadu 
+Hypertext System 
+             [current implementation 
+8/1982] 
+
+Retrieval of Text and Topology 
+
+     The basic function of the Xanadu 
+hypertext system is the  storage, 
+maintenance,and  retrieval  of 
+arbitrarily large amounts of textual 
+and relational information. 
+
+     The Xanadu hypertext system can 
+be thought of as a  mass  of  text 
+with no inherent order in itself.  
+With the mechanisms of documents and 
+links, any arbitrary topology can be 
+imposed on the data that the  system 
+contains.  The order that the user 
+sees is imposed by the document. 
+Text, link ids, and document ids are 
+retrieved with: 
+
+                - RETRIEVEV 
+
+ The topology can be examined with 
+the topology retrieval operations: 
+
+ 
+                - RETRIEVEDOCVSPAN 
+                - RETRIEVEDOCVSPANSET 
+
+ 
+     It is useful when  dealing  with 
+a  document  to  know  how  much 
+material  is  involved.  In the case 
+of a very small document, a front- 
+end may want to retrieve all of the 
+text at  once,  where  in  a  large 
+document, only small pieces will be 
+retrieved at any one time.  This is 
+one use for the topological retrieval 
+operations. 
+
+RETRIEVEV <spec set> 
+
+ 
+     This retrieves the document ids, 
+text,  and  link  ids  that  are 
+specified by the request.  The 
+information is returned in an order 
+that corresponds to the order of the 
+spec set, not in the order of the  
+system  addresses.  This request can 
+be used to retrieve the actual 
+information that a link points to by 
+using a link id in the place of a 
+document  id  in the spec.  This 
+would be following the link, but in a 
+more direct fashion than with the 
+FOLLOWLINK request.  RETRIEVEV will 
+not be useful  for  following  links  
+when  the  topology  of  the  link is 
+of interest.  For instance, to 
+retrieve the text that the to-set of 
+a link points  to, the span in the 
+spec would have a stream address of 
+2.1 and a width of 1. 
+
+RETRIEVEDOCVSPAN <doc id> 
+
+ 
+     This returns the span of the 
+document.  This span is the extent of 
+the  entire  document, with both the 
+text and the links included.  This 
+means that if there are no links in 
+the document, the width of the span 
+will  be  the number of characters in 
+the document.      Otherwise, the 
+width of the span will indicate the 
+number of links in the document. 
+
+RETRIEVEDOCVSPANSET <doc id> * The 
+current implementation of this 
+request is incomplete. 
+
+ 
+     This request is supposed to 
+return two spans:  the span of all 
+the document's  text,  and the span 
+of all the documents links. If there 
+is no text or no links in the 
+document only one span will be 
+returned. 
+
+Creation of Documents and Versions of 
+Documents 
+
+Definitions: 
+
+ [1]  documents 
+
+          A document is a user 
+created entity  that  contains  text  
+or 
+          other  byte  information 
+and/or links.  A document is divided 
+          into two distinct regions; 
+a text space and a link space. 
+
+[2]  versions 
+
+          Versions are created from 
+previously existing documents  with 
+          the  CREATENEWVERSION 
+request.  A version is created when 
+you 
+          want to preserve and intact 
+copy of a  document  as  is,  and 
+          have  another copy to edit. 
+A new editing incarnation is NOT 
+          a new version.  The Xanadu 
+hypertext definition of this  term 
+          is very specific.  A 
+version is a document, the only 
+distinction being that a version  is  
+descended  from  a  previously 
+          existing document.  A new 
+version inherits all of its immediate 
+ancestor's information, both textual 
+and topological. 
+
+     The Xanadu hypertext system has 
+the following  functions  for  the 
+creation of documents and versions of 
+documents: 
+
+                - CREATEDOCUMENT 
+                - CREATENEWVERSION 
+
+ 
+     A front-end program may let the 
+user create documents or  versions 
+implicitly, explicitly, or both, 
+depending on the particular 
+front-end. 
+
+CREATENEWDOCUMENT 
+
+       This request creates a new 
+document under the account  and  node 
+of  the  user  who  issued the 
+request.  The document id is the 
+tumbler address of the new document.  
+It will be appended to the account of 
+the user  who  created  it.   For  
+example,  if the user's last document 
+is 17.0.23.0.15, the new document 
+will be 17.0.23.0.16. 
+
+ 
+
+CREATENEWVERSION <doc id> 
+  
+      This request creates a new 
+version  of  document  <doc  id>  and 
+returns  the  id of the new version.  
+The new document will have a tumbler 
+address which indicates that the new 
+document  is  descended  from the  
+original.   For  example, if there is 
+only one version of document 
+23.0.17.0.256,  this  request  will  
+create  a  document  with  the  id 
+23.0.17.0.256.1.  Let's describe a 
+more complicated case.  Say that for 
+document 23.0.17.0.256, the versions 
+
+                23.0.17.0.256, 
+                23.0.17.0.256.1, 
+                23.0.17.0.256.1.1, 
+                23.0.17.0.256.1.2, 
+                23.0.17.0.256.2, 
+            and 23.0.17.0.256.3 
+
+exist.  Now, if a new version of 
+23.0.17.0.256.2 was  to  be  made,  
+it would  have  the id 
+23.0.17.0.256.2.1.  This will have no 
+effect on any existing version, 
+23.0.17.0.256.3 will still be the  
+same  document  at the same address 
+as before.  The new document will 
+inherit ALL information that was 
+associated with  the  original,  but  
+be  treated  as  an independent  
+document, existing simultaneously 
+with the original or any other 
+versions. 
+
+Comparison of Documents and Versions 
+of Documents 
+
+       The Xanadu hypertext system 
+has the following functions for  the 
+comparison of documents and versions 
+of documents: 
+
+                - 
+SHOWRELATIONOF2VERSIONS 
+                - FINDDOCSCONTAINING 
+
+ SHOWRELATIONOF2VERSIONS <spec set> 
+<spec set> 
+
+ 
+       This request returns a list of 
+ordered pairs of all parts of the two 
+spec sets that correspond to the same 
+original source. 
+
+FINDDOCSCONTAINING <spec set> 
+
+ 
+       This request returns the ids 
+of all documents that  contain  the 
+same material as specified by <spec 
+set>. 
+
+Editing of Text in Documents 
+
+       The Xanadu hypertext system 
+has the following operations for the 
+editing of text: 
+
+                - INSERT 
+                - DELETEVSPAN 
+                - REARRANGE 
+                - COPY 
+                - APPEND 
+
+ INSERT <doc id> <v-address> <text> 
+
+ 
+       This request inserts <text> at 
+<v-address> in document <doc id>. 
+
+DELETE <doc id> <v-span> 
+
+ 
+       This request removes the 
+v-span from the document <doc id>. 
+
+REARRANGE <doc id> <cut set> 
+
+ 
+       The <cut set> consists of two 
+to  four  v-addresses  within  the 
+specified  document.  A two cut 
+rearrange will simply delete 
+everything between the cuts.  A three 
+or four cut  rearrange  transposes  
+the  two regions  of  text.   With 
+three cuts, the two regions are from 
+cut 1 to cut 2, and from cut 2 to cut 
+3, assuming cut 1 < cut 2 < cut  3.   
+With four  cuts,  the regions are 
+from cut 1 to cut 2, and from cut 3 
+to cut 4, here assuming cut 1 < cut 2 
+and cut 3 < cut 4. 
+
+COPY <spec set> <doc id> <v-address> 
+
+ 
+       Copy causes all of the 
+information specified by <spec set> 
+to be virtually inserted at 
+<v-address> in document <doc id>. 
+
+APPEND <doc id> <text> 
+
+ 
+     Append inserts <text> after the 
+last character  in  document  <doc 
+id>. 
+
+Links:  Use, Content, Creation and 
+Retrieval 
+
+       There is one operation for the 
+creation of links. 
+
+                - MAKELINK 
+
+ 
+       The Xanadu  hypertext  system  
+has  these  operations  that  are 
+involved in the retrieval of links: 
+
+                - FOLLOWLINK 
+                - 
+FINDNUMOFLINKSFROMTO 
+                - FINDLINKSFROMTO 
+                - 
+FINDNEXTNLINKSFROMTO 
+                - RETRIEVEENDSETS 
+
+ Link restrictions 
+
+    There are three types of 
+restriction presently implemented: 
+
+                From-set restriction 
+                To-set restriction 
+                Home document 
+restriction 
+
+ 
+     A three-set restriction will be 
+added once link types  are  
+implemented.   The  fro  m-set, 
+to-set, and three-set restrictions 
+are spec-sets.  The home document 
+restriction is a set of  doc-ranges.  
+A  link retrieval  operation  will 
+only return those links that meet all 
+of the criteria set by the 
+restriction. 
+
+MAKELINK <home doc> <end sets> 
+
+ 
+     This request creates a link with 
+the specified end-sets  in  document  
+<home  doc>.   The new link will be 
+appended to the link space of 
+document <home doc>.  For example if 
+<home doc> is 1.0.2.0.3,  and  the 
+last   link   in   it   is  
+1.0.2.0.3.0.2.15,  the  new  link  
+will  be 1.0.2.0.3.0.2.16. 
+
+FOLLOWLINK <link id> <which end> 
+
+ 
+     This request returns a spec-set 
+that is the end of link <link  id> 
+specified <which end> to be used 
+later by such requests as RETRIEVEV. 
+
+FINDNUMOFLINKSFROMTO <restriction 
+set> 
+
+ 
+     This request returns the number 
+of links that fall within the 
+restriction set. 
+
+FINDLINKSFROMTO <restriction set> 
+
+ 
+     This request returns the ids of 
+all the links that fall within the 
+restriction set. 
+
+FINDNEXTNLINKSFROMTO <restriction 
+set> <link id> <n links> 
+
+ 
+     This request returns the ids of 
+the next n links after link  <link 
+id> that fall within the restriction 
+set. 
+
+RETRIEVEENDSETS <spec set> 
+
+ 
+     This request returns a spec set 
+of all the from-sets  and  a  spec 
+set of all the to-sets that fall 
+within <spec set>. 

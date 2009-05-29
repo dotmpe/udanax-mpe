@@ -1,0 +1,557 @@
+ 
+           
+
+ THE XANADU HYPERTEXT SYSTEM: 
+
+A NEW DOCUMENTATION MANAGEMENT TOOL 
+
+INTRODUCTION 
+  
+
+A new documentation management tool, 
+"hypertext", lets the user, rather 
+than the software system, decide how 
+information will be interrelated and 
+stored. It is a system designed to 
+handle text in all of it's 
+complexity. Today's technical 
+communicator faces information 
+management nightmares such as 
+changing one basic manual to reflect 
+the differences in several 
+installations, or to suit each 
+particular customer's needs. 
+Hypertext offers a unified way to 
+solve such problems. 
+
+Currently, most documentation 
+management consists of two phases.  
+First, a document is written or 
+edited using a text editor or word 
+processing software package.  It is 
+then kept track of using storage and 
+retrieval systems such as database 
+management systems, keyword systems, 
+or fulltext search systems. These 
+systems  implicitly determine the 
+interconnections and comparisons a 
+user can make between documents, 
+whereas hypertext systems allow the 
+user to make explicit 
+interconnections called "links".  To 
+understand why hypertext systems are 
+a unique concept, let us look more 
+closely at word processing and some 
+of the more popular storage and 
+retrieval methods.  
+  A LOOK AT CURRENT DOCUMENTATION 
+MANAGEMENT SYSTEMS 
+  Word processors and text editors 
+are fine tools for manipulating text 
+within documents, but are usually not 
+well coordinated with storage and 
+retrieval functions.  They generally 
+do not deal with relationships 
+between documents that may exist.  As 
+Ted Nelson says (1), this state of 
+affairs forces the writer or editor 
+to stop working at the boundaries of 
+a document, which, to some extent, 
+limits thought.  There is no 
+convenient way to show relations 
+between documents. Also, word 
+processors and text editors often 
+tend to limit the size of the 
+documents a user can work with.  
+Storing documents in files means that 
+the user has to think up file names, 
+worry about file conventions, and 
+keep track of files on paper, or with 
+a separate system.  Most text editors 
+or word processors have no way to 
+keep track of changes resulting from 
+the editing process other than 
+keeping an old copy and a new copy 
+online or a trail of all the editing 
+changes.  This means storing a lot of 
+copies.  
+  In keyword  systems, keywords are 
+usually attached to a text for 
+reference. A user asks the system to 
+find all the articles with certain 
+keywords contained within them, and 
+it searches thru its database looking 
+for them. Keyword systems function 
+well as card catalogs; however, since 
+not all thoughts can be expressed in 
+one word, problems arise.  What seems 
+an obvious keyword to you may not be 
+a keyword to the author.  Thus the 
+article is not listed by the word 
+that you may be looking for, though 
+it may be listed by keywords that you 
+have not thought of.  Keyword systems 
+are not designed to let a user edit 
+while remaining within the system.  
+Explicit citations within or between 
+documents cannot be created. 
+
+Keyword systems are a subset of the 
+more general type of storage and 
+retreival system called fulltext 
+search systems.  With fulltext search 
+systems, a user types  something like 
+a phrase or a sentence which might be 
+found in the document he or she 
+wishes to find.  The system searches 
+its database for the text until the 
+desired document is located.  
+Fulltext search systems give users 
+more latitude in expressing thought 
+than keyword systems, thereby 
+increasing the user's chances of 
+finding all the pertinent references. 
+But like keyword systems, fulltext 
+search systems do not let users edit 
+without exiting from the system.  
+They do not allow users to make 
+explicit citations, notes, or other 
+connections between documents.  
+
+Data base management systems, or 
+DBMS, provide excellent means of 
+storing and retrieving any type of 
+data which will fit into a fixed 
+field format.  Any data that can be 
+grouped into lists may be stored in a 
+database management system, which 
+will let users make certain kinds of 
+very useful comparisons between the 
+fixed fields.  Parts lists, numerical 
+data, and personnel records are 
+examples of data best suited to these 
+systems.  Data base management 
+systems are not optimized to edit, 
+store, or retrieve documents because 
+text is too complicated.  DBMS are 
+sometimes used for keeping track of 
+names of journals or articles.  
+Because there is often no standard 
+way of abbreviating journal names, 
+users may have problems with this 
+application.  
+
+The following table, Table 1, 
+summarizes the differences between 
+current documentation management 
+tools and the Xanadu Hypertext 
+System. 
+  HYPERTEXT: NONSEQUENTIAL WRITING 
+
+As the above discussion shows, the 
+current approach to documentation 
+management  requires more than one 
+tool to work with text and is 
+restrictive when users need to 
+interrelate documents.  However, the 
+real problem is that current systems 
+are not designed to let people use 
+computers in the same way and with 
+the same ease that they use paper.  
+Hypertext, which means nonsequential 
+writing, is a system based on the way 
+we use paper to read, write and file. 
+The term was coined by Nelson, the 
+originator of the concept (2,3). 
+
+To understand what nonsequential 
+writing means, let us look at an 
+example that will be familiar to many 
+technical communicators.  Consider 
+the amount and the complexity of 
+paperwork required to build an 
+airplane.  
+
+Suppose that the project engineer 
+decides to move the wings on an 
+airplane to a slightly different 
+position on the fuselage.  Many 
+design documents will be affected by 
+this change, perhaps thousands of 
+them.  To change the wing, he must 
+first find all the components that 
+will need to be modified.  The change 
+must then be made, but only after 
+searching through the blueprints to 
+make sure that this change will not 
+adversely affect anything else.  Once 
+this is done, the technical 
+communicators must update all 
+affected documents to reflect the 
+changes. 
+
+For something as seemingly trivial as 
+changing the position of one bolt, 
+the engineer has to know what 
+components may be affected.  For 
+example, rewiring may be required if 
+the bolt is moved into the path of a 
+cable.  Since our fictitious 
+aerospace company doesn't have 
+strings connecting its technical 
+documents together,  the writer or 
+someone in the project must spend an 
+appreciable amount of time chasing 
+down all the documents which refer to 
+that bolt.  A common expression in 
+the aerospace industry is, "When the 
+paperwork weighs as much as the 
+aircraft, the plane is finished."  
+
+In the above example all documents 
+(including blueprints) written about 
+that plane constitute a literature, 
+or a hypertext. Because everything 
+contained within this literature 
+concerns some aspect of the airplane, 
+it is interconnected, as if by a 
+network of invisible strings. 
+  DEVELOPMENT OF HYPERTEXT 
+
+The idea of hypertext was born in 
+1960 when Ted Nelson decided to 
+design a computer system which would 
+allow him to make multiple versions 
+of articles or documents out of the 
+same pieces of text.  His ideas on 
+hypertext and on what computers could 
+be like were published in the 1974 
+underground classic 
+
+Computer Lib/Dream Machines. 
+
+The book attracted the attention of 
+some brilliant young men who joined 
+Nelson.  They finished designing and 
+began implementing a hypertext system 
+that could retrieve hypertext in a 
+reasonable response time out of a 
+database (or "docuverse") as large as 
+a world library (4). 
+ The effort, named Project Xanadu, 
+created the Xanadu(tm) Hypertext 
+System.  It licensed a company, XOC, 
+to market the system for commercial 
+applications. 
+
+Douglas Engelbart and Andries van Dam 
+have also done major work in the 
+field of hypertext.  Douglas 
+Engelbart began work on an interactve 
+editor and form of hypertext called 
+NLS in 1959 (5). 
+ He is considered to be the father of 
+several concepts related to hypertext 
+such as word processing, networking, 
+and teleconferencing. Now at 
+TymeShare, his system is currently in 
+use over a worlwide network..  The 
+system is now called "Augment".  It 
+differs from Xanadu Hypertext in 
+several aspects, the most notable 
+being that links are embedded in the 
+text and it is only capable of 
+functioning with limited databases.  
+
+Andries van Dam implemented the first 
+hypertext system in conjunction with 
+Nelson at Brown University in 1968 
+(6). Since then two other hypertext 
+systems have been implemented at 
+Brown (7).  Other hypertext research 
+involved a prolonged use of hypertext 
+in a poetry class (8).  
+
+I will be discussing hypertext as it 
+is being implemented by XOC for the 
+rest of this paper both because I am 
+most familiar with it and because it 
+is the most ambitious hypertext 
+project to date.  For a more complete 
+discussion of other forms of 
+hypertext mentioned see the excellent 
+review article on interactive editing 
+systems by Meyrowitz and van Dam (9). 
+
+THE XANADU HYPERTEXT SYSTEM  
+
+My colleagues at XOC who designed the 
+Xanadu Hypertext System wanted it to 
+be so simple that a child (or an 
+English major!) could use it. 
+Therefore they createda system design 
+that lets us hide all the arcane and 
+proprietary inner workings from 
+users.  Our system has two parts- a 
+"backend" that the user never sees, 
+and a "frontend" that the user sees 
+and uses. Don't be misled, however; 
+this does not mean that the user sees 
+two parts.  It simply refers to 
+internal organization of functions 
+within a unified system.  
+
+The backend is responsible for 
+storage and retrieval functions. This 
+part of the system runs on large or 
+very powerful computers which can be 
+networked together. Every Xanadu 
+Hypertext System will have the same 
+type of backend.  
+
+The frontend is responsible for 
+display function and user 
+interaction, including editing.  
+Frontend software will be modified to 
+fit onto various types and sizes of 
+computers, including personal 
+computers.  Since users and their 
+needs differ, our designers wanted to 
+make sure that the part of the system 
+that they use may be modified to fit 
+their tastes and preferences.  
+
+The Xanadu system is built out of 
+"documents" and "links".  A document 
+is defined to be a string of 
+contiguous characters.  Thus a 
+document may be text, graphics, 
+blueprints, numbers, data, digitized 
+voice, or music.  Text that a user 
+may want to store and link on a 
+Xanadu could be in the form of memos, 
+technical documentation, business 
+letters, marginal notes, citations, 
+grafitti, or hypertext poetry.  The 
+contents of documents and the 
+connections between them are limited 
+only be a user's creativity.  
+  These explicit connections within a 
+document or between documents are 
+called "links".  Arbitrary pieces of 
+arbitrary documents and links 
+themselves may be linked together.  
+Links can be retrieved at will, along 
+with information about what is being 
+linked to what and about the nature 
+and type of the link itself. A link 
+is bidirectional so you can tell 
+which point it came from and where it 
+is going.  The system can correctly 
+maintain these links in the midst of 
+changes to the very data being 
+interlinked.  
+  There are different link types for 
+different purposes.  Although just 
+how a link type is displayed depends 
+on which frontend is used, the 
+general forms can be discussed.  
+Jumplinks are used to follow 
+citations.  In the current 
+experimental frontend, a user sees 
+jumplinks as reverse video areas in 
+the text he or she is reading.  To 
+find the other end of a jumplink or 
+any other link type, the user merely 
+hits a control key on the computer 
+keyboard.  A window large enough to 
+display the cited text opens within 
+the original document so that the 
+user may read the pertinent material, 
+then continue reading the original 
+text.  If the new material proves to 
+be more interesting, the user can 
+enlarge the window and read the new 
+document rather than the original.  
+
+Say that a user begins reading a 
+document, and that he or she sees an 
+interesting looking jump link to 
+follow.  After following the jump 
+link, the user sees a second 
+interesting citation within the 
+windowed document.  The user may 
+"pass through the window" and call up 
+a third document.  If the third 
+document proves to be uninteresting, 
+the user may follow the same links 
+back to his or her original document. 
+Xanadu links allow users to pass 
+through an infinite number of windows 
+and back again (only a certain number 
+of windows will be displayed on the 
+screen at once).  Nelson refers to 
+this action as "navigating through 
+the docuverse" (10). 
+
+Other link types include quote links, 
+footnote links, and marginnote links. 
+They differ from jumplinks and each 
+other only in the way in which they 
+are indicated within a document, and 
+where their type and size of display 
+window will appear on the screen.  
+  Perhaps the most useful feature of 
+Xanadu for writers is its versioning 
+capacity.  Xanadu hypertext can 
+maintain multiple versions of any 
+given document, efficiently storing 
+the common portions in common, with 
+separate portions of storage required 
+only for those parts of the documents 
+which are actually different.  
+
+The frontend will display a 
+vertically split screen with a 
+different version of the document 
+shown on either side.  
+Correspondences between versions will 
+be indicated with connecting lines, 
+and users will be able to scroll 
+around in either version and edit.  
+
+All such editing wil be logged by 
+Xanadu's historical trace function.  
+Xanadu can provide historical 
+traceback information in dated 
+chronological order about any and all 
+changes to a given document.  It can 
+do all of this efficiently, with only 
+logarithmic overhead in terms of both 
+storage space and response time. For 
+example, if the number of stored 
+documents increases geometrically, 
+the response time required to locate 
+a particular one will increase only 
+linearly. 
+
+Historical trace is not yet 
+implemented, but it might look 
+something like a branching tree on a 
+future frontend.  A user could scroll 
+along the tree with a mouse or a 
+cursor until he or she reached the 
+branch indicating the desired version 
+of the document.  A touch of a 
+control key would display the 
+document and associated traceback 
+information on the screen.  
+  USES OF HYPERTEXT 
+  As the above discussion shows, the 
+Xanadu hypertext system can help the 
+technical communicator perform a 
+variety of tasks with greater 
+efficiency.  The linkage and 
+versioning capacities will make  
+documentation updates less of a 
+chore.  Theversioning facility can 
+greatly help those who need to edit 
+previously written materials into new 
+documentation.  Links make it 
+possible for communicators to easily 
+keep track of their own and their 
+departments' work, and to obtain 
+feedback from users of online 
+documentation.  User feedback logs 
+can be constructed by allowing users 
+to link their own comments to text 
+they find obscure or confusing. 
+  A unified information management 
+system would also be useful to 
+personnel outside the technical 
+communications department.  A 
+hypertext system is such a general 
+tool that it can be used for office 
+automation, conferencing, and 
+engineering projects. Hypertext is 
+ideal for managers and executives who 
+need a way to have iformation at 
+their fingertips.  It would enable 
+them to make better decisions without 
+wasting valuable time in meetings and 
+papershuffling. 
+  As of this writing the Xanadu 
+organization has a working hypertext 
+demonstration and plans to deliver a 
+working prototype system  within the 
+year.  Different kinds of links work 
+but the backend still requires six 
+months to a year development work 
+before the Xanadu Hypertext System is 
+an "off the shelf product".  
+Currently, the system runs on a 
+Sun(trademark of Sun Microsystems) 
+68000 Workstation.  It is written in 
+the 'C' programming language running 
+under the UNIX(trademark of Bell 
+Laboratories) operating system, and 
+can be made to work on almost any 
+computer.  When completed it will run 
+on larger,modern machines with 
+frontends running on a variety of 
+machines, depending on demand.  
+
+SUMMARY 
+  In summary, a new, more powerful 
+and unified documentation management 
+system called the Xanadu Hypertext 
+System will soon be available.  It 
+will give users the freedom to 
+organize documents to fit their 
+needs, rather than the computer's. 
+  
+
+References  
+
+(1) Nelson, T.H., "Replacing the 
+Printed Word", INFORMATION PROCESSING 
+80, S.H. Lavington, (ed.), North 
+Holland Publishing Company, IFIP, 
+1980 pp. 1013-23 
+
+(2) Nelson, T.H., 
+
+Computer Lib/Dream Machines, 
+
+The Distributors, South Bend, IN., 
+1974 
+
+(3),(4),(10) Nelson, T.H., 
+
+Literary Machines, 
+
+T.H. Nelson, Swarthmore, PA., 1981 
+
+(5) Engelbart, D.C.,  "The augmented 
+knowledge workship" in Proc. National 
+Computer Conf., vol. 42, AFIPS Press, 
+Arlington, VA., 1973, pp.9-21  
+
+(6)Carmody, S., Gross, W., Nelson, 
+T.H., Rice, D.E., and van Dam, A. "A  
+hypertext editing concept for the 
+/360," in Pertinent Concepts in 
+Computer Graphics, M. Faiman and 
+Nievergelt, J., Eds., University of 
+Illinois Press, Urbana, Ill., 1969 
+pp. 291-330 
+
+(7),(9) Meyrowitz, N., and van Dam, 
+A. "Interactive Editing Systems, 
+parts I and II", Computing Surveys of 
+the ACM 14 (1982),  321-353 
+
+(8) Catano, J.  "Poetry and 
+Computers:  Experimenting with the 
+Communal Text," Comput. Hum. 13 
+(1979), 269-275  

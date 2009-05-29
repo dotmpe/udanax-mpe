@@ -285,7 +285,7 @@ class Span:
         return "<Span at " + str(self.start) + " for " + str(self.width) + ">"
 
     def __len__(self):
-        return self.width
+        return int(self.width.digits[-1])
 
     def __nonzero__(self):
         return self.width and 1 or 0

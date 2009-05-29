@@ -1,0 +1,551 @@
+ 
+
+ 
+
+ 
+
+Disclaimer- 
+
+     This is a technical overview  
+document.   It  covers  the  current 
+status  of  the  Xanadu  hypertext 
+system.  Since the system is not yet 
+complete, some of the features that 
+must be discussed are not currently 
+implemented.  These are: 
+
+ 
+     1) Link Types 
+
+     2) Historical trace 
+
+     3) Multi-user Capability 
+
+     4) Networking 
+
+ 
+     The above features are listed 
+according to the order  priority  of 
+future  implementation.  Link types 
+are a simple improvement and merely 
+await more computer resources (disk). 
+
+     Historical trace is a separable 
+portion of the software so it  has 
+been  postponed  until it is 
+convenient to implement.  This can be 
+done in stages. 
+
+     Multi-user capability will be 
+implemented as a  transaction  based 
+system, possibly before historical 
+trace (depending on customer demands 
+and resources). 
+
+     Networking will require much 
+communication between nodes to 
+facilitate such things as "computer 
+conferencing" applications.  
+Implementation time depends on 
+customer demands and resources. 
+
+     This document will give  
+examples  with  network  nodes  and  
+user accounts  in the addresses.  In 
+the current implementation there are 
+no nodes or accounts, so all document 
+ids will resemble  "0.0.1"  with  no 
+node or account id. 
+
+     This document will be updated as 
+necessary.  Portions  that  refer to  
+the  above  features should be taken 
+as partially descriptive.  For 
+instance, link type definitions are 
+provided by  three-sets  which  are 
+not currently implemented.  
+Three-sets will appear in various 
+retrieval restriction portions of 
+many commands, but they aren't 
+documented  that way now. 
+
+ General System Operation 
+
+     Backend   The backend is that 
+part of the system which stores  and 
+retrieves documents and links.  The 
+backend is application independent. 
+
+     Frontend  The frontend is the 
+user interface in this  system.   It 
+will  normally  run  on the computer 
+in the user's terminal.  The front 
+end contains all application 
+dependent features. 
+
+                       Maintenance of 
+documents and versions of documents 
+
+     The information in a Xanadu 
+System is stored as a  set  of  
+"documents".   Documents  are not 
+simply "files" -- essentially long 
+strings of characters stored at known 
+locations on some permanent media.  
+Documents  are  strings  of  text  
+with  accompanying "links".  "Links" 
+are instructions for getting from one 
+document to another.  It is useful to 
+think  of all the documents in the 
+system as residing on some part of a 
+virtual list indexed by tumblers -- 
+the virtual stream.  (A tumbler  is a 
+special kind of number; a full 
+definition of tumbler is available in 
+the technical specifications)  New 
+documents are created on this stream 
+by the following function: 
+
+     CREATENEWDOCUMENT 
+   returns a new document id 
+
+     This command simply creates a 
+way to access the document from some 
+old  document  the  user  already 
+"owns", such as a master index of his 
+work.  Essentially the frontend is 
+passed a tumbler address on the 
+virtual stream for the new document. 
+
+     All past incarnations of a 
+document that have  been  developed  
+on the  Xanadu system can be 
+reconstructed by the system.  Thus, 
+"historical backtrack", tracing the 
+history of the development of a  
+particular document  through  several 
+editing  sessions, is a natural thing 
+to do given our specialized data 
+structures.  We plan to implement 
+this function with the command: 
+
+     NAVIGATEONHT 
+
+     Such a capability will be very 
+useful for any individual  involved 
+with  demanding  composition  tasks  
+likely  to  generate false starts, 
+rethinking, and extensive rewriting.  
+For  such  people  --  designers, 
+researchers,  creative  writers -- 
+convenient access to past approaches 
+will be invaluable. 
+
+     Likewise creating multiple 
+"versions" of a document,  perhaps  
+for somewhat  different  purposes  or 
+audiences, is a natural capability of 
+the Xanadu System.  All that is 
+necessary is to create an easy  way  
+to address  those versions of 
+interest from among the vast number 
+that can be reconstructed.  This is 
+the function of the following 
+command: 
+
+     CREATENEWVERSION 
+   returns document id of new version 
+
+     The new document will have a 
+tumbler address that  indicates  that 
+the new document is descended from 
+the original.  For example, if there 
+is only one version of document 
+23.0.17.0.256, this request will 
+create a  document with the id 
+23.0.17.0.256.1.  The new document 
+will inherit ALL information that was 
+associated with the original.  Note  
+that  not every  incarnation of a 
+document produced by every editing 
+session is a "version".  A "version" 
+with its own tumbler address must be 
+created by a CREATENEWVERSION 
+command. 
+
+     That tumbler address provides a 
+ready means of access from an  old 
+version  of  a  document to a new 
+one.  Such a capability is especially 
+useful in the creation of new 
+versions of standardized documents  
+(e.g. standard  forms)  or  documents 
+that  include  considerable amounts 
+of "boilerplate", such as legal 
+papers.  Of course, given many 
+versions of a  document  one would 
+like to be able to compare them so as 
+to be able to determine which 
+passages have remained the same and 
+which have  been changed.   This  is  
+crucial  for material where small 
+details are very important, such as 
+computer programs, contracts,  
+technical  specifications or 
+accounts.  This is the role of the 
+following function: 
+
+     SHOWRELATIONOF2VERSIONS 
+   returns ordered pairs of common 
+passages 
+
+     Note that the information 
+returned is the passages  the  two  
+versions  or  documents  have  in  
+common.   This  might be indicated 
+conveniently on a screen divided into 
+two vertical windows, each one  
+containing  a  version of the 
+document in question.  Common 
+passages might be marked by 
+attributes such as  reverse  video  
+or  by  color  coding. NAVIGATEONHT 
+will provide another tool for 
+comparison of versions; not only will 
+the user be able to retrace old 
+incarnations, but one will be able to 
+navigate between independently 
+developed versions which share a 
+common origin in some previous 
+document. 
+
+Editing of documents 
+
+     data structures maintained by 
+the backend.  So the backend must be 
+passed a more detailed account of an 
+editing session than standard file 
+maintenance routines require.  The 
+current [July 1982] minimal frontend 
+achieves  this  by  contacting the 
+backend after every editing command. 
+Thus inserting a five letter word 
+requires five calls  to  the  backend 
+and five evocations of the following 
+function: 
+
+     INSERT 
+   puts in text beginning at a known 
+position 
+
+     This function inserts the text 
+at the specified tumbler addresses. 
+Of  course  the  frontend could 
+accumulate such data and send it to 
+the backend as a block at some 
+reasonable time.  This change will  
+soon  be made. 
+
+     Note that the  other  editing  
+functions  which  follow  also  are 
+defined  with  reference  to  the 
+position on the virtual stream of the 
+text  being  manipulated.   Keeping  
+track  of  these  virtual   stream 
+addresses  requires  more  processing 
+time than an optimized block file 
+editor would, but this is a small 
+price to pay for the maintenance of a 
+useful well-ordered data structure. 
+
+     [1] DELETEVSPAN 
+  virtual deletion of text where 
+indicated 
+
+     [2] COPY 
+  creates virtual copies where 
+indicated 
+                                      
+     [3] REARRANGE 
+  transposes virtual text 
+
+     [4] APPEND 
+  inserts characters at the end of 
+the document's text 
+
+     The first function, "delete", 
+tells the backend to delete a set of 
+bytes  defined  by  their  position 
+on the virtual stream.  The present 
+frontend keeps constant track of 
+where the cursor is in relation to 
+the backend  data structure.  Thus 
+the user deletes material by 
+positioning the cursor and deleting 
+the desired material character by 
+character. 
+
+     "Copy" puts a virtual copy of 
+any specified material  (as  defined 
+by vspecs, i.e. tumbler addressing of 
+the virtual stream) into the 
+destination indicated by the frontend 
+or the user.  No  text  is  actually 
+moved, rather a new way to access the 
+material is created. 
+
+     "Rearranges" are defined by 
+delimiters inserted by the  user.   
+If three  cuts  are supplied the 
+material between cuts "1" and "2" 
+appears to be moved to between "2" 
+and "3", and visa versa. 
+ If four are supplied the material 
+between "1" and "2"  appears  to  be 
+swapped  with  the  material  between 
+cuts "3" and "4" .  However, once 
+again only address changes are 
+involved. 
+
+     "Append" adds characters to the 
+end of documents.  It is simply  a 
+more  convenient  insert  for  a few 
+specific applications, such as the 
+implementation of the front-end 
+functions that manage the initial 
+entry of text into a document. 
+
+Links 
+
+     One of the great advantages of 
+the Xanadu Hypertext System is  the 
+structure of interconnections 
+provided by user-defined links.  
+Inasmuch as the structure is created 
+by people rather than  algorithms  it 
+will approximate a structure of ideas 
+rather than an accounting of 
+identical character strings, the 
+product of a keyword search.  (Of  
+course  algorithms  may  be  written 
+which create the links implicitly 
+specified in already published 
+material, such as lists of references 
+or indexes) The function for creating 
+such a link follows: 
+
+     MAKELINK 
+   creates a directional link from a 
+point in one document to  a  point in 
+another 
+
+     All links created by a user 
+reside in some home document  of  
+his, including  those  that  link 
+documents which are not his.  Links 
+have a directionality defined by the 
+creator, thus an origin and  a  
+terminus. In  the  future  the 
+creator will be able to assign a link 
+type -- e.g. footnote, marginal note, 
+etc. -- to a link when it is made. 
+
+     Once a set of links to or from a 
+document has been  created  their 
+existence  must  be  indicated  to 
+the user, but only when he wishes to 
+know of them.  This may be 
+implemented in a frontend by 
+assigning, upon the  user's  request, 
+attributes or color codes to text 
+that is at the end-points of links.  
+The following function finds these 
+endpoints: 
+
+     RETRIEVEENDSETS 
+   returns virtual stream addresses 
+for the end-sets of the links  that 
+start or terminate in the current 
+document 
+
+     Note that we plan to use the 
+link type defined when the  link  was 
+made as one constraint on the number 
+of link end-sets displayed. 
+
+ Document Retrieval -- navigating in 
+the link structure 
+
+     Ready direct access from any 
+particular  document  to  an  immense 
+number  of  other  documents  creates 
+a number of novel problems 
+unprecedented in paper document 
+systems.  In the latter systems, 
+checking  a reference  or  verifying 
+a quotation are onerous tasks that 
+may consume several minutes or a 
+number of weeks.  In such 
+circumstances  few  such operations 
+can even be considered.  In a fully 
+implemented Xanadu documentation 
+system, however, cross references 
+between documents are  both easy to 
+follow and easy to create.  This must 
+lead to the proliferation of such 
+linkages.  While the growth of such a 
+rich network of interconnections will 
+facilitate comprehension of the 
+knowledge represented, it will also 
+make navigating through the  
+structure  of  cross  references more 
+demanding.  One will not wish to 
+simply request all the links to a 
+particular use of an important 
+concept; such a request  might  
+generate scores,  even  thousands  of 
+links.   For  example, the documents 
+that reference the concept "DNA" as 
+used by Watson and Crick in their  
+seminal  first  publication  might 
+run to the tens of thousands.  In 
+such a case the user may wish to  
+further  specify  the  related  
+material  he wishes  to  investigate  
+before requesting the available 
+links.  He may conveniently detect 
+such situations by using the command: 
+
+     FINDNUMOFLINKSFROMTO 
+
+     This command simply returns the 
+number of links to or  from  other 
+documents  from or to the material of 
+interest.  The result informs the 
+user of the need to put further 
+limits on the  scope  of  his  
+request. This may be done in a number 
+of ways. 
+
+     First and simplest, one may 
+specify the type of link to follow. 
+(Indeed we plan to allow the user to 
+specify the link type as a parameter 
+for the FINDNUMOFLINKSFROMTO 
+command.)   In principle links may be 
+characterized as any sort of relation 
+a user finds useful; currently we 
+plan  to  implement,  however, only a 
+few types, e.g. footnotes, 
+quotations, andannotations. 
+
+     Secondly, the set of documents 
+linked to the passage  of  interest 
+may  be  partitioned in terms of some 
+of the other links to these 
+documents.  Some of these sets may 
+appear more promising for a 
+researcher's current  objective  than 
+others.   For  example, a biochemist 
+might be interested in articles which 
+both reference Watson  and  Crick's  
+paper and  are  referenced  by  a A 
+standard biochemistry text.  
+Geneticists, however, would probably 
+be interested  in  a  different  
+subset.   Thus operations on sets, 
+such as intersection and union, can 
+be powerful and convenient tools for 
+the user with a reasonably 
+sophisticated frontend. That  is, one 
+that stores a number of different 
+specifications, invokes the 
+appropriate backend functions, and 
+supplies  the  user  with  those 
+documents  that  meet  all of them.  
+(Note that a number of specialized 
+frontends can be designed for  
+different  applications)(See  
+frontends) Several  link  tracing  
+functions  already implemented will 
+provide the basis for this 
+capability: 
+
+     [1] FINDLINKSFROMTO 
+
+     [2] FINDNEXTNLINKSFROMTO 
+
+     The first command returns all of 
+the links that fit the specifications 
+defined  by  the accompanying 
+parameters, viz.  those links that 
+start and end at the specified 
+end-sets and are stored in the 
+specified home-set [presumably by the 
+owner of the account that contains 
+it].  In some cases the number of 
+links defined by even a well 
+considered set of restrictions  will 
+be immense.  In such a case the user 
+has recourse to the second command.   
+This provides a systematic way to 
+allow   one  to proceed  through a 
+large number of links a set number at 
+a time, checking out their usefulness 
+one by one, rather than immediately 
+recovering the entire set. 
+
+     With his search so constrained 
+to practical limits a researcher is 
+ready  to  follow  a link down to his 
+first reference.  His request for 
+this reference from his frontend will 
+generate at least  the  following 
+three backend calls: 
+
+     [1] FOLLOWLINK 
+
+     [2] RETRIEVEDOCVSPAN 
+
+     [3] RETRIEVEV 
+
+     The first provides the position 
+(tumbler address) of the  document in 
+the  data  structure.   The  second  
+provides its size, possibly of 
+interest to the user, and certainly 
+of interest to the  frontend  which 
+must  decide  what  proportion  of it 
+to pull into the frontend's local 
+memory.  Finally the third command  
+returns  the  specified  amount  of 
+text,  links,  etc. to the frontend 
+which in turn displays a portion of 
+it to the user.  Note that at any 
+time the user can simply jump back to 
+his  place  in  the previous 
+document, either to sample the 
+material at the ends of other links 
+or to work with the document itself. 
+
+     In some cases one may be faced 
+with too few rather than  too  many 
+cross  references.   In  such  cases  
+the domain of one's search can be 
+enlarged by use of the following 
+command: 
+
+     FINDDOCSCONTAINING 
+   returns i.d.s of documents 
+containing specified passages 
+
+     This command will return access 
+directions (tumbler addresses) for 
+any  document containing any passage 
+that has been copied from a common 
+source and meet the given set of 
+specifications.   This  function  
+provides  the user  with  
+interconnections  between  documents  
+not  made explicit by the use of 
+links. 

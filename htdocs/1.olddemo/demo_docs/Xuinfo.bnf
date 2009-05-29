@@ -1,0 +1,247 @@
+ 
+
+ 
+
+ 
+
+ 
+         Appendix IV 
+Xanadu Hypertext 
+Calls to Back-end -- 
+BNF 
+
+ CREATENEWDOCUMENT ::= 
+<createdocrequest> 
+  returns <createdocrequest> <doc id> 
+
+  <createdocrequest> ::= 11 <wdelim> 
+
+    This creates an empty document, 
+returns the id of the new document. 
+
+ CREATENEWVERSION ::= 
+<createversionrequest> <doc id> 
+  returns <createversionrequest> <doc 
+id> 
+
+  <createversionrequest> ::= 13 
+<wordelim> 
+
+    This creates a new document with 
+the contents of document <doc id>, 
+  it returns the id of the new 
+document.  The new document's id will 
+  indicate it's ancestory. 
+
+ INSERT ::= <insertrequest> <doc id> 
+<doc vsa> <text set> 
+  returns <insertrequest> 
+
+  <insertrequest> ::= 0 <wdelim> 
+
+    This inserts <text set> in 
+document <doc id> at <doc vsa>, the 
+ v-stream addresses of any following 
+characters are increased by the 
+ length of the inserted text. 
+
+ DELETEVSPAN ::= <deleterequest> <doc 
+id> <span> 
+  returns <deleterequest> 
+
+  <deleterequest> ::= 12 <wdelim> 
+
+    This removes the given span from 
+the given document. 
+
+ REARRANGE ::= <rearrangerequest> 
+<doc id> <cut set> 
+  returns <rearrangerequest> 
+
+  <rearrangerequest> ::= 3 <wdelim> 
+  <cut set> ::= <ncuts> <doc vsa>* 
+  <ncuts> ::= <integer> <wdelim>      
+/* ncuts = 3 or 4 */ 
+
+    The <cut set> consists of two to 
+four v-addresses within the 
+ specified document.  A two cut 
+rearrange will simply delete every- 
+ thing between the cuts.  A three or 
+four cut rearrange transposes the 
+ two regions of text.  With three 
+cuts, the two regions are from cut 1 
+ to cut 2, and from cut 2 to cut 3, 
+assuming cut 1 < cut 2 < cut 3. 
+ With four cuts, the regions are from 
+cut 1 to cut 2, and from cut 3 
+ to cut 4, here assuming cut 1 < cut 
+2 and cut 3 < cut 4. 
+
+COPY ::= <copyrequest> <doc id> <doc 
+vsa> <spec set> 
+  returns <copyrequest> 
+
+  <copyrequest> ::= 2 <wdelim> 
+
+    The material determined by <spec 
+set> is copied to the document 
+ determined by <doc id> at the 
+address determined by <doc vsa>. 
+
+ APPEND ::= <appendrequest> <text 
+set> <doc id> 
+  returns <appendrequest> 
+
+  <appendrequest> ::= 19 <wdelim> 
+
+    This appends <text set> onto the 
+end of the text space of the 
+ document <doc id>. 
+
+ RETRIEVEV ::= <retrieverequest> 
+<spec set> 
+  returns <retrieverequest> 
+<vstuffset> 
+
+  <retrieverequest> ::= 5 <wdelim> 
+
+    This returns the material (text 
+and links) determined by 
+ <spec set>. 
+
+ RETRIEVEDOCVSPAN ::= 
+<docvspanrequest> <doc id> 
+  returns <docvspanrequest> <vspan> 
+
+  <docvspanrequest> ::= 14 <wdelim> 
+
+    This returns a span determining 
+the origin and extent of the 
+ vstream of document <doc id>. 
+
+ RETRIEVEDOCVSPANSET ::= 
+<docvspansetrequest> <doc id> 
+  returns <docvspansetrequest> 
+<vspanset> 
+
+  <docvspansetrequest> ::= 1 <wdelim> 
+  <vspanset> ::= <nspans> <vspan>* 
+
+    This returns a span-set 
+indicating both the number of 
+characters 
+ of text and the number of links in 
+document <doc id>. 
+
+ MAKELINK ::= <makelinkrequest> <doc 
+id> <doc vsa> <from set> <to set> 
+  returns <makelinkrequest> <link id> 
+
+  <makelinkrequest> ::= 4 <wdelim> 
+
+    This creates a link in document 
+<doc id> from <from set> to 
+ <to set>.  It returns the id of the 
+link made. 
+
+ FINDLINKSFROMTO ::= <linksrequest> 
+<home set> <from set> <to set> 
+  returns <linksrequest> <link set> 
+
+  <linksrequest> ::= 7 <wdelim> 
+
+    This returns a list of all links 
+which are (1) in <home set>, 
+ (2) from all 
+  or any part of <from set> and (3) 
+to all or any part of <to set>. 
+
+ FINDNUMOFLINKSFROMTO ::= 
+<nlinksrequest> <home set> <from set> 
+<to set> 
+  returns <nlinksrequest> <nlinks> 
+
+  <nlinksrequest> ::= 6 <wdelim> 
+
+    This returns the number of links 
+which are (1) in <home set>, 
+ (2) from all or any part of <from 
+set> and (3) to all or any part 
+ of <to set>. 
+
+ FINDNEXTNLINKSFROMTO ::= 
+<nextnlinksrequest> <from set> <to 
+set> 
+
+                         <home set> 
+<link id> <nlinks> 
+
+  returns <nextnlinksrequest> 
+<linkset> 
+
+  <nextnlinksrequest> ::= 8 <wdelim> 
+
+    This returns a list of all links 
+which are (1) in the list 
+ determined by <from set>, <to set>, 
+and <home set> as in 
+ FINDLINKSFROMTO, (2) past the link 
+given by <linkisa> on that list 
+ and (3) no more than <n> items past 
+that link on that list 
+
+ RETRIEVEENDSETS ::= 
+<retrieveendsetsrequest> <spec set> 
+  returns <retrieveendsetsrequest> 
+<from spec set> <to spec set> 
+
+  <retrieveendsetsrequest> ::= 26 
+  <from spec set> ::= <spec set> 
+  <to spec set> ::= <spec set> 
+
+    This returns a list of all link 
+end-sets that are in <spec set>. 
+
+ SHOWRELATIONOF2VERSIONS ::= 
+<showrelationrequest> <spec set> 
+<spec set> 
+  returns <showrelationrequest> 
+<correspondence list> 
+
+  <showrelationrequest> ::= 10 
+<wdelim> 
+  /* this is a wild guess at the 
+vague form of the response */ 
+  <correspondence list> ::= 
+<ncorresponences> <correspondence>* 
+  <corresponence> ::= <item> <item> 
+  <item> ::= <doc id> <vspan> 
+  <ncorrespondences> ::= <integer> 
+<wdelim> 
+
+    This returns a list of ordered 
+pairs of the spans of the two 
+ spec-sets that correspond. 
+
+ FINDDOCSCONTAINING ::= 
+<docscontainingrequest> <vspec set> 
+  returns <docscontainingrequest> 
+<doc set> 
+
+  <docscontainingrequest> ::= 22 
+<wdelim> 
+
+    This returns a list of all 
+documents containing any portion of 
+ the material included by <vspec 
+set>. 
+
+ NAVIGATEONHT ::= 
+<navigateonhtrequest> <totally 
+undefined> 
+  returns <navigateonhtrequest> 
+<totally undefined> 
+
+    This re-edits a document to any 
+point in its editing history. 

@@ -1,0 +1,113 @@
+
+
+
+
+
+
+C. The Company's Products and Services
+
+     1. A Scenario
+
+Let us examine how the Xanadu Hypertext System might help the manager of a
+large systems project in maintaining his software.  For example, let us assume
+that he has just received a bug report from a user in the field:
+
+The various portions of the project are tied together with links:
+specifications are connected to related requirements documentation and to code,
+code is connected to comments, bug reports are connected to the appropriate
+specifications and other documentation, and so on.  Thus a new bug report can
+lead directly to the portions of the specifications that are related and thence
+to the code and the comments.  Xanadu's versioning capability allows managers
+and programmers to determine the changes that have been made to the system
+since the version that the bug report relates to was created, as such changes
+could effect the validity of the new report.  With this information at hand,
+the appropriate response to the bug report can be determined: inform the user
+of the availability of a new version of the software, revise the documentation,
+modify the software to fix the problem, or whatever.  Action resulting in a
+change may propagate through the complete project, affecting specifications,
+code, documentation and the interconnection of pieces.  However, the
+relationships of the pieces (both before and after the change) are stored and
+available for examination and use.  All interconnections and recognized
+cross-dependencies can be stored and easily retrieved.
+
+     2. Why the Xanadu Hypertext System is Unique
+
+As the above scenario illustrates, the Xanadu Hypertext System is a tool for
+storing, retrieving, and organizing information, although it is not a "database
+management system" in the traditional sense of the term.  It differs both in
+its form and its function.
+
+In the Xanadu System, information is stored in the form of documents: letters,
+memos, articles, engineering specifications, scribbled notes, textbooks,
+manuals, computer programs, contracts, reports, and so on.  These can vary
+greatly in their size and in the nature and complexity of their internal
+structure. This contrasts sharply with database management systems, where the
+information stored consists of aggregates of records holding chunks of data in
+fairly fixed formats and in fairly homogeneous arrays.  In short, DBMS's store
+lists of items, where every item in the list has the same structure.  Clearly,
+these two forms of information storage have different purposes and are
+appropriate for different kinds of information.
+
+DBMS's arose out of traditional record keeping systems in which information was
+stored on paper in the form of ledgers, lists, card files, etc., and the
+storage, retrieval, and update functions were performed by hand, often by
+armies of clerks. As these functions were computerized, it was discovered that
+the computer made possible a variety of capabilities that had not previously
+been considered.  In addition to allowing vastly larger bodies of data to be
+accessed and manipulated far faster and more accurately than ever before,
+entirely new functions could be performed.  It was found that if the data was
+stored according to certain kinds of generalized schemes, one could impose
+different patterns of organization on the same body of data, allowing
+appropriately different organization schemes to be used for different
+applications.  Also, it was realized that one could store information about
+the relationships between different chunks of data, in addition to storing the
+data itself, and then manipulate this relational information as well, using the
+very same techniques.  One could even store relational information about other
+relational information, enabling the most general organizational structures to
+be built.
+
+Today, DBMS's are a standard tool for handling information.  Research goes on
+to make them ever more powerful, efficient and general-purpose. Tomorrow's
+DBMS's will be even more sophisticated.
+
+Techniques for handling information in the form of documents, however, have not
+kept pace with database technology. While there are numerous systems available
+which allow one to store, retrieve, and to some extent manipulate document-type
+data using a computer, systems that allow one to organize and interrelate this
+information, in the sense that DBMS's allow one to organize and interrelate
+bulk data, have been crude to non-existent. The Xanadu Hypertext System ends
+this state of affairs.
+
+The Xanadu Hypertext System is the first and so far the only effective system
+for document management which allows one to organize and interrelate document
+type information in a totally general and application independent fashion.
+
+This is what the Xanadu Hypertext System can do:
+
+  --It can store, retrieve and update documents on command.
+
+  --On command, it can create explicit linkages between arbitrary sets of
+arbitrary portions of arbitrary documents and other linkages.  It can retrieve
+these linkages at will, including information about what is being linked to
+what and about the nature and type of the link itself.  It can correctly
+maintain these linkages in the midst of changes to the very data being
+interlinked.
+
+  --It can maintain multiple versions of any given document, efficiently
+storing the common portions in common, with separate portions of storage
+required only for those parts of the documents which are actually different.
+It can provide historical traceback information in dated chronological order
+about any and all changes to a given document, for purposes of error recovery
+or auditing.
+
+  --It can do all of this efficiently, with only logarithmic overhead in terms
+of both storage space and response time.  This means that storage overhead
+requirements will grow quite slowly as the volume of data stored grows (as
+opposed to many systems of various sorts in which storage overhead increases
+much more rapidly than the volume of data does).  Response time will remain
+effectively constant no matter how vast the body of stored documents may
+become.  It can make effective use of ultra-high density write-once storage
+technology, such as video disks.  It can effectively and efficiently operate
+in a totally distributed storage environment in which the data is spread over
+a network of intercommunicating computers which may be located all over the
+country or all over the world.

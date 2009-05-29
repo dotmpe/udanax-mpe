@@ -1,0 +1,33 @@
+
+
+
+NAME
+     conti - Chip's oozing continent pretty-picture program
+
+SYNOPSIS
+     conti [ itcnt [ dispcnt [ seed ]]]
+
+DESCRIPTION
+     Conti is an oozing continent pretty-picture program for the Ann Arbor
+     Terminals "Ambassador" (60 line display)
+
+     "itcnt" is an iteration count.  It tells how many passes of the algorithm
+     to perform between displays (default 1).
+
+     "dispcnt" is a display count.  It tells how many times to display a
+     screenful of stuff (default 1).
+
+     "seed" is a random number seed (default is taken from the low bits of
+     the current time).
+
+     This program generates pretty oozing continental patterns according to
+     the following algorithm:  starting with a screenful of random black and
+     white blocks, pick coordinates at random and span them outward in a
+     Von Neuman window (up, down, left and right but not diagonally).  Repeat
+     many times.
+
+FILES
+     It really wants to send its output to a terminal and not to a file.
+
+BUGS
+     It doesn't know when it has reached a stable state.

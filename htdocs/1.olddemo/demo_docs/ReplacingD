@@ -1,0 +1,484 @@
+From A Console To A Network  
+
+  
+        So far we have more or less 
+assumed a single-processor version of 
+this  system, one which easily treats 
+all documents and their versions as 
+an  interconnected whole because they 
+are stored in the same place.  But 
+given  today's network technologies, 
+this is not a real restriction.  
+
+        The system should be able to 
+grow without size limit, containing 
+in  the body of available writings 
+whatever anyone has stored from any 
+place on  the network.  A user at any 
+location may store what he or she 
+wishes; links  may be created by 
+anyone, from anywhere, to bring a 
+document (or part of one)  to the 
+inquiring user.  
+
+        All of storage near and far 
+becomes a united whole-- what is now  
+called a "distributed data base."  
+Actual locations are essentially 
+invisible  to the user; or, in that 
+traditional phrase, "You don't care 
+where it's  stored."  The documents 
+and their links unite into what is 
+essentially a  swirling complex of 
+equi-accessible unity.  
+
+  
+
+Multi-Person Use  
+
+  
+        For the time being we will 
+ignore the problem of privacy, and 
+assume  that all users are freely 
+sharing their work.  
+
+        Anything stored by one user 
+on the system may be quoted-- adopted 
+into  a document-- by another person 
+writing on the system.  No copy is 
+made of the  quoted material; rather, 
+a quote-link symbol (or its essential 
+equivalent) is  placed in the quoting 
+document.  This quotation does not 
+affect the integrity  or uniqueness 
+of the original document, since no 
+copy is made.  Nor does it  affect 
+the ownership: in our planned 
+service, a standard proportional  
+copyright fee is paid automatically 
+by the user every time a fragment is  
+summoned.  
+
+        The use of special links 
+dramatically simplifies a host of 
+problems.  
+
+        No copying operations are 
+required among the documents 
+throughout the  system, and thus the 
+problems of distributed update, so 
+familiar throughout  the computer 
+world are obviated.  Since quoted 
+material only has to reside in  its 
+place of origin, and not in the other 
+documents that quote it, other files  
+that quote it are automatically 
+"updated" when its owner changes it.  
+
+  
+
+Philosophy of the Perplex  
+
+  
+        Often the truth about a 
+subject is difficult or impossible to 
+find,  though a great deal of 
+information about it is on hand.  
+Frederick C. Crews  has implicitly 
+proposed the term "perplex" for such 
+a body of information, in  his 
+masterful academic satire, *The Pooh 
+Perplex*(11).  
+
+        Intuitively, we ought to be 
+able to use computers to help us sort 
+out  and order the complexities of 
+what is written, so that our grasp of 
+it becomes  firmer and clearer.  I 
+have proposed the term "thinkertoy" 
+for such a facility  (10); more 
+recently such terms as "decision 
+support system" have appeared in  the 
+literature.  But what has been less 
+clear is the nature of what such  
+systems should be like.  
+
+        Our system facilitates 
+multiple interpretations of the same 
+material.  Whatever is stored may be 
+seen as a compound object, either 
+organized in  different versions or 
+viewed through other documents.  Each 
+may independently  represent a 
+different point of view.  Thus users 
+may highlight different  
+interpretations of the same material, 
+by quoting or linking in from 
+different  documents.  Thus it seems 
+to be a genuine thinkertoy for strong 
+and subtle  intercomparisons.  
+
+        We spoke earlier of the 
+unending change of ideas, the way in 
+which a  given field is constantly 
+subject to reinterpretation.  It is a 
+tradition of  western thought that 
+such reinterpretation is always 
+possible, always going  on. But how 
+can a literature that has been 
+described in one way be  
+reinterpreted in another without 
+total rewriting?  
+
+        Within our system, the user 
+may make marginal notes and new 
+documents  that ease his task in 
+totally reinterpreting (or "newly 
+interpreting") the  material before 
+him.  He has only to make his own 
+summary of another piece of  writing 
+writing-- and indicate the pathway by 
+a correlink.  A reader may then  
+summon the corresponding part at any 
+time he wishes to confirm the  
+interpretation.  
+
+        The improved visualization 
+and control of alternative theories 
+and  viewpoints, of disparate and 
+corresponding ideas, should give a 
+person a  broader grasp of everything 
+he reads and thinks about.  By 
+providing such  tools ready to hand, 
+we think we are contributing to a new 
+way of seeing.  
+
+ A Radical Implementation Sequence  
+
+  
+        The system as it is currently 
+being implemented is based upon this  
+structure.  
+
+        Since conventional operating 
+systems work with conventional files, 
+new  approaches had to be found.  
+
+        Now, the normal way to create 
+a new program in the computer field 
+is  to it on an existing computer 
+setup.  A computer setup consists of 
+a computer  and its main control 
+program, or operating system, which 
+handles all file  access and update.  
+However, since our approach required 
+a radical  redefinition of file 
+storage and operations upon what the 
+files contain, the  focus of the 
+enterprise has been on the redesign 
+and re-implementation of what  most 
+computer people have thought was 
+completely settled, the file system.  
+This in turn requires the creation of 
+a whole new operating system, since 
+the  operating systems presently 
+available rest upon a conventional 
+view and  implementation of file 
+structures.  These have been 
+non-trivial obstacles.  
+
+        The current version is now in 
+code in a suitable systems language, 
+and  we expect to demonstrate the 
+major functions of the system in a 
+reasonable  time.  
+
+  
+
+Publication Through The System On The 
+Postulated Network  
+
+  
+        The system's design is a 
+unified whole, but we may think of it 
+as the  basic conceptual structure, 
+plus a technical structure which 
+makes it  possible, and a contractual 
+structure which makes it possible for 
+people to  use it confidently.  These 
+aspects taken together make a unified 
+design.   Because the conceptual 
+structure required very fast lookup 
+within a tightly  organized but 
+largely linked system, we had to 
+develop a particular technical  
+structure; and because the conceptual 
+structure expects participants to 
+behave  in certain ways, these are 
+embraced in the contract offered to 
+users.  These  provisions are 
+necessary for the orderly and 
+confident use of published  material 
+by many people.  
+
+        Beyond its use as a private 
+network, we intend that this system 
+be  usable as a publication system.  
+Thus a carefully designed system of  
+publication, much like that of paper, 
+has been worked out.  
+
+        Any user may store anything 
+on the system.  Unless specified  
+otherwise, it is a private document.  
+If the user chooses to publish it,  
+however, he may do so with relative 
+ease, making it available to anyone  
+throughout the network. It is then a 
+published document.  
+
+        Because publication is an 
+important act, both for authors and 
+readers,  we make publication a 
+solemn event, to be undertaken 
+cautiously.  The author  signs an "I 
+hereby publish" form, after which not 
+only is the document  universally 
+available, but its author may not 
+withdraw it except by lengthy  due 
+process.  (He may readily publish a 
+superceeding document, but the former 
+version remains on the network.)  
+
+        An author who wishes to 
+render his work universally 
+available, but  wishes also to retain 
+the right to withdraw it at any time, 
+has a simple means  for doing so.  He 
+simply designates his document as a 
+private document with  unrestricted 
+distribution.  Anyone may have access 
+to it or use it, but the  owner is 
+free to withdraw it or change it 
+irrecallably at any time.  
+
+        Any user may read, or 
+otherwise employ, any published 
+document on the  system, or any 
+private document to which he has 
+legitimate access.  He can  make any 
+kind of links to it from his own 
+documents, private or not.  
+
+        Accessibility and free 
+linking make a two-sided coin.  On 
+the one  hand, each user is free to 
+link to anything privately or 
+publically.  By the  same token, each 
+author of a published work is 
+relinquishing the right to  control 
+links into that work.  The 
+relinquishment is part of the 
+publishing  contract.  
+
+        The user may employ any 
+terminal, graphical or printing.  
+Viewing  methods and manipulations 
+are up to the terminal designer.  No 
+restraint is  contemplated as to what 
+use may be made of the materials 
+found on the system,  since no 
+restraint is possible.  
+
+        We will recommend certain 
+programs for use on the user's 
+terminal or  personal computer, but 
+these may be created by any party.  
+Approved terminal  programs may be 
+offered certain trademark advantages, 
+but no terminal behavior  can or will 
+be forbidden.  
+
+  
+
+Noncoercive In Use  
+
+  
+        We see this system as 
+offering remarkable power to all 
+users with the  greatest possible 
+freedom of use.  
+
+  
+
+ The System's Future And Sweep  
+
+  
+        We have created this system 
+intending to offer a viable 
+alternative to  all forms of reading, 
+writing, archiving and study now 
+handled by methods of  paper.  
+Through the system it is possible to 
+mimic, perhaps viably, many  aspects 
+of the great society of paper: books, 
+magazines, private notes,  copyright, 
+royalty, archiving, and roles for 
+author, publisher, and critic.  
+
+        We want it available to 
+everyone at $2.00 an hour, and to 
+assure  freedom of speech on the 
+system, the integrity of copyright, 
+and other  high-minded objectives 
+with respect to its broad future use. 
+
+        Obviously this is a somewhat 
+ambitious plan, and we cannot judge 
+its  viability ourselves.  But even 
+given more moderate goals, it seems 
+to be a  versatile structure for 
+other purposes.  For instance, it 
+would seem to be a  good 
+public-access memory service, 
+offering a backend with much greater  
+flexibility than standard storage.  
+Objects can be stored "seamlessly," 
+and  the need have no concern for 
+their size, naming of alternative 
+versions,  linkage and the like.  
+Thus it would seem also to be a 
+favorable storage  structure for 
+naive user systems of all kinds, by 
+its removal of various  levels of 
+complication.  
+
+        It should go without saying 
+that the system may be used for all 
+other  forms of linked data base, 
+including animated graphics, which we 
+hope will be  an important component 
+of future educational and leisure 
+systems.  
+
+        Such an approach offers to 
+standardize, not languages or 
+processors or  algorithms, but the 
+storage form of linkable and complex 
+materials, and  terminal interfaces 
+for their exploration.  This would 
+seem also to be a  worthy goal.  
+
+        It may be noticed that the 
+system adopts readily for purposes of 
+"electronic mail," using the null 
+adaptation.  
+
+  
+
+Conclusion  
+
+  
+        Text is the self-portrait of 
+human thought; more precisely, it is 
+the  ordered presentation of the 
+results of that thought.  Specific 
+textual  conventions have evolved in 
+different aspects of human endeavor, 
+but to study  any of the by itself is 
+misleading, like studying only one 
+part of the body or  only one sex of 
+a species.  
+
+        The computer field has 
+gradually become aware of text 
+problems, but  most computer people 
+see them as independent areas, like 
+"word processing" and  "electronic 
+mail" and "information retrieval."  
+
+        And so it is that computer 
+people have for the most part never 
+looked  at the whole picture.  
+Conventional system designers have 
+approached small  subsets of the 
+grand text problem, and the resulting 
+designs have tended to be  
+complicated and cumbersome.  Often 
+they require, not only a tangle of  
+specialized and user languages, but 
+new social roles for supervisors and  
+service personnel, since ordinary 
+people cannot be taught their use.  
+System  complexity appears to rise in 
+proportion to system size, or worse, 
+by some  power of system size.  But a 
+little thought shows at once that 
+this cannot be  permitted.  At that 
+rate nothing is going to work.  
+
+        The view I am suggesting is 
+that the problem is unique, singular 
+and  enormous, and the solution can 
+therefore only be unique, singular 
+and  enormously simple.  I think 
+there are not many text problems, but 
+one problem,  *the* text problem, 
+which is the grand interplay of 
+written materials, their  
+interconnections, and the minds that 
+play on these interconnections like  
+harp-strings.  
+
+        There is a specialty in the 
+computer trade called "system 
+design."  Now, we all design systems, 
+but is their a right way?  (In some 
+cases a system  is intended to do 
+something utterly new, and so there 
+is nothing to be studied  or 
+replaced, but that is not germane to 
+our problem.)  
+
+        By some accounts, system 
+design is the study of existing 
+methods in  some area of human 
+endeavor, and the translation of 
+these methods to a  computer 
+equivalent of some kind.  But this 
+broad description is not very  
+helpful.  
+
+        To observe and copy is not 
+enough.  True, the job of the system  
+designer is in part to observe what 
+people do in an existing system and 
+take  note of all the different 
+activities that he sees-- no matter 
+what the people  think they are doing 
+or seem to be doing.  But the job of 
+the actual design  requires more.  A 
+designer necessarily makes 
+compressions and adaptations.      
+This is the creative part.  And the 
+designer should seek simplicity.  
+
+        There is no reason, in 
+systems design, to ratify and 
+perpetuate those  individual and 
+local complications of life which 
+have arisen in various  contexts.  
+Just as the scientist seeks 
+generalizations, unifying ideas which 
+summarize and compress all the 
+varying details he may observe,; so 
+the system  designer seeks also an 
+underlying structure in whatever 
+existing system he is  adapting to 
+the computer.  But this structure is 
+not merely empirically found;  in 
+part it is imaginatively created, and 
+represents the designer's conceptual  
+encapsulation of what he thinks is 
+going on, and what he thinks should 
+go on.  

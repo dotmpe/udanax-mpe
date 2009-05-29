@@ -1,0 +1,148 @@
+ 
+                    I. SUMMARY 
+
+The company, XOC, Inc., is developing a unique system for managing complex
+information.  It is called the Xanadu(tm) Hypertext System.  A hypertext
+system is a general solution to the problem of finding and keeping track of
+online information.  It lets the user store, connect, and interrelate text and 
+other data with logical connections called "links."  The company has a 
+twenty-two year development lead time.  Ted Nelson originated the idea of
+hypertext systems in 1960 as a way to implement the world library on-line.
+Nelson and several others are in the process of forming a corporation, PXI, to
+implement a world library and any other public applications of hypertext.
+XOC was incorporated October, 1982.  Once incorporated, PXI will license XOC,
+Inc. to market the Xanadu Hypertext System for commercial purposes. After
+finishing the system's development, the Company plans to begin marketing the
+Xanadu Hypertext System to large, sophisticated companies with information
+management problems. 
+
+ 
+
+ 
+    II. THE INDUSTRY, THE COMPANY, AND ITS PRODUCTS 
+
+A. The Industry 
+
+Many different factions in the computer industry claim to have found the right
+way to automate information management and create the office of the future.
+In a paper presented at the IFIPS Conference in 1980, Ted Nelson talked about
+the industry's current state of confusion and the Company's approach to 
+information management.  Excerpts from the paper, "Replacing the Printed Word:
+A Complete Literary System," are printed below. 
+ 
+Developments in computer technology now make it possible to store stupendous
+amounts of written material economically. This leads to radical visions of
+what may come to be.  However, if paper is to be supplanted, it must be by
+something rather like the paper systems we now have, even if in some
+abstracted and unfamiliar form.  What, then, have we?  And how to abstract
+and extend it?  Our model is "literature"--defined in a somewhat unusual way. 
+
+Under guiding ideas which are not technical but literary, we are implementing
+a system for storage and retrieval of linked and windowing text.  The
+"document," our fundamental unit, may have windows to any other documents.
+The evolving corpus is continually expandable without fundamental change.
+New links and windows may continually add new access pathways to older
+material.  Fast proprietary algorithms render the extreme data fragmentation
+tolerable in the planned back-end service facility. 
+
+ 
+
+ 
+
+THE POSSIBILITIES AND THE PRECONCEPTIONS 
+
+Vast text storage, and communication techniques for reaching into it, are
+new technological developments to be coped with--which very few people were
+expecting. 
+
+So-called "word processing" systems have already greatly changed the handling
+of the written word in the office environment; now the question is how to
+extend this approach.  It now is feasible to replace large-scale systems of
+in-house publishing with computer storage ([1] Lancaster 1978); and it will
+soon be practical to do the same for publishing to the open public. 
+
+Indeed, true electronic publishing is feasible now-- that is, public-access
+document systems with digital storage and demand service to the open public.
+The problem is not electronic.  It is not "software," meaning procedural 
+obstacles to implementation.  The problem is conceptual.  If such systems are
+to be promulgated to a wider public--no longer just in-house--they must be
+clear and simple to use, yet offer powerful new features.  They may not merely
+be a clumsy imitation of paper systems. 
+
+This is a design problem.  It is a problem of creating a conceptual structure,
+an organizing system of ideas and methods and patterns of work. 
+
+There is no universal or obvious approach to this problem, though numerous
+candidate approaches exist. Various parochial disciplines and ideologies
+within the computer field, and other fields, have styles of thinking that seem
+to speak to this problem.  How clearly they speak to it is a matter for
+careful thought. 
+
+In word processing, though screen methods for actual edit have become
+streamlined, all systems appear to bog down at the borders of a document. The
+conventions of computer storage are little improved, and so secretaries must 
+deal with all the usual file conventions, problems of file naming (and keeping
+track of file names), backup, and keeping backup copies safe and segregated,
+and so on.  Few linkage facilities exist either within or between documents. 
+
+A number of on-line communities exist, particularly around such time-sharing
+systems as the ARPAnet.  But they, too, suffer from the conventional problems
+of file naming and backup, in addition to the greater complexity of using the
+systems at all. Curiously, the users of such systems still must in most cases
+give their documents short names, keep paper lists of these names, and juggle 
+backup copies in the same way that secretaries do. 
+
+Systems for "electronic mail," though much publicized, are still largely in
+the telegraphic tradition. 
+
+The "office of the future," we are told, is quite near. There seems to be
+little agreement on what it will be, however.  Some say it will have optical
+scanning for input and paper for output.  Some say it will have an
+"information manager" who will try to keep it all working and keep the system
+brought up to new revised specification.  All the time.  Some say it will not
+even happen, whatever it is. 
+
+Some researchers, impressed by the work of Douglas C. Engelbart and his "NLS"
+system at Stanford Research Institute, have proceeded on the assumption that
+good tools for the intellect can be built with good text systems.  The NLS
+system is essentially a community of shared files, with facilities for rapid 
+search and linkage.  As implemented it requires extensive training; but
+Engelbart's ideas have been widely influential, and would seem to lead toward
+simpler systems for wider user groups [2,3,4]. 
+
+A recent development has been the teleconferencing system, most conspicuously
+developed by Murray Turoff at the New Jersey Institute of Technology.  As most
+often seen, the teleconferencing system is a setup for accumulating messages 
+sequentially from different participants.  These messages, always added at the
+end of the accumulating scroll of text, tend to take on a character not unlike 
+informal conversation.  In some versions, however, they have become
+complicated by tricky sets of rules and an elaborate supervisory function for
+those people designated as conference leaders. 
+
+The field of "information retrieval" appears to have stabilized into a certain
+basic form.  This is usually the storage of a number of items of text which
+can be scanned on the basis of a formalized user query. (A commercially
+successful example is the New York Times data bank.)  Usually what are stored
+are article summaries, but this approach could in principle be extended to 
+fulltext as well.  However, the training to use the search and query methods
+of such systems tends to be long and arduous, the cost is high, and users
+express disgruntlement about the unpredictability of results. 
+
+Advocates of artificial intelligence have repeatedly informed us that
+"everything we want" will be forthcoming in an unspecified manner at an
+unspecified date in the very near future.  However, we are assured that it
+will involve interactive dialogue with some kind of intelligence whose
+internal workings and system of thought need not concern us. This Softbeing
+will understand us perfectly, foresee our needs, wish to keep us completely
+satisfied, and have nothing to hide. 
+
+In summary, I would say that the situation is one of total confusion and odd
+preoccupations.  I see no obvious, let alone conceivable, way that all these
+concerns and obsessions can be comprised into a single outlook, let alone a
+common system.   (Nevertheless, there are respected researchers, such as 
+J.C.R. Licklider, who seem to think they can [5].) 
+
+Perhaps the apparent complication and mutual intractability of these different 
+approaches is related to something else: they all have rather little relation
+to our present uses of paper. 
+

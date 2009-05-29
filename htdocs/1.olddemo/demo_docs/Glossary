@@ -1,0 +1,190 @@
+ 
+
+ 
+
+ 
+
+        Appendix I   A Glossary of 
+Terms 
+
+ 
+
+doc id 
+
+     A tumbler assigned to a document 
+upon its  creation  which  
+corresponds  to its virtual stream 
+address. 
+
+doc-range 
+
+     A virtual stream region 
+containing several documents  defined 
+by a span.  A doc-range is like a 
+span, except that it specifies a 
+"span" of documents rather than a 
+span of text or links within a 
+document.  Like  a  span,  it  
+consists  of  a stream address and a 
+width. 
+
+end-set 
+
+     Any of an indefinite number of 
+terminii (defined by  tumbler  
+addresses) a link may have on the 
+virtual stream.  Examples include 
+from-sets and to-sets, formally 
+equivalent specifications 
+distinguished only by  the  
+directionality  desired and  
+implemented  by their creator.  The 
+creator is not neccesarily the 
+"owner" of  the  document in 
+question. 
+
+from-set 
+
+     The specification of the 
+endpoint of a link from which  the  
+link  was initially defined.  In the 
+present minimal frontend  the  
+position  of a from-set in the 
+display of the document is indicated 
+by reverse video text. 
+
+link id 
+
+     A tumbler assigned to a link 
+upon  its  creation which corresponds 
+to its virtual stream address. 
+
+home-set 
+
+     The specification of the 
+document or spans  with which  the  
+link is stored; an indication of the 
+creator of the link.  The home-set of 
+a link is not  necessarily  the same 
+as that of either its from-set or its 
+to-set. 
+
+span 
+
+     A pair of tumblers, a  starting  
+stream  address and a width, that 
+define a region of the virtual 
+stream.  A span has two parts: a 
+stream address and a width.  A span 
+can describe any contiguous region of 
+the virtual  stream.  Typically, the 
+only instance of a span being used 
+outside of a v-spec is in a 
+doc-range. 
+
+span set 
+
+     A list of spans.  In the current 
+implementation span  set  starts with 
+an integer indicating the size of the 
+set, followed by a string of spans. 
+
+spec set 
+
+     A list of doc-range and vspecs.  
+The most common form  of  address  
+specification that the system 
+requests accept is the  "spec  set,"  
+short  for specification   set.   In  
+the  backend/frontend interface, a 
+spec set  starts  with  an  integer 
+indicating  the number of specs in 
+the spec set, followed by a string of 
+specs. 
+
+spec 
+
+     Either a doc-range or vspec.  A 
+spec consists of a document id or 
+link id, and a span set.  All spans 
+in the span set refer to the document 
+or link in the spec. 
+
+stream address 
+
+     A tumbler which corresponds to 
+an address in the virtual stream. 
+
+to-set 
+
+     The specification of the 
+endpoint of a  link  to which  the  
+link  was initially created.  In the 
+present minimal frontend the position 
+of  a  to-set  in  the  displayed 
+document is indicated by underlining. 
+
+tumbler 
+
+     The type of ordinal number used  
+in  the  system for stream addresses. 
+See appendix 2. 
+
+virtual stream 
+
+     All the data  on  the  system  
+--  text,  links, etc.-- conceived as 
+one extended list of bytes. 
+
+virtual stream address or vsa 
+
+     position of the thing -- 
+document, link or character -- on the 
+virtual stream. 
+
+v-span set 
+
+     A span set within a v-spec.  A  
+v-span  set  can only  describe  
+spans  within the document of the 
+v-spec. 
+
+v-span 
+
+     A v-span has two parts, like a  
+span:  a  stream address, and a 
+width.  The stream address is not the 
+entire tumbler address of the span in 
+question, but only  the part which is 
+local to the document or link.  For 
+example, if the stream address is  
+the first character of a document 
+where the full address would be, say, 
+17.0.23.0.42.0.1.1,  the  span's  
+stream address would be simply 1.1, 
+the rest is  already  known from the 
+context of the spec.  The width is 
+also a tumbler.  If you want to 
+retrieve 500  characters,  the  width 
+would be 0.500; if you wanted the 
+entire text of the document, the 
+width would be 1.  This is because 
+the span's width added to the stream 
+address is the address of  the  first 
+thing  NOT  to  include.  Starting at 
+1.1 with a width of 0.500 means that 
+everything up  to  and not  including 
+1.501 is specified.  With a width of 
+1, the first non-included item would 
+be  2.1, the first link. 
+
+v-spec 
+
+     A doc id followed by a spanset 
+
+width 
+
+     the size of a region; the sum of 
+the origin  and width address is the 
+first thing past the end of the 
+region. 

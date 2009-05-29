@@ -1,0 +1,44 @@
+   Appendix II  Addresses in the Xanadu Hypertext System 
+
+All addresses in the Xanadu hypertext system are in the form of tumblers.
+Tumbler is a term invented by Project Xanadu as a pseudo abbreviation for the
+ordinal "Trans-finitesimal floating point humber."  "Humber" stands for
+Hoffman (Huffman?) coded number, which is a form of variable length integer.
+In appearance, a tumbler looks much like the military document numbering
+system, that is used in manuals and other similarly unreadable documents.
+The Xanadu hypertext system was not designed with the intent of having the end
+user being aware of any addresses.  Tumblers are for the front-end program to
+use in requests to the back-end. 
+
+A tumbler is broken up like this: 
+
+    tumbler ==> field . 0 . field . 0 . field ... 
+
+    field   ==> integer . integer . integer ... 
+
+Each field in a tumbler represents a different level of entity in the system. 
+From left to right, the fields represent 
+
+      which node on the network,
+ 
+      which account/author on the node,
+ 
+      which document by that account/author, and
+ 
+      which region of the document; 
+
+this field is broken up as 1.<character address> and 2.<link id>. 
+
+The last field of the address is referred to as the v-address, the address
+that is local to the specified document. 
+
+Links have still another field which specifies the item in the link.  The
+first integer of this field indicates which end of the link.  These are: 
+1.<from set>, 2.<to set>, and 3.<three set>. 
+
+The from and to sets are the meat of the link, specifying what the link
+connects together.  The three set is used to define the link's type. 
+
+In the case of a link id like 1.0.23.0.17.0.2.1 (node 1, account 23, document
+ 17, link 1), more fields may be put on to identify where in the link, as in 
+1.0.23.0.17.0.2.1.0.1.1 (see above, fromset, first thing) 
