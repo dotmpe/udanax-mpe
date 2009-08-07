@@ -1,0 +1,48 @@
+------------------------------------------------------------
+revno: 6
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax.mpe
+timestamp: Fri 2009-05-29 18:27:52 +0200
+message:
+  Adding enfilades and Makefile. Misc. small changes to code.
+------------------------------------------------------------
+revno: 5
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax.mpe
+timestamp: Fri 2008-03-28 18:52:43 +0100
+message:
+  There is now a working TCP wrapper. Allows single? connection to PipeStream
+  wrapped backend
+------------------------------------------------------------
+revno: 4
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax.mpe
+timestamp: Thu 2007-11-15 15:41:37 +0100
+message:
+  pyxi can now (2.3.1) be executed from any directory, slightly different opts/args;
+  optionally accepts -b <backend-path> option when 'be/backend' not present or named differently;
+  accepts -t <tcp-host:port> altough that's not of much use with current backend;
+  x88 PipeStream now names fifo: x88.<pid> (instead of pyxi.<pid>).
+------------------------------------------------------------
+revno: 3
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax-1999-09-29
+timestamp: Wed 2007-11-14 14:09:50 +0100
+message:
+  Fixed KeyPressed modifier handling in eh_key. Mod2 is NumLock here, perhaps not always valid assumption?
+  Fixed eh_destroy routines so window close now properly quits pyxi
+  Removed trailing spaces (vim automagic...)
+------------------------------------------------------------
+revno: 2
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax-1999-09-29
+timestamp: Wed 2007-11-14 13:35:20 +0100
+message:
+  Applied Rogers patch
+------------------------------------------------------------
+revno: 1
+committer: Berend van Berkum <berend@dotmpe.com>
+branch nick: udanax-1999-09-29
+timestamp: Wed 2007-11-14 13:29:54 +0100
+message:
+  0
