@@ -29,7 +29,6 @@
 
 import x88, tktrans
 import sys, os, string, time
-
 from Tkinter import *
 
 REVISION = "$Revision: 2.3"
@@ -145,9 +144,9 @@ class XuText(Text):
         return len(self.tag_ranges("sel")) > 0
 
     def selind(self):
-        range = self.tag_ranges("sel")
-        if not range: raise ValueError, "no text is selected"
-        return range
+        sel = self.tag_ranges("sel")
+        if not sel: raise ValueError, "no text is selected"
+        return tuple([idx.string for idx in sel])
 
     def selvspan(self):
         start, end = self.selind()

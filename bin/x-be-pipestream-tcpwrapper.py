@@ -37,7 +37,7 @@ class XuProxy(XuConn):
         str = self.stream
         p = Protocol_read(str)
         if p != "P0":
-            raise ValueError, "back-end does not speak 88.1 prototype protocol"
+            raise ValueError, "back-end does not speak 88.1 protocol"
         def perform(be):
             Protocol_write(be.stream, p)
             r = Protocol_read(be.stream)
