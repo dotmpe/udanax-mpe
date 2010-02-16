@@ -382,7 +382,7 @@ if __name__ == "__main__":
     for o in opts:
         if '-b' in o: # -b <backend-path>
             backend = o[1]
-        elif '-l' in o: # -l(logging) 
+        elif '-l' in o: # -l(ogging) 
             log = True
         elif '-t' in o: # -t <host:port>
             tcp_addr = o[1].split(':')
