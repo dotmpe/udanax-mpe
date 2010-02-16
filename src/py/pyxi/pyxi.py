@@ -1461,8 +1461,9 @@ if __name__ == "__main__":
         xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
 #        ps.write("34~0.1.0.1.1~")
     elif ('-t', '') in opts:
+        host = "iris"
+        host = "192.168.0.103"
         port = 55146
-        host = "localhost"
         xs = x88.tcpconnect(host,port)
     else:
         xs = x88.pipeconnect("./backend")
