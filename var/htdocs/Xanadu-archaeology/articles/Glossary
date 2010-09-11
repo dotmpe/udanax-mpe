@@ -1,0 +1,55 @@
+[Glossary]
+
+<IMG SRC="!XanaOverview?.png">
+
+  Xanadu is a client-server architecture, where the client, called a *Front-End*, provides the user-interface, and the server, called a *Back-End*, serves the data.  The link between the two is via an 8-bit clean link using either a TCP socket or a Unix named pipe.
+
+0. [Types of Information]
+
+0. [Front-Ends (Clients)]
+
+   0. [Links and Usages]
+
+   0. [Client - Command Line]
+
+   0. [Client - Text Mode]
+
+   0. [Client - Graphical Mode]
+
+   0. [Client - HTTP Translator]
+
+0. [Front-End --> Back-End Protocol]
+
+   0. [Tumblers (Coordinates;Keys)]
+
+0. [Back-End (Server)]
+
+   0. [Docustore (Invariant Stream)]
+
+      0. [Back-End --> Docustore Protocol]
+
+   0. [Linkstore]
+
+      0. [Back-End --> LinkStore? Protocol]
+
+      0. [Sieving Operations]
+
+   0. [Back-End <-> Back-End Protocol]
+
+   0. [Back-End --> HTTP]
+
+0. [User Administrative Account Issues]
+
+The Back-End can be divided up into a database of links, a sieving/searching engine and a database of text.
+
+The text database, or datastore, is conceptual a separate piece with a well-defined interface. Planning ahead, the datastore could be a DVD server with active data migration and/or a <A HREF="http://freenet.sourceforge.net">Freenet</A> node that circulates public data globally. In fact, the Freenet concept can provide the BE-to-BE data migration that Nelson talks about, moving frequently accessed data closer to the client.
+
+<FONT SIZE=+1 COLOR=RED>Key Technologies</FONT>
+
+o [General Enfilade Theory]
+
+o [the fabled Ent]
+
+o [Versioning]
+
+o [Notes from David] 

@@ -1,0 +1,24 @@
+Whiteboard: SmallTalk    	  last revised by 127.0.0.1 on Aug 17, 2005 3:43 am     	
+		
+
+Smalltalk is an object-oriented programming language developed by Alan Kay and Dan Ingalls et al. at Xerox PARC in the 1970s and 80s. The August 1981 issue of Byte (Byte 81) was it's introduction to most of the world.
+The closest modern descendants of the first released version, Smalltalk-80, are:
+
+    *
+
+      Squeak , an open source dialect still being developed by members of the original team. The older 1.x versions are very close to Smalltalk-80 as it is an extended reimplementation of the Smalltalk-80 spec, partially based on the MacSmalltalk?-80 implmentation done around 1984.
+    *
+
+      Cincom VisualWorks , which is descended from Smalltalk-80 via ParcPlace Systems. ParcPlace was a company spun out from Xerox to develop Smalltalk. ParcPlace Smalltalk version 2.2 was the version used in the Xanadu Gold development.
+    *
+
+      GNU Smalltalk, which started as a straight implementation of the Smalltalk-80 spec, less the graphical interface.
+
+The Smalltalk Industry Coucil ( STIC ) is the organization responsible for promoting Smalltalk.
+From the STIC intro page :
+
+Smalltalk was developed in the Learning Research Group at Xerox's Palo Alto Research Center in the early 70s. The major ideas in Smalltalk are generally credited to Alan Kay with many roots in Simula, LISP and SketchPad. Dan Ingalls wrote the first overlapping windows, opaque pop-up menus and BitBlt. Guess where Apple's OS and Microsoft Windows "found" their roots? Right, Smalltalk! Adele Goldberg and Dave Robson wrote the reference manuals for Smalltalk and were key development team members.
+
+One of the early Smalltalk success stories was a very large, collaborative, situation analysis system designed for the U.S. Central Intelligence Agency (CIA) and known as the Analyst. Designed and implemented by Xerox Special Information Systems and CIA personnel, the Analyst was just slightly ahead of its time . It had the audacity to provide email, collaborative authoring and publishing, object-oriented spreadsheets (each cell an arbitrary object), animation maps for military and other assets, graphics/maps and a database capability with user extension features. Let's see .... how many big companies are still trying to deliver this capability 15 years later?
+
+Smalltalk is a true, object-oriented programming language integrated with a richly endowed multi-windowed development environment. Smalltalk is not just a nice OO computer language. The development environment deserves equal billing and has been copied many times over, from Apple OS to MS Windows and Borland Pascal (to a lessor extent). Many Smalltalk concepts like browsers and browsing techniques have found their way into many generation-X development tools today. Smalltalk's integrated development environment has a fun-to-use-factor not previously available in languages requiring edit-compile-link-debug steps. Changes are instantly saved and new editions can be tested quickly. The incremental development model is truly embraced in Smalltalk.

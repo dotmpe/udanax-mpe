@@ -1,0 +1,51 @@
+  Whiteboard: the question    	  last revised by 216.88.158.142 on Aug 17, 2005 4:01 am     	
+		
+
+Subject: Re: Xanadu is answer to what?
+Date: Wed, 23 Aug 2000 10:14:24 -0500
+From: Jeff Rush 
+To: "David C. Kankiewicz" 
+
+Hi David,
+
+"David C. Kankiewicz" wrote:
+
+I am very interested in digital information structure, connecting information, and pretty much anything related. After receiving your email announcement (almost forgot about that list) and visiting your site, I got to wondering just what Xanadu was trying to solve. In the same line of thought, I guess, why wasn't their more people trying to solve the problems Xanadu reportedly could solved. The conclusion I came to, after re-reading its history and As We May Think (among other documents), was that its only half the answer.
+
+I believe Xanadu hasn't done a good job providing a concrete explanation of their solution to the problem. They tout that the problem they are solving is nothing less than the elevation of human thinking, bringing it into an improved virtual community of organized discussion.
+
+However, their materials I've seen focus so heavily on the back-end that they haven't done much innovative on the front-end, although I'm sure Ted Nelson would disagree, citing his zippered-lists and side by side contrast viewer. However, the front-end needs so much more.
+
+You are correct that once Xanadu is initially built, it becomes mostly a way for a small group to coordinate their documents. I'd at least like to see that happen, and I am so surprised/frustrated that the Xanadu group didn't at least achieve that, and then work on scaling it up to a global system.
+
+Its a solution, INHO, to single document or multiple document organization and building referencable structures. I have to admit its a really interesting and fundamentally workable concept with many applications in day to day operations within small interconnected groups. Within larger groups, the concepts, as far as I understand them, lose their appeal because of the inability to locate documents that should be referenced. A chicken and egg problem, for sure; one has to know of the document to be able to reference it.
+
+There are three possible solutions to locating documents:
+
+The Xanadu view is that "experts" will continually track those documents and make them available in reputation-based public directories, similar to how we trust or don't trust certain websites today. I agree that this is quite fragile and not likely to be successful in the big view. It also implicitly assumes there will be one or a few central places to learn things. Politically dangerous and not scaleable.
+
+The second view, still discredited in my opinion, is that AI programs will scan the public tapestry, parse the english and create nice tidy indices. I think this is not feasible in the near future, as the various search-engine R&D departments are showing.
+
+The third view is I think where you and I see eye-to-eye. I see an open ended, structured discourse over time, where instead of setting up fiefdoms on each topic, we weave a tapestry of knowledge/point/counterpoint where people can bring up topics, others can critique it and filters can be set to highlight or mute those we believe are most effective in making their points. All the knowledge won't be in such a system and the jungle of the current web will continue to thrive, but being able to place a layer of discussion over the jungle, pointing to the good stuff, rebutting the erroneous stuff and tying together seemingly disjoint topics is, I believe, what Eric Drexler et al are saying they want to manage global issues like nanatechnology.
+
+On the Internet anyone can say anything, however wrong or dangerous. The solution is not to appoint experts who only get to speak but to allow the group-mind to filter and assign importance to such speech. (but I ramble...)
+
+This all parallels the problem of searching and locating documents, or knowledge, information, data, etc.. While the Xanadu structure would probably work if everyone implemented it, which is a huge problem with market acceptance (maybe the reason it never got off the ground), people usually only change when required to... And the indexing of information is still a massive problem, no automatic concept mapping yet, and we are left with the same problems we have today... Can you say, information overload?
+
+I do think though, that if we adopt a system of explicit linking/tagging that software can then be written to traverse the Xanadu space and report interesting congruencies, summarize conclusions and watch for the appearance of selected, new information.
+
+By analogy, instead of building a robot rover (the AI) that has to run over wilderness terrain (the web today), we build roads thru the wilderness (Xanadu++) and then build suitable vehicles that can automatically take you to relevant national parks (sites of structured discussion) and then let the human disembark and explore the unstructured portions manually. And as he does so, he can blaze new trails for the next traveller, exactly as Vanaever Bush talked in his As We May Think article.
+
+I'm wondering if the logical solution would be to implement a massive store of (single concept or tiny pieces of) information, data, etc. and use it along side the Xanadu system for indexing and general knowledge? Well either way, I'm wondering what the requirements for interfacing such an archive from Xanadu would be and if your interested in making sure something like this could be interfaced as apart of your implementation???
+
+I'd love to. I think it could be done with Xanadu's linking system rather than a parallel system. I'll add a Philosophy of Linking link to my ZWiki and start putting some ideas there.
+
+A simple overview: The structured archive would be built on a Node hierarchy, with hierarchy nodes (subjects, etc.), grouping (by type, etc.), virtual nodes (collections of Non-child/parent nodes, etc.), thought nodes (perspectives, etc.), two way linking (types: supports, part of, analogy, etc.), object specific data (plants have growing data, etc.), unique searching interfaces for every type of data, and all this is really extensible... I'm prototyping (still playing around) with postgreSQL database with a Zope interface, so its designed to change. I even went as far as to create a nonprofit org for the overall goal of the project, only its really one person until something gets going or I feel people want to support it. (A lot of questions about Intellectual Property, etc....)
+
+Ah, Zope. Yes, I'm into Zope as well, and am scratching my head figuring out how to integrate Zope and Xanadu. Certainly Xanadu documents could be written in DTML and XML, and the ability in Zope to factor out common source into fragments acquired from elsewhere in the hierarchy is something we need to address in Xanadu. However, in Xanadu it may be addressed by defining a link to the fragment from inside the master document, and specifying that the link should follow-the-latest-version, to get the proper effect of a header/footer modification rippling thru the site.
+
+FYI, I'm also looking at the Freenet project as a place to store documents, since it has some of the features Xanadu wants in a back-end <-> back-end network. It's also important that Xanadu not be easily censorable, IMHO.
+
+-Jeff Rush
+
+P.S. May I have your permission to repost our discussions on the ZWiki, in the hopes of encouraging others to join in?

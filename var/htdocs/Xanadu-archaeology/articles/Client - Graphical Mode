@@ -1,0 +1,108 @@
+Whiteboard: Client - Graphical Mode    	  last revised by 216.88.158.142 on Aug 17, 2005 2:24 am     	
+		
+
+Design Choices
+
+The graphical front-end is expected to be the most common and most powerful interface to Xanadu. There are many issues to consider in its design.
+
+    * whether to use the existing capabilities of browsers, for broader base of usage.
+
+      Barring the use of Java, and performance improvements thereof, it doesn't seem HTML/Javascript would make a very good front-end.
+
+    * whether to fully use platform-specific GUIs, such as MFC (Windows), Gtk/Qt (Linux) and so forth.
+
+      it would limit our portability but produce really nice visuals.
+
+    * whether to use a platform-neutral GUI, such as Tcl/TK, Java/Swing or wxWindows.
+
+      Having used wxWindows, I lean toward that choice and will be coding my front-end therein.
+
+      *Rebol View might be a good candidate. http://www.rebol.com
+
+    * whether to adopt the familiar cut/copy/paste clipboard metaphor (which Ted Nelson hates) for editing and making links or use the WordStar?/WordPerfect? convention of placing marks and issuing the move/copy commands.
+    * which document types to initially support: text, pixels, sound samples, mathematical equations, etc.
+
+      Eventually we may want to adopt the Zope convention of treating documents as base containers tagged with a mime type string.
+
+Possible User Preferences
+
+Like all applications, the front-end will need to adjust to suit the user's preferred environment. While some choices are commonly available in other applications, others are unique to Xanadu.
+
+*See http://www.lifestreams.com for some ideas.
+
+In this day of mobile access to information, the preferences should be stored on the user's home server, as just another document, probably encoded in XML. To facilite his using workstations of different capabilities, they should be grouped into named profiles. Since there aren't expected to be many different profiles for a specific user, all profiles can be stored within the XML document.
+
+    * background color, font choices
+    * whether to indicate various kinds of links using icons, foreground/background colors, font changes or rollover/balloon windows.
+    * whether to casually (an icon changes color), imperatively (a dialog box pops up) or never alert the user that there is a newer version available of a document being viewed.
+    * whether to retain his username/password locally or reprompt for it at the start of each session.
+    * when comparing two (or more!) documents, show them a) side-by-side with lines connecting them, b) intermixed with paragraphs alternating, with a visual indicator of which document each belongs to, or c) overlaid where removed text is struck out and inserted text is underlined. This will also be a toolbar/menubar item for choosing on the fly.
+    * when starting another session, a) prompt the user for a new username/password or b) assume the identity of the existing session.
+    * when splitting the screen, break a) vertically or b) horizontally. This will also be a toolbar/menubar item for choosing on the fly.
+    * when the user starts to edit a document he is viewing, a) prompt him for confirmation he wishes to reopen the document in modify mode or b) just switch to modify mode invisibly.
+    * whether to autosave the work in progress every N minutes, thereby creating a new, immutable version?
+
+      should those versions be tagged as autosaved, for easier filtering?
+
+    * whether to automatically save/create a version at the end of each work session?
+
+      should those versions be tagged as end-of-session versions, for easier filtering?
+
+Framing Strategy
+
+Although the pictures in Literary Machines are intriguing, we need to nail down how we're going to get all those interesting windows of structured discourse.
+
+I propose declaring a frame which is a top-level or desktop window, with a menubar, toolbar and status line. When you start the front-end executable that is what you see, after a login dialog, along with a default startup document displayed in the middle.
+
+    * Each such frame is an independent window, able to be minimized, overlaid and closed, without affecting other Xanadu frames. Since in Xanadu it will be common to be comparing or viewing multiple items at once, this will be an important usability item.
+    * Each frame can be in one of two modes. The first is that of showing a particular document, for reading or editting. The usual text editor looking usage.
+
+      The second mode is that of comparing multiple documents, where the frame is split into multiple panes, with the contents locked together and some graphical indicators showing matching portions. Scrolling any pane will cause the others to scroll in synchronization.
+
+    * if you start the executable again, it detects the presence of the first one and registers itself, so that all frames know about each other. This is in contrast to Netscape Communicator which complains and forcefully suggests you cancel the second instance, and use the first instance's menu to open a new frame. Awkward.
+    * each frame runs as a separate process, so that if a front-end crashes for some reason, it doesn't take down all of your current views. This again is in contrast to Netscape's browser where you can lose your place on half-a-dozen websites.
+    * each frame has an independent user identity, whereby you can log into Xanadu using different usernames, unlike Netscape's browser where all instances share a single user identity for authentication purposes. However, to avoid the nuisance of having to login multiple times, the login dialog will come pre-filled in with the usernames/passwords of any frames already running.
+
+Menubar/Toolbar Functions
+
+DOCUMENT Subheading
+
+    * create a new document under my ownership
+
+      The user has no control nor knowledge of what tumbler address is assigned to the new document. The document arrives blank, although there might be some options to supply templates.
+
+    * open an existing document belonging to anyone
+
+      The user should not have to specify in advance whether he is opening the document for reading or writing. There should be a menuitem/icon to toggle a document between the two modes, with a popup dialog if he attempts to begin editing a document.
+
+      There is the question of how the user finds other documents, except for those linked to the documents he already knows about. See Finding your Way.
+
+    * fork an alternative version of a document
+    * show the public ownership information for a particular document
+
+      This displays the attributes that the owner of the document has selected for public display. He may wish to remain anonymous or display only a nickname. See the description of business card in Standard Places?.
+
+    * show the lineage of the document from which the selected text came
+    * show bibliographic citation(s) for selected text
+
+      A document can have attached to it, as a type of link, a small block of text tagged as a citation. It would contain the bibliographic citation, in standard form. It can be used to automatically generate a citation list N levels back, for any document.
+
+    * show list of all links, of a certain type, from the current document
+
+      By providing a rich set of link types, this allows the reader to pop-up a list of transclusions (text included from another place), diagrams, images, sounds, etc.
+
+    * show a list of all links, of a certain type, to anywhere in the current document
+    * import a document, which may be text, pixels, sound samples, etc.
+
+EDIT Subheading
+
+    * select entire document
+    * cut/copy/paste a selection, including between windows
+    * link the selected text to something else, using a certain type of link.
+    * highlight selection
+
+      I'm thinking here of providing 3-4 hilighters on the toolbar, where the user can grab a color and swipe across text to brin us! So imagine...
+
+Presentation
+
+heeloo

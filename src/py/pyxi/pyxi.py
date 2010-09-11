@@ -647,6 +647,7 @@ class Browser(Notifier, Frame):
                 "Invalid Address")
             self.loc_var.set(self.docid)
             return
+        print 'doc exists --> browse', addr
         self.browse(addr)
 
     def eh_fwd(self, event):
@@ -1099,6 +1100,7 @@ class Browser(Notifier, Frame):
         self.history[self.histindex:] = [(here, spec)]
         self.histindex = self.histindex + 1
         self.updatefwdback()
+        print 'done'
 
     def showendsets(self):
         """Highlight all the link ends in the current document."""
@@ -1124,6 +1126,7 @@ class Browser(Notifier, Frame):
         mode = editable and x88.READ_WRITE or x88.READ_ONLY
         docid = self.xs.open_document(docid, mode, x88.CONFLICT_COPY)
 
+        print 'open_document', docid
         self.textvspan = self.linkvspan = None
         for vspan in self.xs.retrieve_vspanset(docid):
             span = vspan.span
@@ -1133,7 +1136,7 @@ class Browser(Notifier, Frame):
             elif vspan.span.start[0] == 2:
                 self.linkvspan = vspan.span
             else:
-                warn("ignoring vspan %s" % vspan)
+                warn("ignoring non-link or -content in vspanset %s" % vspan)
 
         if self.textvspan is not None:
             textvspec = x88.VSpec(docid, [self.textvspan])
@@ -1423,6 +1426,34 @@ class TwoBrowserWindow(BrowserWindow):
             except (IOError, x88.XuError): pass
         BrowserWindow.eh_destroy(self, event)
 
+
+class ProcStream(x88.XuStream):
+    """Stream interface to a piped shell command."""
+
+    def __init__(self, command):
+        self.command = command
+        self.inpipe, self.outpipe = os.popen2(command)
+        self.open = 1
+
+    def __repr__(self):
+        result = self.__class__.__name__
+        if self.open:
+            return "<%s to %s>" % (result, self.command)
+        else:
+            return "<%s closed>" % result
+
+    def read(self, length):
+        return self.outpipe.read(length)
+
+    def write(self, data):
+        self.inpipe.write(data)
+        self.inpipe.flush()
+
+    def close(self):
+        self.inpipe.close()
+        self.outpipe.close()
+        self.open = 0
+
 if __name__ == "__main__":
     print "Pyxi (Python Udanax Interface) v" + str(VERSION)
     print "Copyright 1999 by Ka-Ping Yee.  All rights reserved."
@@ -1449,7 +1480,7 @@ if __name__ == "__main__":
     import getopt
     opts, extra = getopt.getopt(sys.argv[1:], ":dst")
     if ('-d', '') in opts:
-        ps = x88.DebugWrapper(x88.PipeStream("./backend"), sys.stderr)
+        ps = x88.DebugWrapper(ProcStream("./backend"), sys.stderr)
         xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
         xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
     elif ('-s', '') in opts:

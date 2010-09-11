@@ -1,0 +1,56 @@
+Whiteboard: KDTrees    	  last revised by 127.0.0.1 on Aug 17, 2005 3:21 am     	
+		
+
+(The k-d tree is definitely different from the KTree, which is pretty much a linear address-space enfilade.)
+
+The k-d tree is a data structure for multidimensional sparse data. The basic idea is that at each node in the tree, you split along one dimension. Specifically, if you have "k" dimensions (k-d), then on level n you split based on dimension number n mod k.
+
+(I seem to remember Ents--at least over multi-D spaces--using some combo of k-D and splay trees. With splay trees being as fast and loose with levels as they are, I'd think you'd need a looser policy about what dimension to split along, but further speculations deleted.)
+
+: --SteveWitham?
+
+References for k-d trees
+
+Steve Omohundro has done work with k-d trees and similar structures, so I (sw) asked him for references to papers on the k-d tree. He replied:
+
+Hi Steve,
+
+The original paper introducing them was:
+
+Jerome H. Friedman, Jon Louis Bently, and Raphael Ari Finkel, "An Algorithm for Finding Best Matches in Logarithmic Expected Time," ACM Transactions on Mathematical Software, 3:3 (1977) 209-226.
+
+I don't know if that is online somewhere. ACM has a library of their papers online but I don't know if it goes back that far.
+
+I wrote a long article on how to use the ideas behind kd trees to do various tasks that people were using neural networks for in:
+
+Stephen M. Omohundro, "Efficient Algorithms with Neural Network Behavior", Complex Systems 1:2 (1987) 273-347.
+
+Unfortunately, I don't think that one's online either. I did several shorter tech reports at the International Computer Science Institute which are online and which are related:
+
+http://www.icsi.berkeley.edu//techreports/1989.abstracts/tr-89-041.html
+
+is a short survey of some techniques.
+
+(That paper also describes the Delaunay triangulation. -sw)
+
+http://www.icsi.berkeley.edu//techreports/1989.abstracts/tr-89-063.html
+
+describes "balltrees" a related data structure which has some advantages in some situtations. That tech report has code in Eiffel but should be pretty easy to convert to other languages.
+
+http://www.icsi.berkeley.edu//techreports/1991.abstracts/tr-91-009.html
+
+describes "bumptrees" which are good for dealing with mixtures of Gaussians and related situations.
+
+Hope that helps. What is your application?
+
+--Steve (Stephen M. Omohundro)
+
+(Back to Steve Witham talking:)
+
+Another reference found by David was this: http://filebox.vt.edu/users/jegrant/stuff/kdtrees.html
+
+This one talks about splitting along dimension 0 at level 0 of the tree, dimension 1 at level 1, etc. ----------- Actually, my research has shown that the original paper introducing them was: Jon Louis Bentley, "Multidimensional Binary Search Trees Used for Associative Searching," Communications of the ACM, 18:9 (1975) 509 - 517.
+
+In this paper, Bentley has provided a nearest neighbor query algorithm. Friedman, Bentley, and Finkel then wrote the article referenced above that included an improved nearest negihbor search with a slightly revised k-d tree structure. I've recently (Apr 2002) pulled both from the ACM digital library in .pdf format.
+
+-- G. Mayer -----------

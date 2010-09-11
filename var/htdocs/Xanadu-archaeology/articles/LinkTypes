@@ -1,0 +1,49 @@
+Content Last Modified on January 20, 2007, at 03:29 AM CST
+
+In the Udanax Green design (and presumably in the Gold design as well) links are used to indicate all of the formatting instead of inline markup. The link type tumbler(s) of a link indicates how the link should be interpreted by the front-end. Unfortunately assigning functionality to link types was never formally done except in the most superficial way.
+
+If we are going to build real interoperable xanalogical systems using the Udanax design, we are going to need to come up with a basic set of link type identifiers for both linking and formatting. Udanax Green's documentation has the following set predefined"
+
+Link Type 	Tumbler 	Comment
+jump 	1.1.0.1.0.2.0.2.1 	From Udanax Green
+quote 	1.1.0.1.0.2.0.2.2 	From Udanax Green
+footnote 	1.1.0.1.0.2.0.2.3 	From Udanax Green
+marginal note 	1.1.0.1.0.2.0.2.4 	From Udanax Green
+
+This is the list of proposed link types listed in [LM 93.1] on pages 4/52 to 4/55:
+
+Link Type 	Tumbler 	Comment
+Title 	not determined 	Metalinks
+Author 	not determined 	Metalinks
+Doc-Supercedes	not determined 	Metalinks
+Correction 	not determined 	Text Link
+Comment 	not determined 	Text Link
+Counterpart 	not determined 	Text Link
+Translation 	not determined 	Text Link
+Heading 	not determined 	Text Link
+Paragraph 	not determined 	Text Link
+Quote-Link 	not determined 	Text Link
+Footnote 	not determined 	Text Link
+Layout 	not determined 	Text Link
+Vanilla Jump 	not determined 	Hypertext
+Modal Jump 	not determined 	Hypertext
+Expansion 	not determined 	Hypertext
+Citation 	not determined 	Literary Link
+Alt-Version 	not determined 	Literary Link
+Comment-Doc 	not determined 	Literary Link
+Certification 	not determined 	Literary Link
+Mail 	not determined 	Literary Link
+
+Formatting, layout and typography issues are glossed over, however it is clear to me (JohnDougan) that making a reasonable set of formatting links is important for initial acceptance.
+
+Initially I propose that we use a basic formatting that corresponds roughly to the functionality found in wiki's and in HTML without CSS or frames. At the very least basic text transformation should be provided:
+
+Link Type 	Tumbler 	Comment
+Italics 	not determined 	Proposed
+Boldface 	not determined 	Proposed
+Underline 	not determined 	Proposed
+Text-Size 	not determined 	Proposed
+Paragraph 	not determined 	Proposed
+Heading 	not determined 	Proposed
+
+Later we could expand the basic set to the point where the CSS level of rendering functionality. 

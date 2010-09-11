@@ -1,0 +1,114 @@
+Whiteboard: EnfiladeTheory    	  last revised by 127.0.0.1 on Aug 17, 2005 2:58 am     	
+		
+
+Um, okay you sluggards, listen up. We just can't have a technical site about Xanadu without a page about enfilades and enfi1ade theory.
+
+An enfi1ade (guess why I spell it with the digit one, grr.) is a kind of tree data structure, usually balanced in the same way as a B-Tree [1] . However, instead of the keys that a B-Tree or other familiar data structure would have, there are chunks of indexing information called disps and wids which, along with the way they are treated, allow certain kinds of edit, summarizing and access operations on the tree to be fast and in some cases surprisingly storage-efficient.
+
+Disps have to do with (relative) positions within coordinate spaces. Also, any information that can be changed at the top of a subtree causing instant reinterpretation of all the information below is a disp. The combination of disps on a path down the tree provides the context for the data at the bottom.
+
+Wids are summaries of data from lower subtrees. The most important example is the (relative) range of positions covered by data in a subtree, since this is always needed along with the disp to know which subtree or subtrees to access.
+
+Depending on what kind of disps and wids you have, there are different operations to combine disps going down the tree, "subtract" disps of neighboring entries, and combine wids coming up the tree.
+
+There are enfilades for 1-dimensional text files, 2D graphics, etc., each having different disp and wid operations. The Xanadu group conceived many types of enfilades, some for use within Xanadu and some for other applications, and eventually came up with "enfi1ade theory" to summarize what kinds of subject matter can be handled with enfilades and how.
+
+Crums and Loaves
+
+A crum is a combination of a disp, a wid, and either a pointer to the top node of a subtree below, or some actual bottom-of-the-tree leaf data. Crums are combined into blocks that used to be called "loaves." In the description below I talk of pointers and disps or keys instead of crums, and "nodes" instead of loaves, because these are familiar words to people who know about B-Trees.
+
+Disps
+
+The keys in the nodes of most tree structures are absolute. That means, say, that a record for someone named "Witham" would have a key with the contents "Witham." Or, a house at number 110 on a certain street could have a key 110...sensibly enough. (Actually "key compression", meaning leaving out the beginnings of similar keys, is used a lot in B-trees, but only for, well, compression.)
+
+But in enfilades the keys, or disps, in the nodes at each level of the tree, are relative. "Disp" means a displacement from some starting point. So, within a node of records about a block of houses starting at number 101, the house at number 110 would have the key 9.
+
+The cool result is that (stretching an already strange example), you could move all the houses under that node to the middle of the 200 block of the street just by changing the disp in the node above from 101 to 251. (In Callifornia, mass-renumbering of house numbers does happen.)
+
+Or, you could swap the 100 block houses with the 200-block houses, without changing their disps, just changing some keys and pointers higher up in the tree.
+
+Or, you could "copy" the whole block of houses to another block without changing or copying any individual records. You would just add another pointer higher in the tree, with a different starting disp, and the two blocks would share a subtree. Note that with this virtual copying, both "copies" are equally easy to access (same depth in the tree) and equally valid, a kind of shadow of the TransClusion concept. (What do you do now if you want to modify one of the copies but not the other? Shared nodes have reference counts and get actually copied when they are modified. The result is that a sliver of the tree down to the thing you modify gets actually copied and modified. You may have heard of this before as "CopyOnWrite".)
+
+So, you can move (change the addresses or keys of), rearrange, and copy whole blocks of data in an enfi1ade just by changing small numbers of disps and pointers in a tree.
+
+The Model T
+
+The original, or "ModelT" enfi1ade does this for Text, allowing insertion, deletion, rearrangement and copying of sections of arbitrarily large texts quickly.
+
+The blocks of stuff you might want to do these operations on are represented by sections of the tree, but not necessarily neatly under a single pointer in some high-up node. However, it's always possible to reshape the tree by moving pointers between neighboring nodes, splitting nodes into multiple nodes, etc. Also the same splitting and rejoining operations that happen with regular B-Trees happen with enfilades, when individual records are added or deleted. In general, when you do a massive operation like a rearrange, you separate out the chunks of the tree you are going to change into distinct subtrees, and then swap some pointers and possibly rebalance. The operations of separating out, rejoining and rebalancing subtrees go up and down the sides of the subtrees only, so they are LogLike operations.
+
+In fact, all these operations are LogLike in a ModelT: insert a character, delete an arbitrary range of characters, exchange two arbitrary ranges, copy an arbitrary range. Inserting or reading back N characters at an arbitrary starting point takes something like N + LogLike time. The storage cost of the resulting virtual text varies from O( n + m log n ) (m copies of an n-character text) to O( n ) (one big new text) to O( n log n ) (many copies of small pieces).
+
+Wids
+
+The wid, short for width, represents a summary or other operation on ranges of stuff in an enfi1ade. Wids are also used to represent the range of positions under a subtree, to decide whether to search within a given subtree. In a ModelT, the wid is just the number of characters in the subtree under some point. To get the number of characters in two adjacent subtrees, you just add. But of course the number of characters in chunks and the relative positions of chunks have a very simple relationship, and at first the need for separate wids and disps wasn't clear.
+
+(Wids and disps tend to be related whenever changing the size of one thing affects the positions of other things, as when you insert a character and all the other characters are moved over.)
+
+But consider an enfi1ade for a two-dimensional world, where the disp represents the combination of a relative center position, a relative rotation, and a relative scale factor. And let's have the wid represent the center and radius of a circle that includes all the stuff in the subtree below, a "bounding circle."
+
+To find the position, size and rotation of a thing at the bottom of the tree, it's relatively straightforward to take the disps all along the path from the top of the tree and combine them. (Note, a string of operations going down the tree.)
+
+But what's the combining operation for the wids? Well, at any level of the tree, you look at the bounding circles of the subtrees immediately below and calculate the smallest possible circle that encloses them. You don't have to delve into lower or upper parts of the tree. You just do an operation on nearby neighbors, side-by-side in the tree, and propogate it upwards.
+
+This is a data structure for a draw program, where operations like rotate, scale, move and copy on parts of a drawing take LogLike time. The wids in this design, the bounding circles, help the program know whether a subtree contains stuff within the visible part of the scrolling window (so that off-the-screen parts of the drawing don't have to be uselessly redrawn), or within an area that you select.
+
+Wids can do interesting kinds of summary in LogLike time. Here are some kinds of widding operations, (each requiring a correspondingly different enfi1ade):
+
+    *
+
+      Is there a one-bit within this range of positions in this bitmap?
+    *
+
+      How many instances of the letter "T" in this range of positions in this document? (Or, how many turtles in this part of the swamp?)
+    *
+
+      What is the tut word-wrapping and pagination within a document (instant repaginate)? Or, jump directly to page ten (character and page coordinate spaces kept in a mapping).
+    *
+
+      How much total space does the stuff in this directory of my disk take up?
+    *
+
+      Where is the Dunkin Donuts closest to me?
+
+Enfilades and their descendents are also used all through both Udanax Green and Gold to answer questions about correspondences between documents, detecting updates to or comments on documents of interest, endpoints of bi-directional links, which data is cached on which servers in a peer-to-peer network, etc.
+
+Dispative and Widative
+
+To build an enfi1ade, you need a kind of disp where you can "add" a disp to a position to get a new position, and "subtract" two positions to get a disp. Like arithmetic on positions in a ModelT, or the operation of combining 2D positions, scales and rotations in the drawing- enfi1ade above. There must be an operation for this that is "dispative", which means associative as you go up and down the tree.
+
+Associativity is the property that the operations can be grouped in different ways without affecting the result. For addition, that means that A + (B + C) = (A + B) + C.
+
+To have wids, you need a "widative" operation, like the draw-a-circle-around-circles operation, that is also associative, but this operation happens between side-by-side neighbors in the tree. (Savvy readers will notice that the enclosing-circles operation isn't quite associative, but it is "associative enough" to get useful results: it is good enough to always get a circle that encloses all the contents, but may be larger than strictly necessary.)
+
+Thus dispativity and widativity are both forms of associativity. The reason this is important is that it allows the information of the tree to be moved side-to-side between neighboring nodes, or up and down as nodes get collapsed or split--these are all regrouping operations--while preserving the meaning of the contents and the validity of the wids. This in turn allows all the sectioning-off, rejoienfi1ade.
+
+Use with write-once, read-many media
+
+The ease of making copies makes versioning easy (well, okay Roger it doesn't solve the whole problem), and means that you can always do edit operations without changing any of the data that was already written. This has some nice implications for the safety of archives, means you can w0rk nicely with write-once media like cd-roms, and also fits in with the way that contents in Xanadu always have permanent, reliable identities.
+
+Enfi1ade Compilers
+
+There was a hope that with a sufficiently good theory of enfilades, one could write an "enfi1ade compiler" that would take code to do the disping and widding operations (plus some information about their properties) and generate efficient code for the enfi1ade as a whole. Something like the way theories of parsing and code optimization led to efficient code compilers, or the way "compiler compilers" like yacc and lex let you write a parser-driven program by supplying a grammar plus code fragments for the operations on nodes of the parse tree.
+
+The fact that many algorithms (like pagination and the DelaunayTriangulation) can conceivably be "incrementalized" using enfilades still makes this interesting; I don't know whether any progress was made since the 1980's.
+
+I believe the ability to add new kinds of "AddressSpace?" in an object-oriented way to UdanaxGold potentially provided many of the benefits of "enfi1ade compilers". What would have been a new kind of enfi1ade would be created by defining a class of address space with its widding and disping operations.
+Enfilades used in Udanax Gold
+
+    *
+
+      The PoomFilade? (permutation of order matrix) is a 2D map between virtual (VStream?) positions within a document and invariant (IStream?) identities of the content characters.
+    *
+
+      The SpanFilade? is a 2D map from ranges of VStream? addresses within documents, and ranges of multiple documents, to the union of IStream? addresses that the virtual ranges contain. This is used to find correspondences between documents (essentially set intersection) and to trace correspondences and links (which are recorded in IStream? terms) back to their virtual locations.
+    *
+
+      Theam addresses of things and actual current storage locations.
+    *
+
+      There was a history enfi1ade to represent branching trees of small edit operations (characters typed) and combine them into larger and larger diffs so that detailed history could be kept and navigated with a storage price that was linear with the number of small changes instead of the n-log-m cost of creating a separate document version for each one. I don't know whether this enfi1ade is in Udanax Gold.
+
+--SteveWitham?
+
+[1] Later versions (see Ent) used variants of the SplayTree --JohnDougan?

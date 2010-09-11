@@ -40,9 +40,7 @@ def cmpid(a, b):
 
 def istype(klass, object):
     """Return whether an object is a member of a given class."""
-    try: raise object
-    except klass: return 1
-    except: return 0
+    return klass == object.__class__
 
 # ------------------------------------------------------------- basic types
 def Number_write(data, stream):

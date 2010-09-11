@@ -1,0 +1,3 @@
+Content Last Modified on January 04, 2007, at 10:59 PM CST
+
+Anyone thinking of designing a modern Xanadu frontend should see http://www.catch22.net/tuts/editor01.asp this tutorial on building a Windows text editor that supports Unicode. While Udanax Gold supports arbitrary byte arrays as the basis of works and editions, the world has moved past assuming that 8 bits equals a character. 

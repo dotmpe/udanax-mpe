@@ -1,0 +1,90 @@
+Whiteboard: Ent class 2    	  last revised by 216.88.158.142 on Aug 17, 2005 2:59 am     	
+		
+
+Onward to Ent class 3
+
+or backward to Mark Miller's Ent Class (a transcript)
+
+?: What about the cost of balancing the trees?
+
+MM: Yes. There are various ways to keep the trees balanced. We started out with a balancing system that was very like btrees. In fact as far as the balancing goes, it was identical to btrees. What we're now using is a variant on splay trees, and another one of the -- I should probably list the important inventions as we go. So there's interpenetrating H and O trees.
+
+?: H and O trees, upwards and downwards.
+
+MM: Canopies. And the important invention I was about to mention is region splay. Region splay is a technique I'll go into in a later session that allows us to take the balance tree properties that splay trees give us and apply them not just to a fully ordered linear space, but apply to a variety of different coordinate spaces and still get the balancing and other efficiency properties that splay trees give us. I think that that's a very important invention as well and applicable to systems that don't use the other inventions. So in some sense it's our father image (??). [it's another fundamental invention?]
+
+Okay. The next origami step is that as I've described in the editing of this document we're editing it in place. We're taking the structure and changing it. But if we take the structure and change it, then we don't keep previous versions. What we'd like to do instead -- instead of putting the +3 in here and doing whatever changes we're doing to the tree is to leave this tree alone and have the new edition of the document be a new tree that reuses most of the old tree. So orange is for the structure that is specific to the new tree, so this new node. We refer to new nodes on the tree as loafs, for historical reasons. This new loaf is the new edition of this loaf. It's the root of the tree that represents the new edited edition of the document. It now has the +3 DspLoaf?. Whose child then shares structure with this, and then this guy goes and shares structure with that. What we probably actually do, since we added 3 and then typed some stuff we end up with some new structure at the bottom that ends up not sharing all the way to the top, because this tree contains the stuff at the bottom and this tree doesn't. And by they way, I'm not being accurate about the topology. I'm actually doing violence to the actually topology of the data structures that we actually use in order to maintain balance on the board. One of the things that's weird about splay trees is that they're not balanced step-by-step. They have an amortized balance property over a set of operations, but they're not balanced step-by-step. For the discussion today, in fact for the discussion all the way up to this shape, we don't need to deal with that, we can just pretend that it somehow just stays balanced.
+
+Norm: Are we to understand that there are pointers going up as well?
+
+MM: No, at this point, there are not. At this point, all pointers are going downward. So at this point what we've got is that this is the new root. It's taken this tree and shifted it over by 3 and it has a thread going down to the bottom here and off to the side over here it's also sharing this structure.
+
+Dick: If the original tree is traversed it is just as it always was.
+
+MM: Exactly. The original tree hasn't been touched. In fact once again qualifying with respect to where we're going we actually are rearranging the tree inside, but in a way that it doesn't change what the tree means. In the sense that the mapping from position to characters from the original tree stays the same. The fact that it is rearranged is once again irrelevant for today's discussion.
+
+Dick: If I were doing some bad programming and I remembered a number from two weeks ago and used that number, would that number still work?
+
+MM: Yes. Right.
+
+Chris: the old number would take you to the old position.
+
+MM: If you take 1,300,000 and you go back to this edition of the document, and you say, what character exists there, you find this e. If you take the same number and go to this edition of the document, now you find the character that's three to the left of it.
+
+Dick: If I read slowly and remembered what edition I was reading, then I could read all of "War and Peace" without ever having to reset anything.
+
+Chris: Right. If you only wanted to read the first edition.
+
+MM: So, the result is that from the point of view of storage costs, all these editions are sharing all this material on the bottom which is most of our storage costs. In addition, it's sharing a lot of indexing structure, so if we call the total amount of material at the bottom, which is really the information, if we call that n, then the total amount of indexing overhead beyond that is log n. It's a constant factor. The total storage is n log n. Are you familiar with O(n) [pronounced "order of n" or "Oh of N"] notation?
+
+Chris: A lot of what's important in our design is keeping the complexity numbers right. (??)
+
+MM: So the storage of the document is O(n log(n)). And retrieval time to go to any edition, take any index, and find the material or any short range and find that material that's at that range of index is in the document is O(log(n)), so the important thing about these two numbers here, is that in the approximation that log is free, then with respect to storage overhead, the system acts like we're just storing the changes themselves, sort of the minimum of information that we need and with respect to retrieval time, it's acting like after every change, it keeps a complete fresh new copy of the entire file, so that we can go to any edition of the file and instantaneously have it reconstructed for us, or instantaneously have it be there.
+
+?: That's assuming some interesting problems. Which is mainly that that makes the assumption that your retrieval time is itself small.
+
+MM: Well, the retrieval time. We're paying a lot of overhead on the retrieval time. So that's why I qualify it in the approximation that log gets free.
+
+?: As I say, that's an extreme.
+
+MM: But as far as the scaling property, that's very good.
+
+?: Yeah.
+
+MM: Basically you have to be fast enough to get into the large numbers where the scaling makes you win. Since we're fast enough on small numbers, there's some reason for confidence. Sometimes the crucial test is on a small system, does everything work well? Does everything work fast enough, because you know as a you scale up from the small system, things don't degrade very badly. There's still things to be worried about until you do a large test.
+
+Chris: It could be the constant !factors?.
+
+MM: In any case, the next origami step is --
+
+?: So far basically what you're doing is inheriting up the old tree into the new tree, specifying the new nodes from one tree and dumping the new stuff into the leaf node of the new tree.
+
+MM: Right. Now I need to introduce the following notation for this. Which is (draws a wedge) with time going in that direction, (that makes drawing it inconvenient in some ways), this is the original tree, that's the new tree, there's a peeling relationship here, where if you consider sort of this distance to be unity, and that means that these two nodes are definitely different, then for any pair of nodes down here, the distance here is somewhat less than unity, and that means that the probability that there are actually two different nodes is smaller.
+
+Figure 7
+
+Rob: They share more structure the closer you get to the bottom of the tree.
+
+MM: Exactly. They share more structure the closer they get to the bottom of the tree. So I'll be using this notation a lot. What is actually happening frequently in more detail is something more like this. There's the original tree, and the new tree shares sort of all this structure and so it sort of points into there to that structure and then there's sort of a very narrow band, which is the new stuff in the new tree. But since operation to operation, we don't know where that narrow band is, this is sort of a probabalistic diagram that generalizes over that.
+
+Chrispace. So now in this new tree you can begin going down according to the new indexing arrangement and the old trees still navigate down to the old indexing arrangement.
+
+?: Even though all the leaf nodes are exactly the same.
+
+MM: Right. So in that case we have two documents that have the same content, just indexed differently, so that all the different pieces of it appear at different positions within the document. Okay.
+
+Cal: Do you really go down to a character or to some record sized stuff?
+
+MM: You're anticipating a future origami step, which is that the system is best explained with the leaf nodes being individual characters. In fact, the leaf nodes are what we call expanding loafs, and what that means is that this entire tree only has to exist virtually because no one's pointing into it from the side, i.e. there's some run of text down here that's never been broken up by sharing relationships. Until it gets broken up by sharing relationships, you can represent it as a single run. But the reason that this is called an expanding loaf, is that right now it's a single structure is --
+
+Chris: Put the insertion point in the middle of that.
+
+MM: Right. Put the insertion point in the middle of that. Now this thing then gets split into the node that represents this split and then an expanding loaf for this one and an expanding loaf for that one. So the expanding loafs expand into trees that are as fine a grain as you need and will if necessary expand down to the individual character. For real-number coordinate spaces and for sequence spaces, both of which are infinitely divisible, having expanding nodes at the bottom was actually essential, not just an efficiency act but because there's an infinite number of leaf objects to expand into. You can never expand it out into the individual atoms as leaves, you have to expand it only into runs, because it's an infinitely divisible kind of coordinate space.
+
+?: But you can position the edges of the runs. Because they're arbitrarily defined. Because the splits are --
+
+MM: Right. Okay. Slittle bit and then take us through the next origami step.
+
+Onward to Ent class 3
+
+or backward to Mark Miller's Ent Class (a transcript)

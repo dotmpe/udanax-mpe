@@ -1,0 +1,31 @@
+Whiteboard: Pictures    	  last revised by 216.39.48.82 on Aug 17, 2005 3:36 am     	
+		
+
+                             The pictures
+I   The Global Ent  (which hangs around throughout)
+
+
+I.5 An immutable balanced binary tree for reading text
+
+II Model-T (with no apparent balancing) A "Insert" example B "Delete" example C "Rearrange" example D introduce a "detailed form" (looks tree-like) and E an aggregate form (looks like a triangle)
+
+Explanation: trees for quick read, dsps for quick edit
+
+
+III Add History to the drawing * show the previous edit operations while maintaining history A show editing on an aggregate drawing, and then B show an aggregate of two O-planes peeling away from one another
+
+IV Show histons A chevron aggregate icon of histons B connected micro-tree of two levels within the volume with inter-connected red and blue arrows
+
+Explanation: interpenetrating trees
+
+
+V trees interpenetrating An aggregate icon VI Bert Canopy Show a detailed picture of a chunk of volume with brown pointers to a green canopy
+
+Explanation: Canopy is a projection of 3d onto 2d
+
+
+VII endorsement and navigation A a simple canopy with a black marker propagated down a single path B draw a picture with multiple endorsements, and how navigation would use it
+
+VIII navigating northward following an endorsement A a detailed, expanded, Ent volume and canopy with brown pointers and black endorsements B using the endorsement info in the canopy to navigate nrothward.
+
+IX introduce Sensor canopy A with recorders at the bottom B do recorder hoisting Explain: checking skipped levels of the trees to look for recorders

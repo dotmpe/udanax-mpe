@@ -1,0 +1,25 @@
+Whiteboard: Mathematical Equations    	  last revised by 216.88.158.142 on Aug 17, 2005 3:26 am     	
+		
+
+I've never understood why the language of mathematics is a second-class citizen on the web. It is so hard to provide a math foundation to your arguments. And many professors seem to like chalkboards!
+
+First, to do an equation such as 2+2x2 you have to first consider Pemdas (Parentheses, exponents, multiplication, division, addition, subtraction) so you do first 2x2 which =4 then you have to add 2 which gives you a final answer of 6.00.
+
+It would seem possible to apply xanalogical storage to equations, by representing them as an encoded form of ASCII text. And then the front-end can provide graphical manipulation converters and issue the usual front-end <=> back-end API calls to slice and rearrange that text.
+
+It would even nicer to build into the front-ends, as a module, the ability to operate on basic equations from right-click menu options. The equation at each point in a sequence of operations would have xanalogical links placed on them, with a link-endpoint indicating what operation was performed to go from A to B.
+
+Other people could then come along and review/correct the math, and readers would have some assurance that the front-end didn't allow blatently illegal operations on the equations.
+
+For the encoding of mathematical expressions into a text string, let's discuss what we would like.
+
+    * able to support variable names longer than a single letter
+    * able to support subscripts on variable names
+    * able to support the application of color over portions of the equations, via xanalogical link to portion of the string. (embedded markup is bad).
+    * able to encode all of the various greek letters and such
+    * support your basic algebra
+    * support all kinds of matrices
+
+Note that the intention is not to encode the presentation of the equation but the meaning, so that a later program could come along and manipulate it mathematically. I'm surprised this doesn't already exist, with a growing pool of tools to prove, simplify and such.
+
+A java or equivalent version of something like the Equation Editor in Microsoft Word might even be a good idea.

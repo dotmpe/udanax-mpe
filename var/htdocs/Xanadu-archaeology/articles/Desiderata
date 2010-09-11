@@ -1,0 +1,24 @@
+Whiteboard: Desiderata    	  last revised by 216.39.48.82 on Aug 17, 2005 2:34 am     	
+		
+
+
+Knuth's list  (Page 235 of "The Art of Computer Programming", Volume 1
+                (Fundamental Algorithms)
+Operations you want to be able to perform on linear lists:
+
+i) Gain access to the kth node of the list to examine and/or to change the contents of its fields. 
+ii) Insert a new node just before the kth node. 
+iii) Delete the kth node. 
+iv) Combine two or more linear lists into a single list. 
+v) Split a linear list into two or more lists. 
+vi) Make a copy of a linear list. 
+vii) Determine the number of nodes in a list. 
+viii) Sort the nodes of the list into ascending order based on certain fields of the nodes. 
+ix) Search the list for the occurence of a node with a particular value in some field.
+
+
+Our corresponding list Operations you want to be able to perform on collections of keyed information:
+
+. i) Access the element at a given position. . ii) insert a new element at a given position. . iii) Delete an element at a given position. . iv) Combine two collections. . v) split a collection into two. . vi) make a (virtual) copy of a collection. vii) determine the size of a collection. viii) sort the collection by a particular field A) by a common field that you're willing to keep up-to-date. B) by a field that you won't use often enough to keep up-to-date. ix) search for an item for with a particular value in some field.
+
+PLUS A. keep history, compare versions B. link information together C. provide access control D. resolve contention (allow multiple users to work and not conflict) 

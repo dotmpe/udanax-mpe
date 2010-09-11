@@ -1,0 +1,17 @@
+Whiteboard: NONOBVIOUS XANADU BEHAVIOR    	  last revised by 127.0.0.1 on Aug 17, 2005 3:28 am     	
+		
+
+The Xanadu concepts have some nonobvious characteristics that may catch some unaware.
+
+    * while a user has a document open for writing, no one else can read it, because it doesn't make sense to allow links to what is still changing.
+    * if a user has a document open for reading, the owner of the document cannot open it for writing.
+    * once a particular version of a document is locked (made public), it cannot be unlocked or changed. You can, however, create a new, superceding version.
+    * if we adopt the feature of autosaves, either periodically or at end-of-session, then the user must be prepared to understand why his document has so many version numbers.
+
+----
+
+Commentary by Andrew Pam:
+
+Note that according to my understanding, the first two points are addressed by versioning; although no one can read the version being written, previous versions can still be read. Likewise, a document owner can create and begin editing a new version while the previous version is being read. I would expect these to be implemented as the default behaviours.
+
+Furthermore, in regard to the fourth point note that in Nelson's conception of document editing EVERY CHANGE to a document (adding, moving or deleting content) creates a new version, and "undo" and branching are also supported resulting in a large tree of versions for all edited documents.

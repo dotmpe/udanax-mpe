@@ -1,0 +1,23 @@
+Whiteboard: ImagesDatatype    	  last revised by 127.0.0.1 on Aug 17, 2005 3:19 am     	
+		
+
+I believe it is going to be hard to apply xanalogical principles to images; the slicing and rearrangement operations common in text don't map well to two-dimensional, variable color-palette, infinite data formats.
+
+Nonetheless, the following manipulations are needed for images:
+
+   1.
+
+      extraction/reference of thumbnail mini-images
+
+      the question is, if they are prepared in advance, at which sizes? and if not prepared in advance, computing them in advance would burden the server.
+
+   2.
+
+      extraction/reference of a section of an image
+   3.
+
+      combining of multiple images into one, e.g. for geographic maps.
+
+Perhaps if we standardized on a lossless format (PNG) and a lossy one (JPEG) we could make it work, but I'm sure that won't please many people.
+
+Hmmm, is there any research into segmenting/encoding of images, into fractal quadrants that might give us the ability to easily grab portions or scaled up/down pieces?

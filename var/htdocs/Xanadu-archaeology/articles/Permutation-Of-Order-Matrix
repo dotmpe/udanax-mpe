@@ -1,0 +1,80 @@
+  Whiteboard: Permutation Of Order Matrix    	  last revised by 127.0.0.1 on Aug 17, 2005 3:35 am     	
+		
+
+A blank piece of paper is a terrible thing to waste... And a hard thing to resist. I will use typewriter pictures do draw the basic ideas of the POOM enfilade.
+
+The POOM is used within Udanax Green. I think its job or jobs are handled by the ent within Gold.
+
+A Permutation of Order Matrix is a 2D matrix mapping from a virtual address (the position within a document you're reading) to "invariant" address (not exactly where the contents are stored, but their permanent identity-addresses).
+
+This is different from the way a ModelT enfilade maps virtual addresses to contents. Concentrate on this abstract 2D picture for now, and then we'll go over how it is represented in an enfilade.
+
+What it Does
+
+Imagine the first version of a document was typed all from scratch with no hesitation, backspaces or edits. Then all the characters typed get assigned a contiguous range of istream positions, and the POOM for this version is just a straight line:
+
+   |        /
+   |      /
+I  |    /
+   |  /
+   |/
+   +----------
+        V
+
+In the POOM enfilade, no matter what the size of this document, this simple map is represented by a single crum at the bottom of the tree that says the starting V and I addresses, and the length. In general, each line segment in this map requires one bottom crum, and all the line segments are at a 45 degree angle. So now the author makes a second version with a new introduction:
+
+   |/
+   |          /
+   |        /
+I  |      /
+   |    /
+   |  /
+   +------------
+         V
+
+The newer part has a higher I address, but it's V address is zero within this new version. Next the author realizes that a section near the beginning needs to be repeated near the end, so they do a copy and paste--within a Xanadu- savvy editor that knows how to instruct the back end to do a virtual copy, not by reentering the same characters:
+
+   |/
+   |            /
+   |        /
+I  |      /
+   |    /     /
+   |  /
+   +--------------
+          V
+
+I'll stop with the complications here. You can imagine the potential fractal filligries that could develop over time on a well-edited document. (In this page, the typewriter pictures are modified copies, for instance.)
+
+How is this represented in a POOM enfilade? As a 2D structure, like a drawing. The address is the combination of V and I address, or range of addresses, and the data is any line segments within the specified rectangle.
+
+But the main job of this thing is to map from V to I. How is that done if one has to specify both V and I address? Well, you ask what's in a vertical slit that has the V address you want, and spans the whole I range. Likewise, you can ask where a given piece of original text appears by asking about a horizontal slit at its I position.
+
+Wonderful! A data structure that stores a mapping-- including virtual copies--in a way that can be accessed both forward and backward. Just what's needed for versioning, intercomparison and bi-directional links in Xanadu... but not quite. It is still not efficient to go from one V range to I and back to a different V range. The Span-enfilade in Green and the Canopy in Gold are needed for that.
+
+How it Does it
+
+Next, how exactly are these 2D maps stored and edited? The idea, as in any enfilade, is that the bottom crums, the basic data (line segments in this case) are grouped into next-level-up nodes according to 2D nearness, and so on up the levels until we have a root node that covers the whole picture. The bounding boxes (minimum and maximum V and I addresses) of the larger and larger groupings of line segments are widded upwards in the tree (think of this direction as towards the viewer in these pictures).
+
+To search the tree, you start at the tree top (let's say, at your eye), and at each step look at the rectangle of your search request and see whether it intersects the bounding box of any lower nodes (or actual line segments at the bottom). This guides you eventually to all the line segments that lie within or cross your request rectangle at the bottom of the tree (the plane of the drawing).
+
+The editing operations are always to insert, delete, rearrange or copy tall rectangles, i.e. that span the whole height of the map. No existing stuff ever moves in its I position, it's just V positions that get changed and new segments added. This is tricker than editing a one-dimensional enfilade. The parts to be moved or rearranged have to be sliced into separate subtrees first. But the subtrees before an edit are arranged over a 2D space. So all the subtrees that lie under a cut have to be split (finding those subtrees is the same search as described above, in this case along one or more vertical lines). Then, after the separated subtrees are rearranged, some rejoining could be done--I'm not even sure the code goes to the trouble--but once again it would be more complicated than the 1D case: neighbors in 2D would need to be found by scanning along the vertical joint lines.
+
+A result of editing is also not seen in 1D enfilades: the data in different subtrees can have overlapping bounding boxes. That means that to access certain 2D address ranges you have to search down multiple parts of the tree. You may also come upon dead ends: the bounding box of a higher subtree may intersect your query rectangle, but further down you may run out of subtrees that do. Here's a crude example:
+
+   |     +--------+ B
+   |/    |  /     |
+   |     |      / |
+   |================ Q        
+I  |     |/       |
+   |    /+____/___+
+   |  /  
+   +--------------
+          V
+
+Here the line of equals labeled Q represents a query with a narrow horizontal rectangle. The bounding box B intersects Q but none of the bottom-level data within it does.
+
+How Well
+
+There is no (known!) perfect yet efficient way to do arbitrary rectanglar slice rearrangement in 2D enfilades. Hopefully, with somewhat heuristic but efficient methods, the data stays fairly well-grouped so that editing operations don't have too much splitting and rejoining work to do, and searches don't go down too many false paths. I don't know how sure this is in theory or practice. Intuitively the cut and rejoin operations look square-root-like to me, even with arbitrarily atomized text, which would still be reasonable.
+
+: --SteveWitham?

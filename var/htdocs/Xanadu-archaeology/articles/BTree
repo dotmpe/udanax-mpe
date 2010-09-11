@@ -1,0 +1,101 @@
+Content Last Modified on May 03, 2005, at 01:17 PM CST
+B-Trees
+
+Flavors
+
+    * B
+    * B*
+    * B+ 
+
+Algorithms
+
+B-Tree-Search(x, k)
+
+  i <- 1
+  while i <= n[x] and k > keyi[x]
+     do i <- i + 1
+  if i <= n[x] and k = keyi[x]
+     then return (x, i)
+  if leaf[x]
+     then return NIL
+     else Disk-Read(ci[x])
+        return B-Tree-Search(ci[x], k) 
+
+The search operation on a b-tree is analogous to a search on a binary tree. Instead of choosing between a left and a right child as in a binary tree, a b-tree search must make an n-way choice. The correct child is chosen by performing a linear search of the values in the node. After finding the value greater than or equal to the desired value, the child pointer to the immediate left of that value is followed. If all values are less than the desired value, the rightmost child pointer is followed. Of course, the search can be terminated as soon as the desired node is found. Since the running time of the search operation depends upon the height of the tree, B-Tree-Search is O(logt n).
+
+B-Tree-Create(T)
+
+  x <- Allocate-Node()
+  leaf[x] <- TRUE
+  n[x] <- 0
+  Disk-Write(x)
+  root[T] <- x
+
+The B-Tree-Create operation creates an empty b-tree by allocating a new root node that has no keys and is a leaf node. Only the root node is permitted to have these properties; all other nodes must meet the criteria outlined previously. The B-Tree-Create operation runs in time O(1).
+
+B-Tree-Split-Child(x, i, y)
+
+  z <- Allocate-Node()
+  leaf[z] <- leaf[y]
+  n[z] <- t - 1
+  for j <- 1 to t - 1
+     do keyj[z] <- keyj+t[y]
+  if not leaf[y]
+     then for j <- 1 to t
+        do cj[z] <- cj+t[y]
+  n[y] <- t - 1
+  for j <- n[x] + 1 downto i + 1
+     do cj+1[x] <- cj[x]
+  ci+1 <- z
+  for j <- n[x] downto i
+     do keyj+1[x] <- keyj[x]
+  keyi[x] <- keyt[y]
+  n[x] <- n[x] + 1
+  Disk-Write(y)
+  Disk-Write(z)
+  Disk-Write(x)
+
+If is node becomes "too full," it is necessary to perform a split operation. The split operation moves the median key of node x into its parent y where x is the ith child of y. A new node, z, is allocated, and all keys in x right of the median key are moved to z. The keys left of the median key remain in the original node x. The new node, z, becomes the child immediately to the right of the median key that was moved to the parent y, and the original node, x, becomes the child immediately to the left of the median key that was moved into the parent y.
+
+The split operation transforms a full node with 2t - 1 keys into two nodes with t - 1 keys each. Note that one key is moved into the parent node. The B-Tree-Split-Child algorithm will run in time O(t) where t is constant.
+
+B-Tree-Insert(T, k)
+
+  r <- root[T]
+  if n[r] = 2t - 1
+     then s <- Allocate-Node()
+          root[T] <- s
+   leaf[s] <- FALSE
+   n[s] <- 0
+   c1 <- r
+   B-Tree-Split-Child(s, 1, r)
+   B-Tree-Insert-Nonfull(s, k)
+     else B-Tree-Insert-Nonfull(r, k)
+
+B-Tree-Insert-Nonfull(x, k)
+
+  i <- n[x]
+  if leaf[x]
+     then while i >= 1 and k < keyi[x]
+            do keyi+1[x] <- keyi[x]
+        i <- i - 1
+          keyi+1[x] <- k
+   n[x] <- n[x] + 1
+   Disk-Write(x)
+     else while i >= and k < keyi[x]
+            do i <- i - 1
+   i <- i + 1
+   Disk-Read(ci[x])
+   if n[ci[x]] = 2t - 1
+        then B-Tree-Split-Child(x, i, ci[x])
+             if k > keyi[x]
+ 	         then i <- i + 1
+          B-Tree-Insert-Nonfull(ci[x], k)  
+
+To perform an insertion on a b-tree, the appropriate node for the key must be located using an algorithm similiar to B-Tree-Search. Next, the key must be inserted into the node. If the node is not full prior to the insertion, no special action is required; however, if the node is full, the node must be split to make room for the new key. Since splitting the node results in moving one key to the parent node, the parent node must not be full or another split operation is required. This process may repeat all the way up to the root and may require splitting the root node. This approach requires two passes. The first pass locates the node where the key should be inserted; the second pass performs any required splits on the ancestor nodes.
+
+Since each access to a node may correspond to a costly disk access, it is desirable to avoid the second pass by ensuring that the parent node is never full. To accomplish this, the presented algorithm splits any full nodes encountered while descending the tree. Although this approach may result in unecessary split operations, it guarantees that the parent never needs to be split and eliminates the need for a second pass up the tree. Since a split runs in linear time, it has little effect on the O(t logt n) running time of B-Tree-Insert.
+
+Splitting the root node is handled as a special case since a new root must be created to contain the median key of the old root. Observe that a b-tree will grow from the top. B-Tree-Delete
+
+Deletion of a key from a b-tree is possible; however, special care must be taken to ensure that the properties of a b-tree are maintained. Several cases must be considered. If the deletion reduces the number of keys in a node below the minimum degree of the tree, this violation must be corrected by combining several nodes and possibly reducing the height of the tree. If the key has children, the children must be rearranged. For a detailed discussion of deleting from a b-tree, refer to Section 19.3, pages 395-397, of Cormen, Leiserson, and Rivest or to another reference listed below. 

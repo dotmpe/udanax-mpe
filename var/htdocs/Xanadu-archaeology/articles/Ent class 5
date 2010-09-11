@@ -1,0 +1,200 @@
+Whiteboard: Ent class 5    	  last revised by 216.88.158.142 on Aug 17, 2005 3:02 am     	
+		
+
+Back to Ent class 4 or all the way back to Mark Miller's Ent Class (a transcript)
+
+(back from break)
+
+Cal: If I start now at the bottom, and I have some decision to make and I'm at the bottom level and I'm coming out at the top node. Each fork at the top node is a pointer to a node in the canopy.
+
+MM: Would you like to point?
+
+Cal: I'm at some node. And I'm trying to make a decision going upward. Are you telling me that for each one of these outward bound arrows, there is a pointer toward the canopy?
+
+MM: Essentially. The upward bound arrow points at some node and that node in turn points over at the canopy.
+
+Cal: This upward bound arrow points at --
+
+MM: Points at an internal node.
+
+Chris: In this picture, it's not the arrows that point, it's the nodes that point, so from here, when you're trying to make a decision whether to go there or there, you go to both and ask.
+
+Cal: So I come up here, this node points to a green circle. When you decide that you want to look for this ancestor then you walk downward through this tree, this green tree, and you mark the nodes that you hit.
+
+Dick: You go up one of these pointers, and then you look over at the green part and say, "was this the true route to take", and you say, "naah, it wasn't true", and you try some other route and walk over to the green part: "well, is this one okay", and it says, "no bread crumbs this way", then you look another place and ask "is this one okay", and it says, "yeah, it's the true route." "This is true path", if you will.
+
+Chris: Follow the trail of bread crumbs, isn't looking ahead to see the bread crumbs, it's going down trails until you find whether there is a bread crumb or not and if there isn't, then you go back and try some other trail.
+
+Dick: The bread crumb is by looking over at the green side, you don't have to see them directly--
+
+?: Which is why they're called canopy crums --
+
+Dick: --you kind of look up and say, have I walked under a crumb? Is that why they're called crums?
+
+Ann: Don't ask.
+
+MM: They're actually named, its spelled C-R-U-M and they're named after the Crum River in Swarthmore.
+
+Dick: Now don't you feel enlightened?
+
+Ann: I told you not to ask.
+
+?: It stands for Chickens Running Under Mud.
+
+Dick: That doesn't have to go in the patent, does it?
+
+?: Who was burt?
+
+MM: Bert is actually named after Bertrand Russell, because the original thing that berts were used for were an attempt, like Bertrand Russell spent much of his life at _ to make the system seem more consistent than it really is.
+
+Dean: However now that is a historical artifact only because it really is just fine. It's as consistent as it needs to be.
+
+Dick: There is a color known as burnt umber--
+
+MM: Oh no.
+
+Dick: It's close enough to your brown.
+
+MM: We have a "humber" in the system as well, but it doesn't have anything to do with this.
+
+Cal: I haven't seen so much intelligent naming since I stopped working in the pharmaceutical industry. Favorite drugs are being named for similar reasons. The commercial name for gentomiacin, powerful antibiotic anaerobic is garamiacin, because the vice president of R & D southern sharing (?) was named Gary. It was actually anancamiacin that was named after a secretary that did what required that she get her name on the drug.
+
+MM: The reason that loaves are called loaves by the way is that derivation from crum.
+
+Chris: I assumed it was the other direction and I _
+
+Ann: I knew I didn't want to know.
+
+*****Tape 2 ******
+
+MM: _believe that they're balanced enough. But because they're allowed to -- that's a level of detail-- there's also a lot of specifics that we haven't worked out. Right now there's a big linear term in the htree log(). We were just lazy and we knew that we could come back later and fix it and not change anything else in the system. We think we can make the htree log() ...
+
+Chris: --the tape is on.
+
+?: Before you start again are there any balance invariants on the canopies.
+
+MM: Yes. The canopies are actually balanced a,v,l tree-like balancing. I don't remember. It's either than one path is only N shorter than the longest path, or it's that the shortest path is no less than half of the long as the longest path. I don't remember. It's enough of a balance guarantee _
+
+?: _endorsement. It's not obvious how you get scaling on endorsement.
+
+Chris: What kind of scaling?
+
+?: On bounded numbers and endorsements on various_.
+
+MM: Lots of endorsements pick out the endorsements that you're interested in and that's not a problem we've addressed. Is picking out the endorsements you're interested in out of a large set of endorsements in the canopy crum and actually we have some ideas there. What the current system does is it's removed that bit of functionality there and is brute forcing sort of the endorsement filtering just because we didn't need to be fancy there for the current product.
+
+Dick: Current product?
+
+MM: The Memex product.
+
+Dick: I would envision that you would have different flavors of endorsement. That is I could see something that this is okay if it's in this market, and not okay if it's in that market.
+
+MM: What we've done in the current limitations, it's very modular, the system internally has all the abstraction values such that we can change the degree, how much endorsement information gets represented in the canopy fairly independently of everything else. But right now what we've done is instead of trying to solve the general problem of how do you pick out the endorsements that you're interested in from a canopy crum out of a large number of endorsements, we just have a bit vector for 32 sort of privileged endorsements of which we're using like 3 right now.
+
+Dick: I like that. Good choice. So there's an independent mechanism in which you decide that which a bit of information that's of interest to you, and you just have to look at that bit.
+
+MM: And with all other endorsement filtering other than the ones that are propagated through the canopy, you just brute force it. You do the htree walk, not rejecting, as far as the endorsements that have not been propagated through the canopy, you enumerate all of the editions which are candidates and then you look at all the endorsements directly on them, and reject the ones that don't match.
+
+Dean: And it would be easy to add more than that where for instance the stuff on the canopy is a hash of the endorsements, if for instance in a much larger system then you could like divide all users into groups of 5 users or 10 users or whatever and add a bit for whether there's a member of a given group in the endorsement center.
+
+MM: There's also talk about signature hashing schemes. There's a large degree of freedom and it's sort of--this whole structure is orthogonal to the issue of which endorsements to propogate down here and how do you represent the joined set of endorsements that you propagated so that you can test. That's sort of the modularly separable problem and we coded it in that way.
+
+Dick: I think I would probably look at it in the Internet addressing style. There are some bits that say well, you have to look further in this address, and then some bits where you can decide now.
+
+MM: One of the interesting things that we thought we could do was to have the assortment of bits in that bit vector of endorsements be adaptive. So that as you asked, if you didn't have bits allocated for that query, then you sort of threw out the least recently used bit position and allocated it to the endorsements that you were now using and knew that that now was what the bits were assigned to. But then you have--that turns out to be complicated.
+
+Dick: The real question for me is how it you did that slowly after the half dozen questions, that you decided it was worth doing this.
+
+MM: It also turns out that there's a large number of sort of adaptive data structures, where people intuitively thought they wanted to do was have the thing advance towards the head of the queue as it was repeatedly asked, and I believe they've been consistently wrong. What you want to do is on the first query, you want to put its someone who was internal to your operations?
+
+MM: Correct. John Walker, the founder of Autodesk.
+
+Cal: Ah. Thank you. He was previously disclosed as a previous owner of XOC.
+
+MM: Right.
+
+Cal: Pardon me for being careful.
+
+MM: One of the things that Xanadu in it's various incarnations was very careful of was to only reveal the secrets to people bound by non- disclosure.
+
+Norm: This is the first time that I've heard this.
+
+MM: We've even had many people, ... even for people who had signed the XOC non-disclosure agreement, be treated on the ent only on a need-to-know basis.
+
+Norm: This is the first time I've heard these ideas presented.
+
+MM: And Norm's been around for a long time. Friend and colleague and been in the XOC non-disclosure for a long time.
+
+Since Cal turns into a pumpkin at 4:00, we need to take the time to answer questions on the structure and we'll leave further origami steps to later sessions.
+
+Let's take the other major steps since it's easily understandable given this.
+
+Dick: They're your questions, Cal. Do you have questions on what you've seen?
+
+Cal: I think I'm happy. That means I can go home and start trying to really reproduce it myself. Then I'll know whether I'm happy.
+
+Norm: Until you've reproduced it, then you don't know if you completely understand it.
+
+MM: So by tomorrow, we're expecting you to have this whole thing embodied in working code.
+
+Cal: I would do that, but I wouldn't want to jeapardize your job.
+
+Chris: Calvin, you wouldn't, but I would.
+
+MM: The one remaining origami step is the sensor canopy. Which is easy because it is mostly understandable by analogy.
+
+Cal: Why would do you want a censor canopy?
+
+Chris: It's s, spelled sensor with an s.
+
+MM: Okay. Sensor with an s. (draws)
+
+Dick: So putting these links is adding sensors?
+
+MM: Let me talk about the purpose of the sensor canopy before I dive into it. Um. The purpose of the sensor canopy is persistent queries, the basic strange query that the ent supports, is given this datum tell me all the editions that share this datum that additionally passed some filtering criteria. That additionally have some set of endorsements as well as have an appropriate set of permissions. So in particular going back to what you were saying. Given this datumns which are black, where black is an endorsement. In this case it was only one. Let's say there were several editions that were black.
+
+?: In this case, black meant I want to find I want to share with this, but black could also mean Mark Miller wrote this.
+
+MM: Right. Or black could also mean, could be a synthetic endorsement, a synthetic filtering criteria, such where what I was really asking is tell me all the things which are endorsed, either with this endorsement or this endorsement but they have to be endorsed with this endorsement as well. So give me any arbitrary condition involving endorsements and permissions that I can use for filtering that I can check for while I'm doing my htree walk looking aside to the bert canopy. So when I make such a query, tell me all the editions that share this datum that have this property. There is an immediate part, and an eventual part. The immediate part, I get by doing the htree walk by starting at the datum right now, and walking up to all of the editions which are black and accumulating them in the result set. But let's say that in the future more editions come to satisfy the query that I made. One of the basic principles of computer science is if you're busy waiting, you don't have the right constructs. You want to avoid busy waiting especially on expensive things, so if it's a query that you sort of are going to be interested in search of future answers of, you don't want to have to sort of constantly be re-asking the query, especially because if you're re-asking the query, you'll keep on getting old answers, which you've already looked at. You might just want new answers, that you haven't already looked at. We represent a persistent query by something we call the recorder. Do we have a color for recorders? I'm going to use black for recorders. The -- when I take an edition, and I let's say when I add an endorsement to it, or permit it to a larger group, there's some arbitrary set of previous persistent queries that may exist because people had made these queries before and wanted to hang on to the result sets so that they could see future results of the query. There's some arbitrary set of these old queries that my acw satisfy.
+
+Chris: One of the kinds of queries that's really important is you want to have answers to later is who's modified this document, which you want to find all the future modifiers of this document, or you want to find who's commented on this document, or who is sharing this and all of those are things where there's something in the database that you're interested in and you want to find what's happens later, you don't want to keep asking, you just want --
+
+MM: The other thing is--
+
+Cal: _work flow marker in a very elegant way which is one of the things that is very sweet.
+
+MM: Another reason why the queries have both an immediate part and an eventual part is that way there is a whole class of synchronization issues that just work out. The query is simply, tell me all the answers, irrespective of whether they became an answer earlier or later. So it's a time-independent query. And that's very nice on the distributed system, because you don't have to have structure locally that is up to date with respect to things elsewhere on the system that already satisfy the query. If you become aware of them later, then you add them to the answer set later, even though they actually happened earlier.
+
+?: It eliminates the problem for centralization, however it creates a problem of knowing that you have a complete answer.
+
+MM: Right.
+
+?: But having built distributed systems, it can kill you.
+
+MM: Right. And in some sense the stance of the system is you never have a complete answer because there's always a future, or something far enough away that you haven't heard yet.
+
+Cal: Can the system change its stance?
+
+Norm: He'd like to know if you have all of 1982's data at this point, for instance.
+
+Cal: If I'm closing the finance. The books, I've got to know I've closed.
+
+?: The question is how you represent the book entries. If you do it with sensor queries, then you may not have the right properties, but that may not be the way you represent it.
+
+MM: Well, actually what happens is on an individual node, there's a construct called WaitForConsequences?() which lets you know that you now have when you by the time you wait for a consequences, detector is triggered. You now know thl of the information which happened before? are in your answer sense.
+
+Cal: Ah. You can get an closure signal in some sense.
+
+MM: From a local node. And then by iterating over the local node and by doing so, then you can get a full answer set.
+
+Chris: Does it meet all of the consequences of all of the queries asked before the wait was posted?
+
+MM: That's correct. Post the wait. And then you asked --
+
+Cal: You can do something even worse to somebody, which is to say post the query and state I have twelve queries here, two of which I care about the consequences, and the other ten, I don't give a damn--
+
+MM: It's ordered. When you ask WaitForConsequences?. When that detector goes off, all of the local consequences within this node, within this engine, all of the queries that were posted before the WaitForConsequences?, have answers.
+
+The transcript ends here.
+
+Back to Ent class 4 or all the way back to Mark Miller's Ent Class (a transcript)

@@ -1,0 +1,26 @@
+  Whiteboard: TransClusion    	  last revised by 127.0.0.1 on Aug 17, 2005 3:50 am     	
+		
+
+(Sorry about the capital C in the middle, the real term is just transclusion, but two caps are needed to make a WikiName for this page.)
+
+Transclusion is the idea that the same stuff can appear in multiple places. A paragraph from one document can appear in other documents, or at other places within the same document. The same file card can be in different categories. And not just some pre-defined chunk, but any arbitrarily sliced-out section of a document can be made to also-exist in any other place.
+
+This is not just a copy but the same piece of stuff appearing in different places. Same in the sense that in all the places it appears, it's equally easily accessible (no extra fetching delay for the "non-originals") and knows its identity, its original author (or the authors of the pieces from which it was made) and all the other places it appears. If you compare two things that transclude the same thing, the system can tell you that that transcluded section is the same.
+
+Two very-similar versions of the same document would transclude most of their text.
+
+Transclusion is also different from re-entering (e.g., retyping) the same text word-for-word. To transclude something you select it and tell the system (the true XanaLogical hypertext editor you're using) to make it also-be in some other place you select.
+
+Or transclusion would happen more implicitly if you decided to make a new version of a document.
+
+The same mechanism that finds correspondences between versions of documents is used to trace links. A link actually contains a virtual copy of the linked-to text span in a hidden part of the address space of the linked-from document. The link is followed to its target by finding where in the target the same text is transcluded.
+
+The way Xanadu traces links and commonalities quickly is this: every original piece of stuff is stored (conceptually) at a single location called its IStream? (invariant stream) address. Documents and links are basically indexes from virtual (VStream?) addresses into the IStream?. Tracing between documents is done by first tracing ranges of VStream? addresses to ranges of IStream? addresses, then backwards through the indexes to VStream? addresses in the target documents.
+
+V --> I --> V
+
+That means that no matter how much history has happened between documents or links we're tracing between, the same two-step process gets you from one to another. So a link that I made from the original of my document to the original of your document still works fine between the much-changed current versions of our documents.
+
+(Btw the idea that every character has an "invariant" address makes some people think a document must live on a single, non-redundant home server. In fact there is an additional layer of mapping to actual storage, so that different servers in a network can store or cache the same piece of text in different places, without losing track of its single identity.)
+
+--SteveWitham?

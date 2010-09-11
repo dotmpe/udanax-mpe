@@ -1,0 +1,20 @@
+Whiteboard: a post from Andrew Pam    	  last revised by 216.88.158.142 on Aug 17, 2005 3:59 am     	
+		
+
+Re: How do I create entities? Please help.
+Date: Wed, 9 Nov 1994 12:13:35 +1100 (EST)
+From: Andrew Pam 
+To: pstamp@yarrow.wt.uwa.edu.au (Peter Stampoultzis)
+CC: xanadu@xanadu.com.au
+
+Where are the specs if I've got to construct the tools myself?
+
+The Hypermedia Server documentation (for the '88 server) is very useful, and there is an article in the September 1994 Dr. Dobbs that describes the Ent, the once-proprietary tree structure originally discovered by the Xanadu team in the 1970s. Ents are ideal for log-based filesystems.
+
+I'm sorry but maybe my frustrations are starting to show.
+
+I feel that way myself sometimes.
+
+Regards, Lance Chambers.
+
+Hey, if you're Lance Chambers, who is Peter Stampoultzis? 

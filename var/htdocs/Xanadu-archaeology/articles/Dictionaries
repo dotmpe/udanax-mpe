@@ -1,0 +1,4 @@
+Whiteboard: Dictionaries    	  last revised by 216.39.48.82 on Aug 17, 2005 2:35 am     	
+		
+
+It would be useful to have front-ends comprehend a link-type that points to all or part of a document, and the other end points to a glossary or dictionary. Then by right-clicking on any word in the text, the user could obtain a definition. Via transclusion, a nested sequence of dictionaries could be consulted, with the outermost one being one of the public ones on the current web.

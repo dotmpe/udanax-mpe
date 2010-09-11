@@ -1,0 +1,58 @@
+Content Last Modified on May 03, 2005, at 01:28 PM CST
+About Tree Data Structures
+
+- trees versus hashes (we need range operations, which are lacking in hashes)
+
+- most trees are organzized along one dimension of search
+
+(TBD: add lots of links to background material on wikipedia et. al.)
+
+Operations
+
+Dynamic set operations, in time proportional to the height of the tree.
+
+    * search
+    * predecessor
+    * successor
+    * minimum
+    * maximum
+    * insert
+    * delete 
+
+Balanced versus Unbalanced
+
+A balanced tree has a height "log n" where n is the number of nodes in the tree. The objective of balancing is to minimize the number of levels in the tree in order to obtain the best running time.
+
+Types of Trees
+
+binary-tree?
+    has at most two child nodes per node 
+red-black?
+    ??? 
+AVL
+    ??? 
+b-tree
+    has more than two child nodes per node 
+quad?
+    ??? 
+K-dimensional?
+    ??? 
+
+Caching
+
+Large trees often cannot all be held in primary storage (RAM) at one time. Instead a virtualization of storage, by combining an in-memory cache with secondary storage is used in these cases. Optimizing the number of nodes becomes more important with splitting storage across primary and secondary.
+
+Mutability versus Immutability
+
+Concurrency Issues
+
+Performance re the Big O
+
+(insert table of factors)
+
+Relevant Citations
+
+    * Bayer, R., M. Schkolnick. Concurrency of Operations on B-Trees. In Readings in Database Systems (ed. Michael Stonebraker), pages 216-226, 1994.
+    * Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, Introduction to Algorithms, MIT Press, Massachusetts: 1998.
+    * Gray, J. N., R. A. Lorie, G. R. Putzolu, I. L. Traiger. Granularity of Locks and Degrees of Consistency in a Shared Data Base. In Readings in Database Systems (ed. Michael Stonebraker), pages 181-208, 1994.
+    * Kung, H. T., John T. Robinson. On Optimistic Methods of Concurrency Control. In Readings in Database Systems (ed. Michael Stonebraker), pages 209-215, 1994. 

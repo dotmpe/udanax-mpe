@@ -1,0 +1,72 @@
+Whiteboard: Mark Miller_s Ent Class _a transcript_    	  last revised by 24.68.13.4 on Aug 17, 2005 3:25 am     	
+		
+
+Ent.transcript. This is [part 1] followed by Ent class 2, Ent class 3, Ent class 4, and Ent class 5
+
+"Somebody's Paper" seems to be a writeup of this same material.
+
+Mark Miller's Class on the Ent
+
+Attendees: Cal, Ann, Charlie, Rob, Norm, Chris
+
+April 5, 1993
+
+MM: Once at the beginning, zoom over, pan over at this just to record it once, then zoom back out. It'll be a long time before I get to that diagram. I have the diagram up here in order to remind me of what the color scheme is so that I can stay consistent with it.
+
+Dean: You've got the color scheme wrong.
+
+?: How could it be wrong?
+
+MM: I'll revise the color scheme now.
+
+Dean: H-Trees are green.
+
+MM: I distinctly remember the canopies being green.
+
+Dean: Canopies are blue (laughs).
+
+MM: Do you have any objection to the canopies being green and the H-Trees being blue? I have a reason for that, in addition to the fact that I already drew it.
+
+Chris: Cal, would you like color pens with which to take notes...
+
+Cal: If I don't understand it well enough to walk out with it in my head, so go on ...
+
+Dean: Go ahead.
+
+MM: Okay, let's see ... I'm going to work up to this data structure, sort of a series of origami steps, each one sort of motivated by adding additional capabilities to the system. So, the first capability that we would like a system for managing documents to have is that we can have very large documents and incrementally edit the documents, so we can make a small change to a very large document quickly. For most of this talk I'm going to be sticking with plain text only documents. Everything I'm saying generalizes to all sorts of other coordinate spaces, more complex document types, but let's leave the generalizations to another session.
+
+In order to access a large amount of information very quickly in a very large data space, one of the things people use is trees, the nice thing about trees that are in some sense balanced is that the amount of time that it takes to get from the top of the tree to the bottom of the tree ... [Ann arrives] ah! you missed something. Some of the introductory remarks were useful. This is the structure I'm going to work up to. This is the ent. I'm starting with balanced trees and I'm going to work up to the structure with origami steps, where each origami step is motivated by adding another capability to the system. The first capability we want is the ability to manage very large documents and to be able to make small changes to a large documents incrementally and also to be able to retrieve small parts of large documents. I'm going to start with retrieval. The nice thing about a balanced tree is that if you have enough information to take a path down to the place on the bottom that has the stuff in which you're interested, you can make that trip in a time that is in proportion to the log of the size of the document. Even people who sort of know what logs are, and sort of know what the numbers are, frequently don't know just how slowly logs grow once you get into larger numbers. For large enough numbers, logs can pretty much be treated as close enough to constant.
+
+Okay. Now. Btrees use this technique where if you're looking up something of particular key value, you can find say, at this node is enough information to know that everything to the left over here sorts below the value that you're looking for, and then you go to this node over here, you're finding that everything on this side sorts above the value you're looking for, so by simply knowing that by having all of the keys that are looked up by this guy be less than all the keys looked up by this guy, and having (start over here) the boundary between the two, you get to navigate toward the bottom without making any false moves. You never navigate down a dead end, you just navigate down toward information that you're interested in. That works for looking for an individual piece of information and it works for looking for information within a range. (The other important introductory information is that I'm going to be going through the system in plain text only and only in a later section explain how this generalizes to other coordinate spaces.)
+
+The problem with the scheme I just showed you is that the incremental editing of text doesn't work. The reason is that over here we have a very large text document and the way we're thinking of it is that for each character in the document writes "hello world" as the text in the document? there is an "h", there's an "e", ... is at a given offset and if we put our insertion point over here and start typing, and let's say this is "War and Peace", and we take our insertion point and put it in the middle of some paragraph in "War and Peace", and start typing, then all of these positions over here have to be shifted down. We want to somehow efficiently change the position that this is looked up on from 1,300,000 to 1,300,001, and do it likewise for all these characters quickly and without reading it into memory. So, instead of storing absolute numbers in here as to what the distinction is between left and right, you store relative numbers, so
+
+Chris: Everyone else that's using balanced trees, stores in absolute numbers.
+
+MM: Right. Not quite every one.
+
+Chris: Not quite every one, but to a first approximation.
+
+Charlie?: Who is "not quite"?
+
+MM: Well, I also want to leave issues of what's the closest prior art to another session. Because we can get into lots of discussion ...
+
+Charlie?: Simple question though, who is "not quite"?
+
+MM: There's a book on Object Oriented Databases, where I've seen what the Xanadu folk have been referring to as the Model-T enfilade that describes the property I'm talking about. That book has a copyright date in 1988. The Xanadu Model-T enfilade was in 1972.
+
+Chris: It's come up a couple of times in graphical databases. Most of these people don't realize that it's useful for text.
+
+MM: The one that I saw in the database book is being used for text. The closest piece of prior art to the ent is something that I have a reference to at home, I came across it ... [The reference is] in an old email message I sent out about a paper that I saw in one of the orange books, one of the little orange journals, like TOPLAS ACM Transactions on Programming Languages and Systems?. Probably Transactions on Databases or something which had both the relative offsetting and the tree-sharing in order to do incremental storage of a document which is versioned. We're actually going to go through that as a later origami step. Somebody has already gotten way up to there ... they don't know that it generalizes beyond text, so it's sort of an interesting problem with database people. And they don't have the orthogonal upward tree.
+
+So let me say something about what the key thing is that I think is the invention. Where this is all going is that we have a bunch of trees going downward and as they go down they end up sharing structure with each other. That's reproduced elsewhere, although its not lively(??). What I believe is unique to us and the fundamental invention here is having those trees doubly linked. By having the upward pointers correspond to the downward pointers, if you start at the bottom what you have are interpenetrating trees that go in the orthogonal direction going upward and that those themselves are navigable. It's this tetrahedral structure of downward trees coming together forming upward trees that come together as they go up and sort of the other direction that really is the important invention that I know I've never seen anything like elsewhere. The other important invention -- I think that's the fundamental thing and I also think that its the rather fundamental thing in the sense that anything that purports to have the capabilities that our system has I think in some sense needs to have some kind of structure which is (if worded appropriately) in some sense equivalent to that.
+
+The other invention is the green trees which are sort of on the side, we refer to them as canopies. We can think of them as sort of qualitthat we're very -- that was very counterintuitive that it was possible to do them efficiently.
+
+So return from digression. The way we get the ability to do this, in our structure we've got other kinds of nodes in this tree which we refer to as DspLoafs?. Don't worry about the derivation of the term right now. Actually Dsp- is for displacement. So this DspLoaf? might have in it for instance a plus three, what that means is take all the numbers that you encounter navigating downward from here and consider them to be offset by three, and these things get accumulated so over here if you've got a plus seven, and then over here, the distinction, we refer to as the split, is a four, then the split is really considered to be a 14, so what that allows us to do is when we have the insertion point here and you start typing, to basically rearrange the tree so that the distinction between these two parts of the document get represented as a distinction in the tree and then offset this part of the tree by this amount. This allows us to edit these large documents without bringing hardly any of them into core. Leaving most of them on disk untouched.
+
+Now. The next origami step is --
+
+Next section is Ent class 2
+
+"Somebody's Paper" seems to be a writeup of this same material.

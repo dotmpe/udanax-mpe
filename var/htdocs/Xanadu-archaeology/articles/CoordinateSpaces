@@ -1,0 +1,249 @@
+  Whiteboard: CoordinateSpaces    	  last revised by 127.0.0.1 on Aug 17, 2005 2:27 am     	
+		
+
+    * Heaper
+          o Arrangement
+                + ExplicitArrangement?
+                + IntegerArrangement?
+
+          o CoordinateSpace? """A coordinate space represents (among other things) the domain space of a table. Corresponding to each coordinate space will be a set of objects of the following kinds:
+
+            Position
+                The elements of the coordinate space.
+            Mapping
+                (Add a description.)
+            OrderSpec?
+                The ways of specifying partial orders of this coordinate space's Positions.
+            XuRegion?
+                An XuRegion? represents a set of Positions. The domain of a table is an XuRegion?.
+
+            When defining a new coordinate space class, one generally defines new corresponding subclasses of each of the above classes. A kind of any of the above classes knows what coordinate space it is a part of (the "coordinateSpace()" message will yield an appropriate kind of CoordinateSpace?). CoordinateSpace? objects exist mostly just to represent this commonality. Coordinate spaces are disjoint -- it is an error to use any of the generic protocol of any of the above classes if the objects in question are of two different coordinate spaces.
+
+            For example, "dsp->of (pos)" is not an error iff "dsp->coordinateSpace()->isEqual(pos->coordinateSpace())".
+
+            Note that this class is not COPY or even PSEUDO_COPY. All of the instance variables for CoordinateSpace? are basically cached quantities that require vary little actual state from the derived classes in order to be constructed. This realization allows a knot to be untangled when reading these objects from external storage."""
+                + BasicSpace? """BasicSpace? versus CoordinateSpace? is not a type distinction in that there is no difference in contract with the client. BasicSpace? exists as a convenience to the definer of new CoordinateSpaces. A new subclass of CoordinateSpace? should be a subclass of BasicSpace? iff there is only one coordinateSpace that corresponds to the new class, i.e. that the instances are not parameterized to yield different coordinate spaces. BasicSpace? provides some conveniences (especially in Smalltalk) for defining a single canonical instance at dynamic initialization time, and always using it.
+
+                  As this class is irrelevant to CoordinateSpace? clients, but useful to those defining other kinds of coordinate spaces, it is an excellent example of something that would be classified as a "protected" class -- something to be pursued if we try to make modules more like classes."""
+
+                + CrossSpace?
+                      # GenericCrossSpace?
+
+                + FilterSpace? """A FilterSpace? can be described mathematically as a power space of its baseSpace, i.e. the set of all subsets of the baseSpace. Each position in a FilterSpace? is a Region in the baseSpace, and each Filter is a set of Regions taken from the baseSpace. See Filter for more detail."""
+                + HeaperSpace? """A HeaperSpace? is one whose positions represent the identity of individual Heapers. Identity of a Heaper is determined according to its response to "isEqual" and "hashForEqual" (see "The Equality of Decisions" for a bunch of surprising issues regarding Heaper equality). A region is a HeaperSpace? is a SetRegion? (see SetRegion?). As a result of having HeaperSpaces?, one can use the identity of Heapers to index into hash tables, and still obey the convention that a table maps from positions in some coordinate space.
+
+                  HeaperSpaces? cannot (yet?) be used as the domain space for Xanadu Stamps, and therefore also not as the domain space of an IndexedWaldo?. In order to do this, the Heapers in question would have to persist in a way that Xanadu doesn't provide for.
+
+                  As is typical for an unordered space, the only Dsp for this space is the identity Dsp. No type or pseudo-constructor is exported however -- the Dsp is gotten by converting a HeaperSpace? to a Dsp. Similarly, no heaper-specific type or pseudo-constructor is exported for my regions. The conversions are sufficient. The resulting regions are guaranteed to be SetRegions?."""
+
+                + IntegerSpace? """The space of all integers. See the class comments in IntegerRegion?, XuInteger?, and IntegerDsp? for interesting properties of this space. Especially IntegerRegion?.
+
+                  IntegerSpaces? are the most frequently used of the coordinate spaces. XuArrays? are an efficient data structure which we provide as a table whose domain space is an integer space. In so doing, the notion of an array is made to be simply a particular case of a table indexed by the positions of a coordinate space. However, IntegerSpaces? and XuArrays? are both expected to be more efficient than other spaces and tables built on other spaces. See XuArray?."""
+
+                + RealSpace? """Non-arithmetic space of real numbers in which only certain positions are explicitly representable. In this release, the only exactly representable numbers are those real numbers which can be represented in IEEE64 (double precision) format. Future releases may make more real numbers representable."""
+                + SequenceSpace?
+
+          o EdgeManager? """Manages the common code for regions which are represented as a sequence of EdgeTransitions?. Each coordinate space should define a subclass which implements the appropriate methods, and then use it to do the various region operations. Clients of the region do not need to see any of these classes."""
+                + RealManager?
+                + SequenceManager?
+
+          o Joint """Joints are used to prune searches through trees of Regions. Each Joint summarizes the Joints and Regions at its node and its children using their intersection and union. If you maintain this information at each each node in the tree, then you can search for Regions in the tree efficiently using Filter::pass() to adapt the search criteria to the contents of the subtree. See also Filter::pass(Joint *)."""
+          o Mapping """A mapping is a general mapping from one coordinate space to another, with few of the guarantees provided by Dsps. In particular, the source and destination coordinate spaces can be different, and the mapping doesn't have to be everywhere defined (but it has to say where it is defined via "domain" and "range" messages). A mapping doesn't have to be unique -- the same domain position may map to multiple range positions and vice versa. A mapping of a XuRegion? must yield another XuRegion?, but a mapping of a simple region doesn't have to yield a simple region.
+
+            A useful and valid way to think of a Mapping is as a (possibly infinite) set of pairs (a mathematical set, not a ScruSet?). The domain region consists of the first elements of each pair, and the range region consists of the second elements.
+
+            A mapping is most useful as a representation of a version comparison of two different organizations of common elements. The mapping would tell how positions in one organization correspond to positions in the other."""
+                + CompositeMapping?
+                + ConstantMapping?
+                + Dsp """A Dsp is a mapping from a coordinate space to itself that preserves simple regions. Every coordinate space must have an identity Dsp (which maps all positions of that space onto themselves). Dsps are necessarily invertable and composable.
+
+                  (Removed from CoordinateSpace? because Dsps are still internal: Dsp -- The transformations that can be applied to positions and regions of this cordinate space. A Dsp is necessarily invertible but generalefore we must be extra careful to avoid embodying commutativity assumptions in our code, as we currently have no way of finding such bugs."""
+                      # CrossMapping? """All other crossed mappings must be gotten by factoring the non-dsp aspects out into the generic non-dsp mapping objects. This class represents what remains after the factoring."""
+                            * GenericCrossDsp?
+
+                      # IdentityDsp? """An implementation sharing convenience for Dsp classes which only provide the identity mapping functionality for their coordinate spaces. This provides everything except the coordinate space itself (which must be provided by the subclass). Will eventually be declared NOT_A_TYPE, so don't use it in type declarations.
+
+                        Assumes that if a given space uses it as its identity Dsp, then the one cached instance will be the only identity Dsp for that space. I.E., I do equality comparison as an EQ object. If this assumption isn't true, please override isEqual and hashForEqual. See PathDsp?.
+
+                        IdentityDsp? is in module "unorder" because typically unordered spaces will only have an identity Dsp and so want to subclass this class. Non-unordered spaces should also feel free to use this as appropriate."""
+                            * FilterDsp?
+                            * HeaperDsp?
+                            * RealDsp?
+
+                      # IntegerMapping? """Transforms integers by adding a (possibly negative) offset. In addition to the Dsp protocol, an IntegerDsp? will respond to "translation" with the offset that it is adding.
+
+                        Old documentation indicated a possibility of a future upgrade of IntegerDsp? which would also optionally reflect (or negate) its input in addition to offsetting. This would however be a non-upwards e in that current clients already assume that the answer to "translation" fully describes the IntegerDsp?. If such a possibility is introduced, it should be as a super-type of IntegerDsp?, since it would have a weaker contract. Then compatibility problems can be caught by the type checker."""
+
+                      # SequenceMapping?
+
+                + EmptyMapping?
+                + SimpleMapping?
+
+          o OrderSpec? """ [documentation note: we need to hide the documentation about partial orders, but still warn that the orders may become partial] . An OrderSpec? for a given coordinate space represents a partial ordering of all the Positions of that coordinate space. The fundamental ordering relationship is "follows". The response of Positions to isGE defines the natural, "ascending" partial order among the positions. Every coordinate space will have at least this ascending and the corresponding descending OrderSpecs?. OrderSpecs? are useful to specify in what order a stepper produced for stepping over positions should do so."""
+
+                + CrossOrderSpec? """myLexOrder lists the lexicographic order in which each dimension should be processed. Every dimension should be listed exactly one, from most significant (at index 0) to least significant.
+
+                  mySubOrders are indexed by dimension, not by lexicographic order. In order to index by lex order, look up the dimension in myLexOrder, and then look up the resulting dimension number in mySubOrders."""
+
+                + IntegerUpOrder?
+                + RealUpOrder?
+                + ReverseOrder?
+                + SequenceUpOrder?
+
+          o Position """This is the superclass of all positions of coordinate spaces. Each individual position is specific to some one coordinate space. Positions themselves don't have much behavior, as most of the interesting aspects of coordinate spaces are defined in the other objects in terms of positions. Positions do have their own native ordering messages, but for most purposes it'are them using an appropriate OrderSpec?."""
+
+                + FilterPosition?
+                + IntegerPos? """Because of the constraints of C++, we have two very different types representing integers in our system.
+
+                  XuInteger? is the boxed representation which must be used in any context which only knows that it is dealing with a Position. XuInteger? is a Heaper with all that implies. Specifically, one can take advantage of all the advantages of polymorphism (leading to uses by code that only knows it is dealing with a Position), but at the cost of representing each value by a heap allocated object to which pointers are passed. Such a representation is referred to as "boxed" because the pointer combined with the storage structure overhead of maintaining a heap allocated object constitutes a "box" between the user of the data (the guy holding onto the pointer), and the actual data (which is inside the Heaper).
+
+                  In contrast, IntegerVar? is the efficient, unboxed representation of an integer. (actually, it is only unboxed so long as it fits within some size limit such as 32 bits. Those IntegerVars? that exceed this limit pay their own boxing cost to store their representation on the heap. This need not concern us here.) See "The Var vs Heaper distinction" and IntegerVar?. When we know that we are dealing specifically with an integer, we`d like to be able to stick with IntegerVars? without having to convert them to XuIntegers?. However, we`d like to be able to do everything that we could normally do if we had an XuInteger?.
+
+                  For this purpose, many messages (such as Position Dsp::of(Position)) have an additional overloading (IntegerVar? Dsp::of(IntegerVar?)) whose semantics is defined in terms of converting the argument to an XuInteger?, applying the original operation, and converting the result (which is asserted to be an XuInteger?) back to an IntegerVar?. Dsp even provides a default implementation to do exactly that. However, if we actually rely on this default implementation then we are defeating the whole purpose of avoiding boxing overhead. Instead, IntegerDsp? overrides thnt implementation.
+
+                  Any particular case may at the moment simply be relying on the default. The point is to get interfaces defined early which allow efficiency tuning to proceed in a modular fashion later. Should any particular reliance on the default actually prove to be an efficiency issue, we will deal with it then."""
+
+                + RealPos? """Represents some real number exactly. Not all real numbers can be exactly represented. See class comment in RealSpace?."""
+
+                      # IEEE8Pos """For representing exactly those real numbers that can be represented in IEEE stupid precision."""
+                      # IEEE32Pos """For representing exactly those real numbers that can be represented in IEEE single precision."""
+                      # IEEE64Pos """For representing exactly those real numbers that can be represented in IEEE double precision."""
+
+                + Sequence """Represents an infinite sequence of integers (of which only a finite number can be non-zero). They are lexically ordered, and there is a "decimal point" between the numbers at -1 and 0.
+
+                  Implementation note: The array should have no zeros at either end, and no one else should have a pointer to it."""
+
+                + Tuple """A tuple is a Position in a CrossSpace? represented by a sequence of Positions in its subSpaces."""
+                      # ActualTuple?
+
+                + UnOrdered? """A convenient superclass of all Positions which have no natural ordering. See UnOrdered?::isGE for the defining property of this class. This class should probably go away and UnOrdered?::isGE distributed to the subclasses."""
+
+                      # HeaperAsPosition? """A position in a HeaperSpace? that represents the identity of some particular Heaper. See class comment in HeaperSpace?."""
+
+                            * StrongAsPosition?
+
+          o RegionDelta? """A RegionDelta? represents a change in the state of a Region, holding the state before and after some change. They are in some sense complementary to Joints; in the same way that you can use Filters to examine Joints, you can use RegionD. See also Filter::isSwitchedBy(RegionDelta? *) and related methods."""
+          o TransitionEdge? """Clients of EdgeManager? define concrete subclasses of this, which are then used by the EdgeManager? code."""
+
+                + RealEdge?
+
+                      # AfterReal?
+                      # BeforeReal?
+
+                + SequenceEdge?
+
+                      # AfterSequence?
+                      # BeforeSequence?
+                      # BeforeSequencePrefix?
+
+          o XnRegion? """The design of a new coordinate space consists mostly of the design of the XuRegions? which can be used to describe (possibly infinite) sets of positions in that coordinate space. It will generally not be the case (for a given coordinate space) that all mathematically describable sets of positions will be representable by an XuRegion? in that space. This should not be seen as a temporary deficiency of the current implementation of a space, but rather part of the design of what a given space means.
+
+            For example, in IntegerSpace?, one cannot form the XuRegion? whose members are exactly the even numbers. If this were possible, other desirable properties which are part of the intent of IntegerSpaces? would no longer be possible. For example, any XuRegion? should be able to break itself up into a finite number of simple XuRegions? ("simple" is described below). Were an even number region possible, this would have undesirable consequences for the definition of "simple" in this space. If you want (for example) to be able to have a XuRegion? which can represent all the even numbers, it probably makes more sense to define a whole new space in which these new XuRegions? apply.
+
+            XuRegions? should be closed under a large set of operations, such as intersection, unionWith, complement and minus. ("closed" means that the result of performing this operation on XuRegions? of a given space is another valid XuRegion? in the same space.) Additional guarantees are documented with each operationn? may be classified at one of three levels of "simplicity":
+
+            1) The simplest are the distinctions. Distinctions are those that answer with (at most) a single set containing themselves in response to the message "distinctions". (The reason I say "at most" is that a full region (one that covers the entire coordinate space) may answer with the empty set.) Distinctions are the simplest XuRegions? of a given space out of which all other XuRegions? of that space can be finitely composed. There should probably be a message "isDistinction" for which exactly the distinctions answer "true". The complement of a distinction is a distinction. Three examples of distinctions in spaces are:
+
+            a) in IntegerSpace?, any simple inequality. For example, all integers < 37. b) in one kind of 3-space, any half space (all the space on one side of some plane) c) in another kind of 3-space, any sphere or spherical hole.
+
+            Note that "c" could not just have spheres as the distinction because distinctions must be closed under complement. (We are here ignoring the quite substantial problems that arise in dealing with approximate (e.g., floating point) which would almost necessarily have to arise in doing any decent 3-space. 3-space is nevertheless a good intuition pump.)
+
+            2) Next are the simple regions. Simple regions are exactly those that say "true" to "isSimple". All distinctions are also simple regions. In response to the message "distinctions", and simple region must return a finite set of distinctions which, when intersected together, yield the original simple region. Generally, one tries to define the simple regions for a space to correspond to some notion of locality in the space. For example, it may be good for a simple region not to be able to have a hole in it. Or perhaps a simple region is which must be connected (whatever that means in a given space). Example non-distinction simple regions for the above example spaces would be:
+
+            a) The interval from 3 inclusive to 17 exclusive (intersection of all integers >= 3 and all < 17) b) A convex hull (intersection of half spaces) c) Whatever you get by intersecting a bunch of spheres a           The simple regions for both "a" and "b" would be connected, without holes, and even convex. This follows directly from the definition of our distinctions. None of these nice properties holds for "c", and this also follows directly from our decision to start with spheres. "c" is still perfectly valid, just less preferable by some criteria.
+
+            3) Finally, there are the regions of a space in general. Any region must respond to the message "simpleRegions" with a stepper which will produce a finite number of simple regions that, when unioned together, yields the original region. A simple region will return a stepper that will return at most itself ("at most" because an empty region (which covers no positions) may return an empty stepper). Example non-simple regions are:
+
+            a) all integers < 3 and all integers >= 17 b) two convex hulls c) two disjoint spheres
+
+            Note that "a" is the complement of the earlier "a" example, thereby showing why the complement of a simple region isn`t necessarily simple. Even though the "c" space is so unconstrained in the properties of its simple regions, there is no way to interect a finite number of spheres and spherical holes to produce a pair of disjoint spheres. Therefore the pair is non-simple. Not all spaces must have non-simple regions (or even non-distinctions). It is interesting to observe for "b" and "c" that even though there is a natural conversion between their respective positions, (except for the empty and full regions) there is no conversion at all between their respective regions. The kinds of sets of positions representable in one space is completely different than those representable in the other space.
+
+            We will use these three example spaces repeatedly in documenting the protocol."""
+
+          o CrossRegion? """A cross region is a distinction if 1) it is empty, 2) it is full, or 3) it is the rectangular cross of full regions and one distinction. Note that case 3 actually subsumes 1 and 2. Since the simple regions of a space are the intersections of a finite number of distinctions of a space, this implies that A cross region is simple if it is the rectangula. In other words, a simple region is identical to the cross of its projections."""
+
+                + GenericCrossRegion? """Represents a region as a two-dimensional array of crosses of subregions. Was NOT.A.TYPE but that obstructed compilation. I think this might work better if the array is lexically sorted, but I am not sure there is any meaningful way to do so. Thus there is no sorting assumed in the algorithms, although the protocol may occasionally suggest that there might be.
+
+                  Eventually this implementation may save space by using NULL to represent repetitions of a sub region such that fetchBoxProjection (box, dim) == NULL only if box > 0 && boxProjection(box, dim)->isEqual(boxProjection (box - 1, dim)) && (dim == 0 || fetchBoxProjection(box, dim - 1) == NULL)."""
+
+                      # Filter """A position in a FilterSpace? is a region in the baseSpace, and a filter is a set of regions in the baseSpace. It is often more useful to think of a Filter as a Boolean function whose input is a region in the baseSpace, and of unions, intersections, and complements of filters as ORs?, ANDs?, and NOTs? of functions. Not all possible such functions can be represented as Filters, since there is an uncountable infinity of them for any non-finite CoordinateSpace?. There are representations for some basic filters, and any filters resulting from a finite sequence of unions, intersections, and complements among them. The basic filters are:
+
+                        subsetFilter(cs,R)
+                            all subsets of R (i.e. all R1 such that R1->isSubsetOf(R)) supersetFilter(cs,R) -- all supersets of R (i.e. all R1 such that R->isSubsetOf(R1))
+
+                        Mathematically, this is all that is necessary, since other useful filters like intersection filters can be generated from these. (e.g. intersectionFilter(R) is subsetFilter(R->complement())->complement()). However, there are several more pseudo constructors provided as shortcuts, including intersectionFilters, closedFilters, emptyFilters, and intersections and unions of sets of filters."""
+
+                            * ClosedFilter?
+                            * NotSubsetFilter?
+                            * NotSupersetFilter?
+                            * OpenFilter?
+                            * OrFilter
+                            * SubsetFilter
+                            * SupersetFilter?
+                            * IntegerRegion? """An IntegerRegion? can be thought of as the disjoint union of intervals and inequalities. The interesting cases to look at are:
+
+                              The distinctions: 1) The empty region 2) The full region 3) A "left" inequality -- e.g., everything less that 3. 4) A "right" inequality -- e.g., everything greater than or equal to 7
+
+                              The non-distinction simple regions: 5) An interval -- e.g., from 3 inclusive to 7 exclusive
+
+                              The non-simple regions: 6) A disjoint union of (in order) an optional left inequality, a set of intervals, and an optional right inequality.
+
+                              If a non-empty region has a least element, then it "isBoundedLeft". Otherwise it extends leftwards indefinitely. Similarly, if a non-empty region has a greatest element, then it "isBoundedRight". Otherwise it extends rightwards indefinitely. (We may figuratively speak of the region extending towards + or - infinity, but we have purposely avoided introducing any value which represents an infinity.)
+
+                              Looking at cases again: 1) "isBoundedLeft" and "isBoundedRight" since it doesn't extend indefinitely in either direction. (A danger to watch out for is that this still has neither a greatest nor a least element). 2) neither. 3) "isBoundedRight" 4) "isBoundedLeft" 5) "isBoundedLeft" and "isBoundedRight" 6) "isBoundedLeft" iff doesn't include a left inequality, "isBoundedRight" iff doesn't include a right inequality.
+
+                              An efficiency note: Currently many of the method whiclog) binary search (such as hasMember) are instead doing a linear search. This will be fixed if it turns out to be a problem in practice.
+
+                              See OrderedRegion?."""
+
+                                  o RealRegion?
+                                  o SequenceRegion?
+                                  o SetRegion? """How do you make regions for spaces whose positions: a) have no orderring (i.e., either no ordering can be imposed (as in HeaperSpace?) or it is undesirable to impose one (as curently in IDSpace?)); and b) there is an inifinte supply of new positions, and you can only name the positions you've encountered?
+
+                                    SetRegion? is our answer to that. To start with, a set region can simply be an enumeration of the positions which are its members. However, because the complement of an XuRegion? must be a valid XuRegion?, and we have no other representation of the infinite set of positions left over, we must also be able to represent the region consisting of all positions except those explicitly enumerated. Every SetRegion? must either have a finite number of positions, or it must cover all the space except for a finite number of positions.
+
+                                    With regard to degrees of simplicity (see class comment in XuRegion?), we currently only have distinctions. There are no non-distinctions, and therefore no non-simple SetRegions?. Interesting cases are:
+
+                                    1) empty region 2) full region 3) singleton set (single member) 4) singleton hole (single non-member) 5) region with more than 1, but a finite number, of members 6) region with more than 1, but a finite number, of non-members
+
+                                    Cases 1, 3, and 5 can be considered the "positive" regions, and cases 2, 4, and 6 the "negative" ones.
+
+                                    Because we only have distinctions (which we are currently doing for an internal reason which will probably go away), we forego the ability to use the generic XuRegion? protocol to decompose complex ones. Instead we provide SetRegion? specific protocol ("positions" and "isComplement").
+
+                                    At a later time, we will probably have cases 1 thru 4 above be the only distinctions, case 6 be a simple region but not a distinction, and have case 5 be a non-simple region. (These choices are all consistent with the letter and spirit of the simplicity framework documented in XuRegion?. Simple regions must be the intersection of distinctions, therefore case 5 cannot be a simple non-distinction.) Please try to write your software so that it'll be insensitive to this change. Thanks.
+
+                                    SetRegion? is an abstract superclass useful for defining regions for spaces which have the constraints listed above."""
+
+                                        + HeaperRegion?
+
+    * Accumulator
+
+          o BoxAccumulator?
+          o EdgeAccumulator?
+          o IntegerEdgeAccumulator?
+
+    * Tester
+
+          o RegionTester?
+                + CrossTester?
+                + FilterTester?
+                + IntegerRegionTester?
+                + RealTester?
+                + SequenceTester?
+
+    * Stepper
+          o AscendingIntegerStepper?
+          o BoxProjectionStepper?
+          o BoxStepper?
+          o DescendingIntegerStepper?
+          o DisjointRegionStepper?
+          o EdgeSimpleRegionStepper?
+          o EdgeStepper? """A single instance of this class is cached. To take advantage of this, a method that uses EdgeSteppers? should explicitly destroy at least one of them. Consider this a "protected" class. See class comment in EdgeAccumulator?."""
+          o GenericCrossSimpleRegionStepper?
+          o IntegerEdgeStepper?
+          o IntegerSimpleRegionStepper?
+          o MergeStepper? """A Stepper for doing a merge-sort like ordered interleaving of two other steppers. It ther two steppers are constructed so that their values are also produced in order according to the same OrderSpec?. A tree of these operates much like a heap as found in heapsort."""
+          o RealStepper?
+          o SequenceStepper?
+          o TupleStepper? """A stepper for stepping through the positions in a simple cross region in order according to a lexicographic composition of OrderSpecs? of each of the projections of the region. See CrossOrderSpec?."""
+

@@ -1,0 +1,21 @@
+Whiteboard: KTrees    	  last revised by 127.0.0.1 on Aug 17, 2005 3:23 am     	
+		
+
+Over the years various people discovered structures like the enfilade, usually just for specific purposes. Rodney Bates published an article about a 1-D enfilade in the September 1994 Dr. Dobb's:
+
+K-TREE CONTAINER DATA STRUCTURES
+
+by Rodney Bates
+
+K-trees are container data structures that represent linear sequences of integers, pointers, and the like. Although Rodney initially developed K-trees to deal with the problem of browsing and debugging incomplete programs, they also have a more general applicability.
+A copy of the above article is (was?) at http://www.acm.org/pubs/articles/journals/drdobbs/1994/9409/9409b/9409b.htm
+
+Here's Dr. Dobb's' own page showing the abstract (I know they sell most of their back-issue collection on a single CD, but they don't seem to be offering the individual article off their web site):
+
+http://www.ddj.org/articles/1994/9409/
+
+http://66.35.216.85/articles/1994/9409/
+
+The K-Tree is different from the k-d tree. See KDTrees.
+
+See also PriorArt?.

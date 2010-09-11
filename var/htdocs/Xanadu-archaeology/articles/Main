@@ -1,0 +1,37 @@
+Content Last Modified on January 22, 2007, at 03:24 AM CST
+Unearthing the Secrets of Xanadu
+
+As of 17-Aug-2005 this site has been cleaned up from the scourge of SPAMMER links and is being relocated from the old Zope/ZWiki infrastructure onto the PmWiki website software. This relocation is taking place gradually with an attempt to forge a new organization of information. The old places are the forum, whiteboards and introduction. As things are moved they are deleted from the old places so the old places will become more skeletal over time.
+
+ARCHITECTURE
+
+    * XuHistory
+    * GreenBackEndDesign?
+          o TumblerTheory?
+          o EnfiladeTheory?
+          o GreenPersistence? 
+    * GoldBackEndDesign?
+          o GoldCoordinateSpaces?
+          o EntTheory?
+          o GoldPersistence? 
+    * FrontEndDesign
+    * ContentTypes?
+    * UdanaxAssignedNumbersAuthority
+          o LinkTypes 
+    * XuGlossary
+
+    * a FrontEndManifesto
+
+    * AboutTrees 
+
+Xanadu is based on three pillars:
+
+    * storage
+    * coordinates
+    * links 
+
+The storage level is where user *authentication* occurs, via cryptography.
+
+The coordinate level is where *ownership* occurs, and some portion of *access control*.
+
+The links level is where spacial, chronological and fine-grained ownership occurs. 

@@ -1,0 +1,139 @@
+Whiteboard: Ent class 3    	  last revised by 216.39.48.82 on Aug 17, 2005 3:00 am     	
+		
+
+Up to Mark Miller's Ent Class (a transcript). Back to Ent class 2 or onward to Ent class 4
+
+The red is in front. One of the things that's essential in drawing these diagrams, it turns out just because of the way the perspective and the mind works, getting the overlap at the junctures correct is absolutely key for your mind parsing the diagram like that and making it make sense. At the moment I didn't pay attention on this diagram, so don't try to actually make this three dimensional in your mind. This is just for me to refer back to.
+
+The purpose first. The purpose that we're going to try to follow with this next origami step is as follows.
+
+Cal: it [MarkM added a Dsp to one branch, separating two regions in a single edition leaving a gap] doesn't make sense to me.
+
+MM: Actually, let's actually go ahead and do this.
+
+Cal: If there is no other leaf node in there it doesn't make any sense.
+
+Chris: It's allowed to have a gap.
+
+Norm: The new additions of the leafs (deletes?) (??) will also _
+
+Chris: Your intuitions are working fine.
+
+Dean: No, no, no. The two leafs nodes cannot be touched. They're not touched, so they're identical. All that does is put a gap between two pieces of text.
+
+MM: That's right. And you're allowed to do that. Here's an example of one that would make sense. One way it might make sense is to swap two depending on the size of the two chunks of text. Let's go ahead.
+
+Now.
+
+Rob: When you're writing ordinary text documents, you're not allowed to have gaps, but in general _
+
+Cal: One of the nice things about patent law it that it only lives in the real world.
+
+Rob: Being able to have gaps does turn out to be crucial _
+
+MM: One of the main things about the technology that we're working on is the whole connectivity between documents. We refer to links, version compare. So over here we have a document that has embedded in it some material that it shares with another document, let's say shared off with a quotation. Now what we'd like to -- there's two things we'd like to do. We'd like to find this other document by the document that - - we'd like to find this document, and we'd also like to find the place in this document that this quote's taken from. Now. Remember that this document over here might be "War and Peace" that results from Tolstoy having edited on the system and so it's a heavily edited document that coexists with all of Tolstoy's other versions of "War and Peace". This paragraph is somewhere in the middle and we don't want to try to find it by reading from the beginning of "War and Peace".
+
+Chris: Or begin by reading from his notes on the subject because he might have used that paragraph several times.
+
+MM: So. Over here is our original document and over here is obviously much simplified the sharing relationship over here --
+
+?: Before you go to hypertext, the first pane I think this (gets up and draws a column of text with pointers to another pane) -- This stuff --is this transition. This is a good description of this transition over here.
+
+MM: Yes. So as a matter of fact, why don't I use your color scheme for the moment and even though it conflicts with this one. And say that -- that makes this red
+
+Rob: And the plus 3 is the offset of the text and so the red wavy lines in middle box ought to be blue. That really is exactly the same.
+
+MM: So what happened is the guy
+    you take this blue document and instead of printing new material he simply took a paragraph from this document and stuck it in the middle of that document. So the red document doesn't have any red wavy lines because it has none of its own content. It simply exists as a combination of content from here and content from there. 
+
+Rob: In which case, erase that red leaf node at the bottom altogether.
+
+MM: So this red leaf node at the bottom becomes orange and let's drop it down a little bit just to get it out of the way even though it's actually -- is that confusing? Let's put it over here, and that's even more confusing. But it'll help us out.
+
+This orange line over here is actually part of this orange document which I will diagram by showing the tree. Oh, I should mention by the way, we'll often use these triangles for the trees, but the trees actually have an exponential fanout. It's not linear.
+
+Over here this is "War and Peace". And this is Cliff Notes that quote a paragraph or more. Now somebody reading Cliff Notes on-line, and they see this thing taken from "War and Peace" and they want to follow it into "War and Peace". So that the system efficiently finds out where in "War and Peace" to find that text so that we can get the surrounding text and display just that on the whole screen without looking at the whole document.
+
+Cal: Basically what you're saying is I have a set of information that is broken into (I don't want to use the word "records") -- into some form of records and from that set of records I'm assembling any number of documents and I prepare a document as specified by this tree.
+
+MM: Exactly. The tree that you're navigating down. The O-Tree that takes you to those leaves, tells you how to assemble those leaves, how to think of those leaves and how to assemble them into a document. And
+
+?: Actually how to assemble them into a record.
+
+MM: Does the word "run" work for you?
+
+?: _
+
+MM: Starting from the Cliff's Notes on "War and Peace" and we follow down to this thing and we want to find, where is this in "War and Peace"? Well, um, this guy exists not just in "War and Peace", but in all these different editions of "War and Peace" that Tolstoy edited. We want to find out where it exists specifically in this one. What we want to do is navigate back up this route and in so doing every time we pass a plus 7 we want to remember it, we want to kind of add it in. What we're finding out is not just this is in "War and Peace", but as you travel upward, you accumulate information about at what offset does this thing exist in "War and Peace".
+
+?: In the absence of offsets, you would know where exactly it was in "War and Peace". (??)
+
+MM: Right. That by the way is another thing that's unique, sort of necessarily unique in that nobody else has the ability to navigate upwards in a set of sharing documents in the first place. The idea of puting in these displacing nodes, putting relative offsets in these trees, is itself rare. Navigating up a tree is fairly rare. Navigating up one tree in a structure of shared trees is unique to us and therefore, I believe, given that set of rareness, I believe that navigating up even a single tree, but accumulating displacements while going in the backward direction through them, I believe is also unique to us.
+
+Cal: The shared tree is not unique.
+
+MM: Shared tree is not unique.
+
+Cal: Certainly. The shared tree for navigation purposes, with the records hanging off the leaf nodes. That's not unique. The shared tree where you jump between trees on cross links is not unique.
+
+MM: Um.
+
+Cal: Trust me. It is not unique. I make that statement out of knowledge.
+
+MM: Okay.
+
+Cal: I don't know what issue we get, ?? I don't know when it'll issue ??? but I wrote the patent.
+
+MM: Is that a patent we can see?
+
+Cal: One of two things will happen to that patent. I don't know what that patent will get. Either it will issue, in which case you can see it.
+
+MM: If it never gets issued we will never see it.
+
+Chris: If we never see it, does it matter to us?
+
+Cal: No, the only time it matters to you is if it publishes and there's some kind of prior art relationship. I'm not sure whether we have to worry about an infringement here.
+
+MM: Now. We've got a problem here, I've just explained that given that we've got upward pointers that will take us specifically to this root, we can go ahead and navigate upwards and go past all these guys and accumulate them into the displacements so we know where in "War and Peace" this is. But the problem is while we're in the midst of this structure when we're at this particular node, that node might be shared by a bunch of these guys, how do we know which route upward. It can also be shared by other later privt's actually, since we've abused blue here, let's use purple--
+
+Chris: Aren't we going to talk about "north" and "south" yet?
+
+MM: Yes. Um. One of the things we had to do in order to actually do this design is to banish "up" and "down" from our vocabulary. The reason is that we've got all these tree structures, some of which are right side up, some of which are upside down, and we kept confusing ourself when we said "up", meaning going towards the root of the tree because that's sort of standard computer science "up" in tree structure. So that's sort of relative "up". Or do we mean towards the top of the ent irrespective of whether it's up a red tree or down a blue tree. So the terms that we use are "northward" and "southward" when we're speaking in the absolute direction. This surface is the north pole of the ent, and this surface down here is the south pole of the ent.
+
+Norm: The characters live at the south pole and the editions live at the north pole.
+
+MM: Correct. At one point we were contemplating naming editions "Eskimos" and naming characters "Penguins", but we decided not to do that. So "northward" and "southward", and then we were speaking relative to a tree, we talk about "rootward" and "leafward".
+
+Charles: Actually this is not uncommon. The major editorial note that I got when we were doing reliability-centered maintenance, from the editors was your trees always have their roots in the sky.
+
+?: What you really have to do is to set up nodes that are objects and set up nodes who are owners. Who are lessees? Who have access to those objects.
+
+MM: These guys at the bottom?
+
+?: Those are objects. Those are the real world.
+
+Chris: Those are the datums.
+
+MM: We call these things "editions". These are really the editions. And there are separate things which can be modified, which can be moved from edition to edition which is really the "Work". So that for example, "War and Peace" might be a continuing work, which as it's revised might go through a series of editions. But that's so that work is something you can designate, so that when somebody revises the work, what that designation refers to is now a different edition of the work.
+
+Chris: The example makes more sense with the Encyclopedia Britannica. If we say Encyclopedia Britannica, usually people assume we mean the current one. And we can talk about the 1965 EB, which is a particular thing which will never be changed again.
+
+MM: There's another important possible patent claient that we're unique on, (but I think I know what the closest prior art is, and it's sufficiently far away) and that's Works and Editions. The way we divide Works and Editions and divide the normal notions between these two gives us all sorts of abilities at concurrency control and nested transaction support in a very very lightweight way that's really quite powerful. Once you make that distinction, all the rest of it falls out. It all becomes very obvious. But making the distinction, although it should be obvious, make it solve the problem that many people have had over and over without coming to the solution. And the closest thing to it is the Kala object storage system, their transaction model. It's significantly far away. Once again the Work/Edition distinction is orthogonal from all the other patents.
+
+There is structure among these planes. I don't think the canopies make any sense without the interpenetrating H and O-Trees. This is the orthogonal plane and that's an orthogonal plane. Maybe patent applications not for me to say.
+
+Cal: Basically you have a set of ordered collections which are a group of orientations, H and O, which are _
+
+MM: It's not just an ordered collection, let's call it a position collection.
+
+Cal: It's a set of objects that go in some order.
+
+Chris: MarkM?, you're doing just text now.
+
+MM: Thank you. Let me just give you a preview of where we're going to get in another session. (I know that as these previews accumulate it can get frustrating.) The text, what we're really doing is the integer coordinate space ... is a fully ordered coordinate space and therefore the collection as seen through this indexing structure is always an ordered collection but the reason that that isn't the best way to think of it is because the generalization ... as it generalizes that ordering property will get dropped pretty quickly.
+
+The property here that does not go away as we generalize the coordinate spaces is that the indexing structure (starting with the editions and going down to the data) is giving us an assignment of the individual datums to positions in the coordinate space that this editiential thing here. It's the position to datum assignment. Two different editions can index onto the same data and assign different positions to it.
+
+So. Back to our problem of looking at the structure and seeing the upward trees. Over here, I'll just sort of look up from the bottom here. This is the root of the tree, and from this tree we can navigate over there or to over there. So let's diagram that tree as our triangle and with this as our root. And over here, likewise, this is the root of the tree and we can navigate to there, through this node to there. This is simply a different way of looking at the same structure that you saw except that we have to have the upward pointers in order to be able to use this new way of thinking about it. But over here the two different roots of the two different tree are both sharing these two leaves. Now these two both become leaves of both of these H-Trees, so both of these H-Trees fan out to include both of these guys and they're also coming together in the sense that as they go northward, they tend to share more. Now with the two level tree it's hard to see that there's intermediate sharing going on. So, let's try a more complicated example. Is it clear? So, now, with respect to our original problem which is, this thing has a leaf, this thing has a root of an H-Tree. The H-Tree that starts from here, is an H-Tree that indexes exactly, basically its an indexing structure whose leaves are exactly those documents that transclude this particular datum. Starting at any particular datum and looking up through the ent the leaves of the H-Tree are all the editions that include that datum and because they're in a tree structure, then if we can get navigation information at the nodes of that tree, then we can navigate going leafward -- which is northward -- on that tree, we can navigate to the particular edition that transcludes the datum we are interested in.
+
+Back to Ent class 2 or onward to Ent class 4

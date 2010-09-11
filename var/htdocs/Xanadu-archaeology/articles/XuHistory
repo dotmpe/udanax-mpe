@@ -1,0 +1,72 @@
+ Content Last Modified on August 17, 2005, at 06:39 AM CST
+A Brief History to Orient Newcomers
+
+Below is a timeline of the Xanadu Project. This separate wiki group (XuHistory) is used to hold original-source documents of historical interest, as opposed to documentation regarding new development.
+
+2005
+
+The sunless-sea.net website, which had fallen into SPAM disarray, is reworked from Zope/ZWiki onto PmWiki, for better defense against the dark (SPAMMER) arts.
+
+2001
+
+The sunless-sea.net website is established by Jeff Rush to excavate the lost secrets of the Xanadu architecture, absorbing the contents of the prior "http://www.timecastle.net/v/xanatalk" website.
+
+The message archives of the original Xanadu team begin getting cleaned up and posted on sunless-set, both as text downloads and fully searchable forum messages. Arrangements are made to insure the archives are also indexed by the public search engines.
+
+2000
+
+The website http://www.timeccastle.net/v/xanatalk is established by Jeff Rush for further study of the Udanax sources. The Udanax-green (the C code) is placed under public version control and activity begins to move it to C++. David Durand takes Udanax-gold (in SmallTalk) and creates a web-based hyper-roadmap for study.
+
+1999
+
+The board of XOC, Inc. votes to take its code Open Source and change its name to Udanax.com, effectively spinning off the code as independent from any ongoing efforts at Project Xanadu.
+
+1994
+
+NCSA introduced the Mosaic browser (designed by Marc Andreessen), which added graphics directly into the pages. In late 1994 it began to really take off, at exactly the speed and timetable Nelson had predicted in 1990-- for the Xanadu publishing system.
+
+1992
+
+Autodesk drops support for the Xanadu project.
+
+The XOC team (Roger Gregory, Mark Miller) build the major design Udanax-Gold (formerly Xanadu 92.1, for the intended delivery date). It was not productized.
+
+Tim Berners-Lee introduces the World Wide Web as a text-based 1-way hypertext system.
+
+Nelson, in Japan, begins to develop these ideas separately from XOC, Inc., with the idea of adapting them more directly to the Web.
+
+Ownership of the "Xanadu" trademark is transferred from XOC, Inc. from Ted Nelson, since his name is irrevocably associated with it. The Flaming-X logo is also registered.
+
+1988
+
+Autodesk, Inc. (publishers of AutoCAD) acquires XOC, Inc.
+
+The XOC team (Roger Gregory, Mark Miller) ends development of the major design named Udanax-Green (formerly Xanadu 88.1, for its time of near-completion and shelving). It was not productized.
+
+Development of Xanadu 92.1 (now Udanax-Gold) starts, architected by Mark Miller, Dean Tribble and Ravi Pandya. Implementation language is X++, a hybrid environment between SmallTalk and C++
+
+1983
+
+Roger Gregory founds the Xanadu Operating Company (XOC, Inc.) to productize this workD for the technical community.
+
+The infamous "Silver Agreement" of that year grants Ted Nelson full rights to the networked publishing system in return for abandoning any authority over design, management or business arrangements not affecting the publishing system.
+
+1981
+
+Roger Gregory and Mark Miller begin designing the Xanadu 88.1 system, now called Udanax-Green.
+
+1979
+
+"Swarthmore summer" of specification and design amongst Ted, Roger Gregory, Mark Miller, Stuart Greene, Eric Hill, Roland King. Mark and Stuart develop General Enfilade Theory from Model T; from this the 88.1 architecture of Granfilade, Spanfilade and Poomfilade.
+
+1971-1978
+
+Ted works with various guys individually. (1971-2: Ted invents/discovers first "Model T" enfiladeD), redesigns Xanadu around it.)
+
+1960-70
+
+1960-70: Ted designs alone. (Name "Xanadu" chosen 1967.)
+
+1960
+
+The Xanadu Project is founded. Ted Nelson gets the idea of hypertext. (Word chosen 1963, published 1965.) 

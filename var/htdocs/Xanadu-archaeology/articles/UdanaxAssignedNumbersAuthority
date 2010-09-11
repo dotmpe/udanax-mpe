@@ -1,0 +1,15 @@
+Content Last Modified on February 01, 2007, at 05:01 PM CST
+Udanax Assigned Numbers Authority (UANA)
+
+One of the crowning successes of the early Internet was the Internet Assigned Numbers Authority (IANA) run by Jon Postel. I think emulating this for the Udanax system would be a profitable action.
+
+UANA should be responsible for registering and disseminating tumbler line assignments, link types, host mapping, and anything else along these lines.
+
+    * LinkTypes 
+
+Proposal: Reserved digit. The first digit in the tumbler after the ur-digit is reserved for the use of UANA.
+
+    * 1 - Global link types
+    * 2 -
+    * 3 - DNS encoding host ID
+    * 4 - localhost 

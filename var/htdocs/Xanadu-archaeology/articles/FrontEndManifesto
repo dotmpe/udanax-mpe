@@ -1,0 +1,87 @@
+Content Last Modified on March 11, 2005, at 10:03 PM CST
+A Manifesto of Front-End Design
+
+A front-end is a client. It's what we call a browser today. It's one way a person reaches out and touches the docuverse.
+
+Note carefully that I say a front-end, not the front-end. Just as their are many different browsers, as well as web-walkers and specialized tools like "wget", there will be a rich ecosystem of ways to communicate with the docuverse.
+
+Place Content Front-and-Center
+
+The Xanadu vision is primarily about content, in particular text. It rejects gratuitous "dancing baloney" for literary content. A front-end focuses on displaying text well, meaning:
+
+    * legibly, with minimal font/color dependencies
+    * flexibly, favoring the user's preferences over that of the author
+    * sensibly, striving to avoid meaningless distinctions re end-of-line conventions, word-wrap wars, etc. 
+
+Some of the ramifications of this are:
+
+The author cannot force me to read red letters on a black background. He can't place animated graphics in the margins. Now, as a user I can set my preferences to show text on a black background, if I like. But Xanadu seeks to correct the imbalance we see today on the web, between presentation and content.
+
+Consistency. With plain text and powerful user preferences, it becomes possible to achieve a consistent look across multiple web sites. It shouldn't be a jarring experience to move from one site to another. Attempts to "contain" the user, to build little private worlds is evil. Information needs to slosh and flow between sites more easily than it does now.
+
+Information shouldn't be "owned" either, in that anyone who puts up content in the docuverse is subject to having others come along and scribble on it. In Xanadu you don't have a protected right to put up a "Walmart" website and not have contrasting views attached to your content. This cuts two ways though. It also means that those dissenting views don't have a right to a captive audience either. The user can choose to see only the official content, or just to omit views with which he disagrees or finds offensive. The user is king, not the original author nor a follow-on author.
+
+User Interface Conventions
+
+A common Xanadu concept is displaying multiple documents at once, particularly side-by-side in a parallel, cross-linked comparison mode. This means that documents cannot assume they have the full width of a screen with which to work, unlike many websites today.
+
+Therefore, text regions in Xanadu can be resized into newspaper-like columns. This means no side-to-side scrolling but rather intelligent wrapping.
+
+It also means an end of the tedium of managing line endings. Force line breaks, used to excess to control presentation, will make a document brittle and wrap poorly. The primary content chunk will therefore be a paragraph, the natural container of a single thought the way your English teacher taught you.
+
+No More Paper Conventions
+
+In Xanadu information isn't constrained to a rectangular layout like a virtualization of a piece of paper. So many times it would be useful to scribble in the margins, to stick a note off to one side of existing text with a pointer at a paragraph.
+
+A front-end will support the idea of "content riverbeds", where the text flows down the middle and annotation appears to either side, without changing the original document making up the center channel.
+
+User Preferences are King
+
+Xanadu gives great control to the user over how content is viewed. Besides the usual settings of:
+
+    * foreground and background color
+    * font typeface and size
+    * mapping of keys and mouse movements to operations 
+
+there are also visual indicators of:
+
+    * which content is public, private or restricted to some degree
+    * which content is transcluded from elsewhere
+    * a rich set of link indicators, not just jump-links 
+
+User Programmability
+
+I'll just stick this in here. I hope and wish that a front-end can allow a non-programmer user to script his experience, adding commonly-used task shortcuts and such. This will be a challenge to make it non-geeky.
+
+Single Application
+
+In Xanadu, there is only a single "application" in the conventional sense. There isn't a "word processor" here, and a "spreadsheet" over there. There is only content, which can be structured in a rich way, some of which is tabular and some of which is prose.
+
+Death to Filenames
+
+Filenames can be considered either the full pathname or the short unique-within-a-directory name at the end. First the shortname...
+
+Filenames
+
+Filenames today are used for several purposes:
+
+    * to indicate the type of file, using a suffix
+    * to sometimes indicate the author, when he puts his initials in the name
+    * to sometimes indicate the creation date, when named in such a way
+    * to avoid naming conflicts between two pieces of information 
+
+In Xanadu the type of file is represented by a link, as is the author and creation date. So the front-end can, if the user chooses, indicate the file type as an icon, or show the author and creation date as a columnar value, but it doesn't have to.
+
+Files represent content with very specific boundaries. In Xanadu content exists in more than one place and isn't so constrained. Rather there are "identifiers" that cause the front-end to display a specific view or combination of views, but they are more akin to bookmarks than filenames. And you can annotate those identifiers, and link them into rich tapestries. Which brings us to directories.
+
+Directories
+
+Directories are ways to organize multiple chunks of information. If you only had a single chunk you wouldn't need a directory for it. In Xanadu, documents can be consist of other documents, so a directory becomes a form of document. And since content can appear in multiple places at once, Xanadu automatically gives you Unix symbolic links or Windows short-cuts.
+
+Directories are viewed as "places". You change to a directory and view the files located therein. You "put" information in discrete places. In Xanadu, the only "places" you have are documents.
+
+Dynamic Documents
+
+To be able to inter-compare different documents, to move around the docuverse looking at it from various angles, a front-end provides dynamic views. This means it assembles, from various queries/links, a set of components which it displays to the user. Such views persist, in that they can be bookmarked or shared with others, and they can be updated that which was queried changes over time.
+
+These views are documents, with a creation and a history. Front-ends spontaneously spin off new documents on an ongoing basis, as you navigate. From this you can retrace your steps or examine where you got a particular thread of conversation. 

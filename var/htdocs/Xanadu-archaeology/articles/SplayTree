@@ -1,0 +1,24 @@
+  Whiteboard: SplayTree    	  last revised by 127.0.0.1 on Aug 17, 2005 3:45 am     	
+		
+
+A splay tree is a kind of binary tree that gets rearranged by "splay" operations along the path to the data that is being accessed, in such a way that the tree tends to be left in a fairly balanced state. "On an n-node splay tree, all the standard search tree operations have an amortized time bound of O(log n) per operation, where by' amortized time' is meant the time per operation averaged over a worst-case sequence of operations."
+
+A short page by one of the inventors, showing the basic idea as typewriter pictures, is at:
+
+http://www-2.cs.cmu.edu/afs/cs.cmu.edu/academic/class/15750-s01/www/notes/lect0123-splay
+
+One nice thing about splaying is that you don't have to record or use explicit information about the balancing of the tree. You just do this behavior and it works out for the best. I believe ents use splaying, probably for that reason, and because in ents nodes have multiple parents. I remember the term RegionSplay? from a discussion of ents.
+
+References:
+
+Daniel D. Sleator and Robert E. Tarjan. Self-adjusting binary search trees. Journal of the ACM, 32(3): 652-686, 1985.
+
+Official link:
+
+http://portal.acm.org/citation.cfm?id=3835
+
+And here someone has kindly pirated the article:
+
+http://www.cs.dartmouth.edu/~ac/Teach/CS105-Winter05/Handouts/st-splaytrees.pdf
+
+--SteveWitham?

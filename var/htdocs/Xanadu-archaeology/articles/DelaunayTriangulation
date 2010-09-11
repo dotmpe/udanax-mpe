@@ -1,0 +1,17 @@
+Whiteboard: DelaunayTriangulation    	  last revised by 127.0.0.1 on Aug 17, 2005 2:33 am     	
+		
+
+A blank piece of paper is a terrible thing to waste...
+
+And the meaning of DelaunayTriangulation escapes me - What is it?
+
+http://mathworld.wolfram.com/DelaunayTriangulation.html
+Interesting that Voronoi and Delaunay are duals....
+
+Delaunay Triangulation
+
+The Delaunay triangulation is a triangulation which is equivalent to the nerve of the cells in a Voronoi diagram, i.e., that triangulation of the convex hull of the points in the diagram in which every circumcircle of a triangle is an empty circle (Okabe et al. 1992, p. 94). The Mathematica command PlanarGraphPlot?pts? in the Mathematica add-on package DiscreteMath?`ComputationalGeometry?` (which can be loaded with the command <
+
+The Delaunay triangulation and Voronoi diagram in r2 are dual to each other.
+
+More in depth here: http://www.ics.uci.edu/~eppstein/gina/delaunay.html including software

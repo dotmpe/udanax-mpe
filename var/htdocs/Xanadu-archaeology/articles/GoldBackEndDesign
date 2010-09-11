@@ -1,0 +1,32 @@
+Content Last Modified on January 22, 2008, at 09:50 PM CST
+
+Recording a Work (Udanax Gold 92).
+
+The contraption remembers. That's what it's built to do. You tell it secrets, and they are dutifully stored away in an ever-branching, walking tree of long memory. It knows everything it's ever been told. It knows who told it. And if you change your mind, it remembers both the new secret, and the old, and what parts of the new secret were taken from the old. It remembers if you've combined two or more secrets. It can tell you what secrets contain other secrets, even secrets that have since been changed. It knows what secrets simply refer to other secrets. It knows every revision of everything it's ever been told to remember.
+
+So. Tell it a secret. Say, "Mary had a little lamb." What gears grind, what trees are splayed, what crums and loafs and regions and other magical things are built to remember your secret?
+
+First it translates your secret into a series of numbers. Machines prefer the cold precision of numbers, and the contraption is hardly unique in performing this step.
+
+Then the numbers are translated into an FeEdition, which maps from a Region in IntegerSpace to the series of numbers. This Region is a simple region, having two well-defined boundaries (the left edge, and the right edge).
+
+But this FeEdition must have a BeEdition?, which has been created with the approval and assistance of the BeGrandMap. (I am not entirely sure what the BeGrandMap is for yet, but I believe it probably provides some sort of global tracking mechanism for everything else. It has an Ent of its own, but in my brief sojourns into the belly of the beast I did not see that ent do anything.)
+
+So the BeGrandMap creates an orgl from the series of numbers. An Arrangement of the Region is constructed. That is used to create a Loaf (yay, Loafs are back!), in this case an OVirtualLoaf, which uses the Arrangement's region and a SharedData consisting of the series of numbers. (For those keeping score at home, WrappedLoaf creates the Loaf for us.)
+
+This Loaf, along with the Region, are used to create an ActualOrglRoot?. The ActualOrglRoot? thinks the Loaf is a fullcrum, and in the future will refer to it as "myO," and add itself as myO's "oParent". It also retrieves the Loaf's sensorCrum (making a new one if the Loaf hadn't provided one, but in this case it did), and creates a new myHCrum. The ActualOrglRoot? asks the sensorCrum to add a pointer to the ActualOrglRoot?.
+
+So now we have an OrglRoot?. The contraption uses that to construct a BeEdition?. A BeEdition? is actually a kind of BeRangeElement?, so it creates a new myHCrum and takes the SensorCrum? as mySensorCrum. (There is a note in the literature that this BeEdition? should not have the same SensorCrum? as its OrglRoot?, but it does anyway.) The BeEdition? also has some BertProps? and detectors, but those won't come into play until we ask the machine to tell us about a secret it already knows. (Remember, we're just asking the machine to remember a new secret right now.)
+
+The BeEdition? takes the OrglRoot? as myOrglRoot, then asks the OrglRoot? to introduce the BeEdition?. The OrglRoot? asks its myHCrum (newly created above) to introduce the BeEdition?. And the HBottomCrum? (for that is what it is) introduces the BeEdition? into its myEditions, which is an ActualHashSet?, and I won't go further into what happens there, for at that level the contraption resembles other modern machines of its type.
+
+The HBottomCrum?, after introducing the BeEdition?, then proceeds to screw up my earlier assertion that BertProps? and the like won't come into play just yet. The contraption schedules a propChanger for TheBertPropChange?.
+
+(The propChanger has an Agenda, and will do something which I probably won't go into here. To create it, a Stepper steps over all the HBottomCrum?'s myEditions and creates an AgendaItem? which contains a change for each BeEdition?'s BertProp?. Finally, the HBottomCrum?'s myBertCrum is asked to create an overall PropChange?, which, according to the literature, will at each step update myPropJoint and move to parent. Aren't you glad I'm not going into more detail here?)
+
+And now the OrglRoot? has introduced the BeEdition? to its myHCrum, and so we have a BeEdition?. This is used to create a new FeEdition "on" the BeEdition?, with a "fake" FeLabel? (which apparently means the label will be made on demand later, but at least it references a BeLabel?). Since the label is faked, the contraption doesn't add a FeRangeElement for the label. The FeEdition remembers the BeEdition? as myBeEdition, and the label as myLabel.
+
+The BeEdition? is now asked to add the FeEdition as an FeRangeElement. The BeEdition? uses a PrimSet? to store its FeRangeElements? so I won't describe this particular process further because all modern machines have sets.
+
+So now the contraption knows that "Mary had a little lamb."
+

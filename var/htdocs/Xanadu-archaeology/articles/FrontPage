@@ -1,0 +1,66 @@
+ Whiteboard: FrontPage    	  last revised by 127.0.0.1 on Aug 17, 2005 3:10 am     	
+		
+
+
+        In Xanadu did Kubla Khan
+        A stately pleasure dome decree:
+        Where Alph, the sacred river, ran
+        Through caverns measureless to man
+        Down to a sunless sea.
+        So twice five miles of fertile ground
+        With walls and towers were girdled round:
+        And there were gardens bright with sinuous rills,
+        Where blossomed many an incense-bearing tree;
+        And here were forests ancient as the hills,
+        Enfolding sunny spots of greenery.
+
+	Green
+and
+Purple Software
+Development
+updated nightly
+from
+work directories
+
+If Xanadu is the answer, what was the question?
+
+Welcome! This is the front page of my wiki web for the technical discussion of features of Xanadu(tm), the ultimate hypertext system. Specifically it is for discussion of Ted Nelson's book, Literary Machines, and the technical architecture contained therein.
+
+I am specifically focusing on the technical aspects because there are many other sites that go into the philosophy and implications. And while I'm not above using ideas from other projects, I'm not interested in implementing someone else's vision of what hypertext could be, just Ted Nelson's. I first read his Literary Machines 12 years ago and been frustrated at the lack of publically visible development of the software. It's time Xanadu became a reality. If you agree, join me. Just be aware that the goal is not to make money but to try to provide something to elevate the thought processes of mankind, in the spirit of Doug Engelbart, another engineer whom I admire and from whose ideas I draw inspiration.
+
+The site is open to all to read and modify. If you need to email me, you can reach me at jrush@taupro.com.
+
+IMPLEMENTATION APPROACH
+
+The goal is to get a backend and frontend program up and running as quickly as possible. To keep things simple and easy to read, the language is Python, the operating system is Linux, and the windowing system is wxWindows.
+
+No attempt will be made initially to optimize for performance or scaleability. If it only works for ten documents from a single client screen, but it demonstrates all of the concepts of Xanadu, then the project is a success.
+
+New Information
+
+Roger Gregory has provided some new information from the archives. Jeff has been doing some minimal editing to remove personal notes from email logs, and I (David) have been picking through some of the plain-text documentation from the project.
+
+The documentation includes several (semi-complete) descriptions of the Ent. I have linked these new documents starting from the fabled Ent.
+
+Using Xanadu
+
+Maybe you aren't interested yet in how Xanadu works but in what you would see as a user.
+
+Check out Finding your Way thru the Docuverse, Uses for Xanadu and the features of the Client - Graphical Mode.
+
+ARCHITECTURE?
+
+CoordinateSpaces
+
+NONOBVIOUS XANADU BEHAVIOR
+
+RESOURCES
+
+    * Xanadu 88.1 (now called Udanax Green, written in C; the ORIGINAL and my REVISED version)
+    * Xanadu 92.1 (now called Udanax Gold, written in SmallTalk and nicely indexed by David Durand)
+    * Udanax 2000, representing my port of the Udanax Gold from SmallTalk into fully-documented C++.
+    * Front-End <--> Back-End Protocol Specification
+
+For more information, see: HelpPage, RecentChanges, ZWiki, History
+
+FrontPage

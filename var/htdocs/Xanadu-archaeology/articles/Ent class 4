@@ -1,0 +1,195 @@
+Whiteboard: Ent class 4    	  last revised by 216.88.158.142 on Aug 17, 2005 3:01 am     	
+		
+
+Back to Ent class 3 or Onwards to Ent class 5
+
+Rob: While knowing exactly where in that edition that datum resides.
+
+MM: Right. Because we're accumulating the displacements going backwards.
+
+Chris: I think I missed this step there. What's the information that will let you navigate directly to that one editions you are interested in?
+
+MM: I didn't say. Given navigation information, in the H-Tree, so that--
+
+Chris: Given navigation information that tells you about editions. The only navigation information that we've seen so far tells you about data.
+
+MM: Right. We haven't seen what navigation information I can use while traveling up here, let's say that we're at a point here where I ... where the route up to this "War and Peace" ... it's here that it diverges from the route up to that "War and Peace". We need some kind of navigation information at this intermediate node that lets us know to take this path and not that path.
+
+Cal: These are binary nodes. These are upward only has one direction. These are nodes that have multiple_ (??)
+
+MM: From this node we've got both of these guys sharing it, and in general from an intermediate node over here, let's say this is where this guy and this guy converge. In the O-Trees, that's where those guys converge, so in the H direction, this becomes a point of divergence, we have to make a decision as to which of those two paths to follow up. Before I can tell you what kind of navigation information we provide there, we have to talk a little bit about what some of the criteria are by which you want to select such an upward path. How did I know that it was this "War and Peace" that I'm interested in? One reason I might know might be holding it in my hand. That is, I'm designating this particular "War and Peace" to the system, saying this is the one that I'm interested in. In finding out where this paragraph is in it. But--
+
+Rob: Can we go through that case first, if that's simpler?
+
+MM: Yes, we can. I'll just enumerate the cases, and then I'll take the simplest case first. There's two things. This is probably not essential to the patent. There's two kinds of information that we use, permissions and endorsements. They're both inspired by public key signatures and public key secrecy, anti-respectively. By endorsing an edition, you're sort of painting it a bright color in some sense, so that someone looking for the endorsement can pick the needle out of the haystack.
+
+Rob: You can say Mark Miller wrote this edition. Mark Miller put this edition together.
+
+MM: Right. Or simply, Mark Miller thinks this edition is the one worth looking at. With permissions likewise, which editions I"m permitted to see. One of the things that would be very frustrating, if in order to find an edition I was permitted to see the system had to internally iterate through a million editions that I was not allowed to see. Because then when I asked, why is it so slow, it wouldn't even be allowed to tell me. So the permissions thing is don't make the user pay for indexing structure that he's not even allowed to know about, or only make him pay log for it. We're always willing to impose an extra log cost on the user. And in addition, enable people to use endorsements so that people looking for endorsements will be able to pull them out among a large number. Let's take the particular case where I have this one in my hand and I want to navigate specifically up to that one, just designating it directly. The way I do that is by endorsing it. I sort of make up a special endorsement that I have for this purpose and I temporarily endorse this edition with it, I do my operation with it, and then I remove the endorsement. Now. We've got a problem with this story. Which is this temporary endorsing operation can be terribly expensive. Why? Because, discussion of pen color choice; decides to use black for endorsements? so in order to endorse this, what one would have to do is basically when you're at this node, you'd have to see that this node is black and this node is not black. We would sort of go down the tree and paint all the nodes that are in this tree black so that each of these branch points we could stay in the black and stay away from the non-black. But, boy, there's a lot of nodes. So the cross is.
+
+Oh, I should also add that there's two more dimensions to talk about, we talk about fan-out in O, this is sort of the O dimension, this tree sort of fans out in O, the cost is that we're having this fan-out in O. And this is the H dimension, so if you talk about O-Trees, fanning out in O and coming together in H, and if we talk about H-Trees, fanning out in H and coming together in O.
+
+Chris: Similarly these names are another historical artifact that we don't have to talk about.
+
+MM: Right. We have this high price pay shuttle (??) What we do is
+    okay, this is the way to think about it. We've got the purple tree that has this root and has these leaves. And we have another right next door, this other purple tree that has this root and has some similar set of leaves and shares a lot of structure going up. Now, from the point of view of this tree over here, it's going to see as black only one line of the tree. Since we're doing this only to navigate up from here, this guy over here will also see only one black line going up and at some point it will be the same black line. 
+
+Chris: For each of the editions it gets to jointly.
+
+MM: Given that this edition is one of the editions sharing this guy, this guy will see a black line that eventually joins taking you to this guy, and if this edition does not also include that guy, then this guy will never see any black. Now. Notice that what's going on with this H-Tree with respect to the black is very similar to what's going on with that H-Tree with respect to the black. So what would be nice is if instead of having this fan-out into the O we would be doing the same thing with respect to the H Trees redundantly. It would be nice if we could somehow factor it out. It would be nice if we could factor out the redundant work, and do it as if we were just doing it to one of these H-Trees but have it done for all of them in parallel. And the way we do that, this is actually the second to last origami step. The last major one. The last step is simply the O-H symmetry.
+
+Chris: You're getting ahead of yourself.
+
+MM: Yes, it's true. The way we do this is we have what we call for historical reasons the Bert canopy, which is sort of the simultaneous projection of all of the H-Trees, or to put it another way, each of these O planes corresponds to a single line down the canopy. So the leaves of the canopy are all the editions and--here's where the brown comes in-- inside this edition there's a whole bunch of different internal loafs, all of which brownly point at the same canopy crum, so as far as the painting-black operation is concerned, you know that you will always be painting all of these loafs the same way. To put it more accurately, it is always good enough to paint them the same way. What happens by projecting all these guys together, we lose resolution. That we're not getting as fine-grained a filtering as if we had not projected them all completely, because we're taking this good enough, making these guys equivalent to each other. But it's worth it in that we're not losing another factor of log. And it's worth it because what we're getting in exchange for it, is that to paint this edition black, all we have to do is to paint these canopies crums black. Now what happens is that when we get to a choice point, say down there--
+
+Chris: Looking up from the one that you marked. You can see the one above it, the two above it. Okay, that's fine.
+
+MM: Over here, we have a choice point, we're deciding whether to go this way or that way, what we do is take a look at this loaf and follow its brown pointer to the canopy front, and we do the same thing for this other guy over here which has a different projection, so at this choice point, the neighbor has, let's say points at the canopy crum that does not get marked, so what w: There always updated as you need them.
+
+MM: For purposes of this conversation, they're always immediately kept up to date.
+
+Cal: What is the canopy? Are these objects none (??) which are nodes on the way up? Where do you actually store records on these things you call canopies?
+
+Rob: What are the roots of the canopies and what are the leaves?
+
+MM: Okay. The leaves of the canopy.
+
+Chris: Can I try, using your upper picture?
+
+MM: Yes.
+
+Chris: I just want to point. (goes to white board) Do you all have this in 3D in your head?
+
+Cal: That makes less sense to me than what we're doing down here.
+
+MM: Let me try to redraw the picture and make it more symmetrical here --
+
+Cal: Why don't you draw another, leaving that one there.
+
+MM: (draws pieces of the tree)
+
+Cal: Maybe I can ask a simpler question.
+
+MM: It actually is worth it drawing this diagram, but go ahead.
+
+Cal: If I write each node as some collection of in and outs canopy is a list of the nodes at a given level which connect to a specific parent, or edition? Is that basically what you're trying to write down?
+
+MM: Sort of.
+
+?: So that the root of the canopy is a group of datum --
+
+Cal: I got some classical shit mines. (??) These nodes are things going out in various directions, but the canopy you're saying is a projection of some piece of these mine structures. (??)
+
+Chris: It's a collapsing of information.
+
+Cal: Collapsing of that information. And so what I want of collapsing out.
+
+MM: I think that once I draw this diagram, that will become substantially clearer.
+
+(draws things that look like butterflies) Each of these red-blue pairs is an internal node of the ent. You can look at just the red guys and see that there's an internal bit of tree, and has two children this guy has the same two children, or you can look at the blue guys, and see that these two guys have these two as children.
+
+Rob: So what you are diagramming is two editions that are exactly the same or have exactly the same material.
+
+MM: What I'm saying this is .. let's say within a larger structure and this is a place within the structure wherme together on the same two parts. Without internal Dsps, these two would have been collapsed further, but let's say I wanted these two grandchildren (??)
+
+Now. What's happening is for the H-Tree walk, what we want to make sure that if we're coming up either through here or through here, in either case, we want to make sure that we take the branch in front, the one that goes to this guy, and not the branch in back that goes to that guy. So we're trying to mark this guy and not that guy so that our walk will go this way and not that way. However, we're doing the same thing to both of these, i.e. marking both these, so that in case there's a similar structure below them, so the distinction between these two guys doesn't matter. What matters is this distinction, i.e. a distinction along the H-dimension is what matters. This distinction, which is a distinction along the O-dimension does not matter.
+
+?: So you don't care which are the kids, you just care which are the parents, essentially.
+
+Chris: Kids and parents is bi-directional.
+
+MM: Ah, you don't care which are the O kids, you care which are the O parents.
+
+Rob: You don't care what particular datum it is, you just want to know which edition it is that contains it.
+
+MM: Correct. So. By the way, once again, I am kind of idealizing in terms of keeping this up to date, while the tree is being rearranged internally, in fact, these things are actually sometimes peeled all the way to the bottom, and the way that one might be balanced is the way it's neighbor might be balanced, means that once we get into the details means that we have to reason by stating invariants to get details on it, and there are such invariants as Charlie mentioned and they tend to be mathematical. But this three dimensional projection intuition is the way to get intuition about the structure.
+
+Norm: I can imagine the inner stuff growing in such a way that the canopy becomes very complex and you would want to avoid that.
+
+MM: The canopy is constrained by being a tree and that prevents it from becoming complex. But the fact that it is constrained to be a tree, the price of that, is that we'tions which are distinguished internally than we'd like and we're paying sort of an additional log cost on that and we may end up with a log squared cost. Whether the logs interact in such a way as to give us log squared, it's certainly not worse than log squared. Whether it's as bad as log squared, I don't know.
+
+Ann: You used to have a three dimensional model of this.
+
+MM: It did not survive the move. (discussion about model)
+
+Chris: Are your green arrows bi-directional?
+
+MM: No. Yes. No. Actually, the green arrows are only in the other direction. that is, southward, from children to parents in the Bert canopy.?
+
+Chris: Good. They need to be at least in the other direction.
+
+MM: It turns out in the canopy the only direction of pointing you need is towards the parent. Now I think that in fact we point in both directions. A parent knows its children as well in the canopy? Was there any important reason for that?
+
+Dean: Yes, but I can't remember what it is. Things like pulling pieces out of the tree.
+
+MM: In terms of the static and geometric intuitions there are no such things, we only need the rootward pointers, is that correct? In terms of the basic intuition setting on the ent.
+
+Dean: I believe so. The upward pointers are for the algorithms that connect one tree into another. I want to know why you made the canopies green.
+
+MM: There's a canopy in a forest, green is a part of the forest. And red and blue are in circulatory diagrams are kind of complementary.
+
+Chris: And the branches holding the canopies?
+
+Dean: Those are always brown. And two shades, sensor brown and bert brown.
+
+MM: This is Bert brown. Sensor brown and Bert brown are drawn with the same brown and distinguished by the context. Where we're pointing at the Bert canopy which is this one and the Sensor canopy which is that one. The Sensor canopy is just the red-blue dual of the Bert canopy. It is used for a completely different purpose.
+
+?: Is this all done in burnt umber?
+
+MM: Okay, so our endorsement paints black here and black here so that when we are either here or here we know we are on the right track because in both cases, it's as if this internal node were marked black virtually by having marked this guy black. Marking this guy black has virtually marked black everybody who points at him. Then, going northward, i.e. going leafward from either one of these two places in our H-Tree walk, we find that one branch leads us black and the other bra so we know to take this leaf branch and not to take this other branch. So changing endorsements and changing permissions only has to do marking on the canopy, it can leave the volume of the tree aligned. It avoids the wasteful O fan-out which doesn't give you any additional navigation information.
+
+Cal: Let us go back to constructing the canopy. How do I construct the canopy. A node in the canopy is -- what?
+
+MM: Okay. Um.
+
+Chris: A leaf. A leaf node on the canopy.
+
+Cal: A leaf node on the canopy without any editions. What is the root of the canopy.
+
+MM: It turns out that the canopy doesn't have one root. Um, that in terms of the actual dynamics of the data structure is that two disjointed documents, let's say one set of documents A and another set of documents B, such that none of the documents in A had any structure in common with the documents in B, but there is sharing somehow between the documents in set A and between the documents of B. What you have essentially are ... you can think of that as two disjoint ents. Or you can think of that as one ent that just happens to not be connected, and generally I'll be presenting things in that second way. So what that means is there's just all the O planes of one just happen to not to ever connect with the O planes of the other. Let's say now that I make a new document which borrows some material from one of the documents in A and borrows some material from one of the documents in B. Now the equivalence class of documents that either share directly or indirectly with each other the two disjoint set of documents now becomes one large set of documents. What happens is, this is sort of an inductive proof where I'm starting with the step of N gets to N+1 and then I'm going to give you N=0 step later. The two disjoint sets of documents, but each had their own Bert canopy. Or to think of it another way, there's one Bert canopy but it's a forest, it's not a single tree. And now when I take these two sets of documents and I make them one set because there's now a new document that has some material from each. I need to take the two separate canopies and merge them tthat I've given you the N implies N+1 case, let me give you the base case. The base case is that when you create a new document that has no material shared with any other document, that entire document, all of its internal nodes, it's just one O-Tree, all of the nodes in that O-Tree point at a single canopy front. Its canopy is just a single node, a single element tree and that single element is both the leaf and the root of that tree. So I think the useful set of steps to take you through, we've got two from-scratch documents, each of whom has just a single canopy crum as its canopy and now we make a third document that borrows a little bit of material from each of them and now we see how we get a new canopy that combines both of the old canopies as well as the new structure.
+
+Norm: It's not clear to me what it takes to qualify as being a canopy. I wouldn't know one if I saw one, you're telling me how to build one, and I don't know what the goal is yet.
+
+Chris: A canopy is a useful projection of a document that doesn't share anything.
+
+Cal: I understand the geometric projections, but I'm not sure I understand how it's generated.
+
+MM: The way you generate it is inductive as well. You start off with somehow the system had it's first document. And that entire first document had a single node canopy. So let's go ahead and draw that. You've got an otree that's all by itself, and all of its internal nodes all will jointly point at a single canopy, a single node which is the canopy for this entire structure. A single edition pointing at a single canopy crum, which is the canopy for this entire thing. The reason why --
+
+Cal: Okay, that's fine. Now I make a second edition, and the second edition differs from the first edition ... has one additional thing.
+
+MM: Okay, let me make a second edition and the second edition now gets a canopy crum, the root of the second edition points at this. All of the nodes unique to the second edition point at this guy, there's now another canopy crum which is created, which is the parent, the canopy parent, of both these canopy crums, canopy crums as you can see point rootward, so you create a new canopy crum which is the parent of these two guys and now here's the very interesting step. Let's say that inside here, everything in here is the stuff that shared the thing to, what we now do is we take all the brown pointers that are in the shared stuff and migrate them so that they're all pointf at this guy so that only the red stuff that is unique to the red points at that guy.
+
+?: So you don't have one canopy crum per datum, you only have one canopy crum per distinction that you actually care to make.
+
+MM: Right. The canopy only reflects sort of htree navigation information so that to the degree that an oplane doesn't fork in h or doesn't come together in o, we can just have all of those loaves both horizontal and vertical, all point at one canopy crum because for canopy navigation, we're not distinguishing them.
+
+?: So that's how you add editions, that's how you add leaves to the canopy. And you reconstruct the canopy such that it reflects the exactly the sharing information that's currently contained in the entire rest of the structure.
+
+MM: Right.
+
+Dick: You're not using the canopy to find the stuff, only to find information about the stuff. Attributes of it.
+
+?: Right.
+
+MM: What we're using the canopy for is so that starting down here we can navigate up to this guy instead of that guy.
+
+Dick: But your navigations says that you have to know about the htree in order to do that navigating.
+
+MM: Right. We're only navigating on the htree. Which is why the leafward pointer on the canopy don't exist as far as these intuitions are concerned. Whatever reasons they exist for it are beyond what I'm talking about. We're never trying to find these editions by walking the canopy. We're only finding the editions by walking the htrees and looking across at the canopy to guide us.
+
+Cal: If you wanted to go in the other direction, you would use the second canopy for your direction source.
+
+MM: Right.
+
+Chris: But he hasn't told us what problem makes you want to use that canopy.
+
+Dick: I suppose what you have is a whole pile of road signs for your ordinary navigation stuff and wanted to have some bits for whether they do believe or not believe that sign and keep the bits for whether to believe that canopy.
+
+MM: Right. In other words, we have all these forks in the road over here, and you know which fork to believe by looking over to that canopy to see which fork is marked as still interesting.
+
+I need a break.
+
+?: We've gotten to 3/4 of the trees and that's more like 5/MM: We now have all the top level, important concepts, and that was it. Everything else is detail.
+
+Back to Ent class 3 or Onwards to Ent class 5

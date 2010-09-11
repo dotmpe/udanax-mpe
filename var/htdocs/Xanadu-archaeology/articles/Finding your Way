@@ -1,0 +1,49 @@
+Whiteboard: Finding your Way    	  last revised by 216.88.158.142 on Aug 17, 2005 3:06 am     	
+		
+
+The full set of all documents across all possible Xanadu servers is called the Docuverse. Between the front-end and the back-end coordinates or keys, called tumblers are exchanged. These tumblers are long strings of digits:
+
+1.2368.792.6.0.6974.383.1988.352.0.75.2.0.1.9287
+
+Users can't reasonably be expected to memorize or type those in anymore than they now type IP addresses into their web browsers.
+
+So you sit down at a front-end, login using your new account info and see... what? The first time you saw the web (and before URLs showed up on billboards, radio ads, etc.), how did you know where to go?
+
+In the Docuverse there a set of standard places, really documents. Some are private, associated with your account and others are global.
+
+Standard Places
+
+Associated with your account, using preassigned, well-known, tumbler addresses are:
+
+    * hometoc (home table-of-contents)
+
+      This is like your home web page. You can put anything in this document and link it to your other public documents. It's how people can visit your site, in webspeak.
+
+      They find your site initially from a roster of users (just another document) that Xanadu automatically maintains. Your front-end knows how to add or remove you from that roster.
+
+    * preferences
+
+      This document stores, in XML form, multiple sets of named preferences, one set for each workstation or environment you use. Your front-end gives you a settings box to manage these.
+
+      And since Xanadu never loses anything, hey, a complete history of your settings is retained indefinitely, and you can even compare them, with a prior version or with another user's.
+
+    * business card
+
+      This is just a public document that you choose to make available whenever a user queries the authorship of one of your documents. You can put anything in here.
+
+    * inwork
+
+      This is where you can park new documents you create but aren't ready to make public yet.
+
+    * inbox
+
+      (I'm looking for ideas on how Xanadu can be used for email-type sequential message discussions. It's how another user brings an interesting document to your attention.)
+
+    * outbox
+
+      (This is just a list of messages you've sent others.)
+
+Finding the Unexpected?
+
+TBD
+    these are the global tumbler address, search engines, registries, etc. I'm still pondering these. 

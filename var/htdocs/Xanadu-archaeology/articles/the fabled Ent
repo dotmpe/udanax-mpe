@@ -1,0 +1,75 @@
+  Whiteboard: the fabled Ent    	  last revised by 127.0.0.1 on Aug 17, 2005 4:00 am     	
+		
+
+CoordinateSpaces
+
+CoordSpaceTheory?
+
+    * Relevant Properties
+
+          o associative
+          o invertible
+          o communative
+
+    * HTrees -- History Trees
+
+      HTrees are not enfilades but some other kind of tree, probably a splay tree. HTree? are whatever it takes to keep track of the diverging O-planes.
+
+    * OTrees -- Organization Trees
+
+      There are an unbounded number of OTrees within an Ent. Each tree represents a particular edition of content. The leaf level is a one-dimensional mapping to a stream of text bytes.
+
+      OTrees are implemented as enfilades.
+
+    * Canopy
+
+	  Canopies consists of many possibly disjoint tree structures. Within an Ent, there are only two such canopies: the BertCanopy? and the SensorCanopy?.
+
+See also EntTheory. --JohnDougan?
+
+David:
+
+I've found a treasure lode (albeit a confusing one) in the documentation describing the Ent. I've read the K-Tree article, and it's definitely relevant, but not all of the story by a long shot. KDTrees are interesting, but are not the same thing. Apparently, some variations of Gold use similar techniques to KDTrees. Since the Ent documents are longish, I'm going to link to them from here.
+
+Mark Miller's E n t Class (a transcript)
+
+Somebody's paper on the E n t (probably Mark)
+
+Somebody's outline? (probably Mark's notes for the presentation?)
+
+Prior Art (somebody's bibliography of relevant papers that describe techniques also developed by Xanadu personnel).
+
+Pictures Don't get your hopes up. These are notes on pictures that should be drawn; however they are interesting)
+
+Desiderata (a description of some of the qualities wanted in a Xanadu data structure)
+
+The material following the K-tree citation are some old notes that I took after reading the code. It's interesting, (probably only to me) that I got the idea of the multi-coordinate space generalizations much better than the underlying structure of the code.
+
+back to Jeff
+
+Figuring out the Ent has been like a treasure hunt. It turns out it was in front of us all along.
+
+{David: Actually, the K-tree is the same as the model-T enfilade; Andrew was wrong as to which data structure it was.}
+
+Reviewing the message archives for the Xanadu mailing list, it turns out there was a post from Andrew Pam in response to a query from Peter Stampoultzis/Lance Chambers. The article description is:
+
+K-TREE CONTAINER DATA STRUCTURES
+
+by Rodney Bates
+
+K-trees are container data structures that represent linear sequences of integers, pointers, and the like. Although Rodney initially developed K-trees to deal with the problem of browsing and debugging incomplete programs, they also have a more general applicability.
+A copy of the above article is at http://www.acm.org/pubs/articles/journals/drdobbs/1994/9409/9409b/9409b.htm I didn't read much about KDTrees, but they don't look like they have much to do with the k-trees described by Bates. ----
+
+I can't find the specific article online, and rummaging thru my old issues of Dr. Dobbs I can't find that specific issue, but perhaps this might help, for now. I'm not sure whether K-trees and KDTrees are precisely the same thing. (They are definitely different. --SteveWitham?)
+
+re the Ent
+
+david's old notes
+
+The key generalization seems to have been to generalize the original algorithsm. The original code seems to be very specialized to the management of permutations (+ insertions + deletions) of a total ordering, as that ordering changes to create multiple versions, as well as to the efficient location of sequence elements in arbitrary states of that sequence based on a fundamental identity (i-stream address).
+
+In the generalized code, the sequence is replaced by an arbitrary address space, which can be any algebraic structure (set of items with significant relations between them). Contents are associated directly (by identity) with elements of the address space by a mapping. Operations are represented by transformations (or complete replacement, or incremental replacement?) of the address->data mappings. This means that handling n-d (and indeed arbitrary) topologies can be handled uniformly within a single structure. I assume that this structure is the fabled Ent.
+
+I don't quite understand how WIDativity? and DSPativity are used to enable the efficient creation of compositional maps for this. I get lost in the code, but the Ent seems to be a hierarchical representation of a series of maps. The top level represents large scale rearrangements, and yields a precise state when composed with the smaller scale maps whose results form its input. Such a composition is a way to retrieve a single state of the base address space. However, there must be an efficient way to select from alternative maps at each level, so that a particular state can be selected.
+
+This might be a big tree, with hashtables at each node, with elements of the hashtable being alternative maps for that node, keyed off of the version identifier of a given state (a Bert, right?).

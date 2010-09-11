@@ -1,0 +1,17 @@
+Whiteboard: TextFormattingRules    	  last revised by 127.0.0.1 on Aug 17, 2005 3:48 am     	
+		
+
+Your text is formatted as a web page according to some simple markup rules. These are intended to be convenient and unobtrusive.
+
+The StructuredTextRules are used by default. Briefly -
+
+    * separate paragraphs with a blank line
+    * a single-line paragraph followed by a more-indented paragraph makes a heading
+    * for bulleted/numbered lists, use * or 0. followed by a space
+    * for emphasis, use ... and ...
+
+Also -
+
+    * WikiName(s), bare urls and words enclosed in square brackets are converted to hyperlinks (prepend the link or the line with ! to prevent this)
+    * HTML & DTML tags may be used
+
