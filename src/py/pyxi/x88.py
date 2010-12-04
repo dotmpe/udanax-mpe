@@ -604,6 +604,7 @@ class XuConn:
             raise ValueError, "back-end does not speak 88.1 protocol"
         if self.stream.read(1) not in "~\n":
             raise ValueError, "back-end does not speak 88.1 protocol"
+        self.stream.flush()
 
     def close(self):
         self.stream.close()
@@ -642,9 +643,9 @@ class XuConn:
             response = self.Number()
         except ValueError, ( errno):
             print "ValueError: %s ::\n\n\n" % ( errno) #zzzz
-            raise XuError, "error response to %d from back-end" % code
+            raise XuError("error response to %d from back-end" % code)
         if response != code:
-            raise XuError, "non-matching response to %d from back-end" % code
+            raise XuError("non-matching response to %d from back-end" % code)
 
 # --------------------------------------------------------------- XuSession
 class XuSession:
@@ -831,6 +832,9 @@ class XuStream:
             if ch == "?": raise XuError, "error response from back-end"
             chars.append(ch)
         return string.join(chars, '')
+        
+    def flush(self):
+        pass # used in debug wrapper
 
 # -------------------------------------------------------------- FileStream
 class FileStream(XuStream):
@@ -1003,6 +1007,76 @@ class DebugWrapper:
     def __setattr__(self, name, value):
         base = self.__dict__["__base__"]
         setattr(base, name, value)
+
+
+class StreamDebug(XuStream):
+    """Stream wrapper with debug printing
+    """
+
+    readbuf, writebuf = '', ''
+    def __init__(self, base, log):
+        self.__dict__["__base__"] = base
+        self.__dict__["__log__"] = log
+        readb = ''
+        writeb = ''
+        self.__dict__["__buffers__"] = readb, writeb
+
+    def flush(self):
+        XuStream.flush(self)
+        base = self.__dict__["__base__"]
+        readb, writeb = self.__dict__["__buffers__"]
+        if writeb:
+            self.flush_writebuf()
+            writeb = ''
+        if readb:
+            self.flush_readbuf()
+            readb = ''
+        self.__dict__["__buffers__"] = readb, writeb
+
+    def read(self, length):
+        base = self.__dict__["__base__"]
+        readb, writeb = self.__dict__["__buffers__"]
+        if writeb:
+            self.flush_writebuf()
+            writeb = ''
+        r = base.read(length)
+        readb += r
+        self.__dict__["__buffers__"] = readb, writeb
+        return r
+
+    def flush_readbuf(self):
+        log = self.__dict__["__log__"]
+        readb, writeb = self.__dict__["__buffers__"]
+        log.write("\x1b[36m<\x1b[0m %s\n" % readb.strip())
+
+    def write(self, data):
+        base = self.__dict__["__base__"]
+        readb, writeb = self.__dict__["__buffers__"]
+        if readb:
+            self.flush_readbuf()
+            readb = ''
+        r = base.write(data)
+        writeb += data
+        self.__dict__["__buffers__"] = readb, writeb
+        return r
+
+    def flush_writebuf(self):
+        log = self.__dict__["__log__"]
+        readb, writeb = self.__dict__["__buffers__"]
+        log.write("\x1b[32m>\x1b[0m %s\n" % writeb.strip())
+
+    def __getattr__(self, name):
+        base = self.__dict__["__base__"]
+        value = getattr(base, name)
+        return value
+
+    def __setattr__(self, name, value):
+        base = self.__dict__["__base__"]
+        setattr(base, name, value)
+
+    def __repr__(self):
+        base = self.__dict__["__base__"]
+        return "<DebugWrapper %s>" % base
 
 # =============================================================== FUNCTIONS
 def tcpconnect(hostname, port):

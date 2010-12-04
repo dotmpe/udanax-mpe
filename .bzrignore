@@ -1,0 +1,8 @@
+*.enf
+*.pyc
+*.swp
+*.swo
+gmon.out
+ln[0-9].*
+x88.[0-9]*
+backenderror

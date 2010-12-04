@@ -282,59 +282,6 @@ class WrappedPipeHandler(SocketServer.BaseRequestHandler):
         print "\x1b[36mDisconnected\x1b[0m from \x1b[31m%s\x1b[0m:\x1b[31m%s\x1b[0m" %  (self.client_address)
 
 
-class StreamDebug(XuStream):
-    """Stream wrapper with debug printing
-    """
-
-    readbuf, writebuf = '', ''
-    def __init__(self, base, log):
-        self.__dict__["__base__"] = base
-        self.__dict__["__log__"] = log
-        readb = ''
-        writeb = ''
-        self.__dict__["__buffers__"] = readb, writeb
-
-    def read(self, length):
-        base = self.__dict__["__base__"]
-        readb, writeb = self.__dict__["__buffers__"]
-        if writeb:
-            self.flush_writebuf()
-            writeb = ''
-        r = base.read(length)
-        readb += r
-        self.__dict__["__buffers__"] = readb, writeb
-        return r
-
-    def flush_readbuf(self):
-        log = self.__dict__["__log__"]
-        readb, writeb = self.__dict__["__buffers__"]
-        log.write("\x1b[36m<\x1b[0m %s\n" % readb.strip())
-
-    def write(self, data):
-        base = self.__dict__["__base__"]
-        readb, writeb = self.__dict__["__buffers__"]
-        if readb:
-            self.flush_readbuf()
-            readb = ''
-        r = base.write(data)
-        writeb += data
-        self.__dict__["__buffers__"] = readb, writeb
-        return r
-
-    def flush_writebuf(self):
-        log = self.__dict__["__log__"]
-        readb, writeb = self.__dict__["__buffers__"]
-        log.write("\x1b[32m>\x1b[0m %s\n" % writeb.strip())
-
-    def __getattr__(self, name):
-        base = self.__dict__["__base__"]
-        value = getattr(base, name)
-        return value
-
-    def __setattr__(self, name, value):
-        base = self.__dict__["__base__"]
-        setattr(base, name, value)
-
 """
         # old
         stream = self.server.pipe
