@@ -1,6 +1,10 @@
 """An object-based API to the Udanax 88.1 FeBe protocol."""
 
 # Copyright 1999 by Ka-Ping Yee.  All rights reserved.
+#
+# Copyright 2007, 2008, 2009, 2010 B. van Berkum
+
+
 # This file is part of the Udanax Green distribution.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -104,6 +108,10 @@ class Tumbler:
                         "is not a string or list of integers"
             self.digits = map(long, digits)
 
+    def isroot(self):
+        return len(self) == 1
+    isroot = property(isroot)
+
     def clone(self):
         return Tumbler(*self.digits)
 
@@ -155,7 +163,8 @@ class Tumbler:
 
     def __cmp__(self, other):
         """Compare two address tumblers or offset tumblers."""
-        if not istype(Tumbler, other): return cmpid(self, other)
+        if not isinstance(Tumbler, other): 
+            return cmpid(self, other)
         for i in range(min(len(self), len(other))):
             if self[i] > other[i]: return 1
             if self[i] < other[i]: return -1
@@ -187,7 +196,15 @@ def Tumbler_read(stream, prefix=""):
 
 # ----------------------------------------------------------------- Address
 class Address(Tumbler):
-    """An address within the Udanax object space.  Immutable."""
+    """
+    An address within the Udanax object space. Immutable.
+    The address is represented as a multiple tumblers in one Tumbler instance,
+    each component separated by a zero.
+    """
+    def __init__(self, *args, **kwds):
+        if args and isinstance(args[0], Tumbler):
+            args = ['.0.'.join(map(str, args))]
+        Tumbler.__init__(self, *args, **kwds)
 
     def clone(self):
         return Address(*self.digits)
@@ -208,7 +225,50 @@ class Address(Tumbler):
         """For a global address, return the docid and local components."""
         delim = len(self.digits) - 1
         while self.digits[delim] != 0: delim = delim - 1
-        return Address(self.digits[:delim]), Address(self.digits[delim+1:])
+        return Address(self.digits[:delim]), \
+                Address(self.digits[delim+1:])
+
+    def super(self):
+        """Return the address, excluding the lowest component. """
+        if 0 in self.digits:
+            return Address(*self.split_all()[:-1])
+
+    def depth(self):
+        "Return number of components in Address, ie. len(self.split_all()). "
+        return self.digits.count(0)+1
+
+    def paths(self):
+        "Return a list with the Address for each component, top down."
+        cp = []
+        ccp = Address()
+        for t in self.split_all():
+            ccp = ccp.subcomponent(t)
+            cp.append(ccp)
+        return cp
+
+    def subcomponent(self, component):
+        """Append component. """
+        if isinstance(component, (Tumbler, str, int, long)):
+            if self and component:
+                return Address(str(self) +'.0.'+ str(component))
+            elif component:
+                return Address(str(component))
+        else:
+            raise TypeError, "Need tumbler: %s" % type(component)
+
+    def split_all(self):
+        "Split 0-separated address into its tumbler components. "
+        tumblers = []
+        # add every component ended by a '.0.'
+        start = 0
+        for i in range(0, len(self)):
+            if self.digits[i] == 0:
+                tumblers.append(self.digits[start:i])
+                start = i+1
+        if start: # append last component
+            tumblers.append(self.digits[start:])
+        return map(Tumbler, tumblers)
+
 
     def globalize(self, other):
         """Return an global address given a local address into this one, a
