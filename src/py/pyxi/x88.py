@@ -104,6 +104,9 @@ class Tumbler:
                         "is not a string or list of integers"
             self.digits = map(long, digits)
 
+    def clone(self):
+        return Tumbler(*self.digits)
+
     def __repr__(self):
         """Return a Python expression which will reconstruct this tumbler."""
         return self.__class__.__name__ + \
@@ -186,6 +189,9 @@ def Tumbler_read(stream, prefix=""):
 class Address(Tumbler):
     """An address within the Udanax object space.  Immutable."""
 
+    def clone(self):
+        return Address(*self.digits)
+
     def __add__(self, offset):
         """Add an offset to a tumbler."""
         if not istype(Offset, offset):
@@ -242,6 +248,9 @@ def Address_read(stream, prefix=""):
 # ------------------------------------------------------------------ Offset
 class Offset(Tumbler):
     """An offset between addresses in the Udanax object space.  Immutable."""
+
+    def clone(self):
+        return Offset(*self.digits)
 
     def __add__(self, offset):
         """Add an offset to an offset."""

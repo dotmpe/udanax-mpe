@@ -32,7 +32,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     be_dir = os.path.dirname(backend)
-    be = os.path.basename(backend)
+    backend = os.path.basename(backend)
 
     # Work from backend dir
     cwd = os.getcwd()
@@ -49,40 +49,41 @@ if __name__ == "__main__":
             print "please copy one from the udanax dist to %s." % os.path.realpath(enf)
             sys.exit(2)
 
-    print "Using backend at\n  \x1b[33m<%s>\x1b[0m\nwith enfilade from\n  \x1b[33m<%s>\x1b[0m" % tuple(map(os.path.realpath, (be, enf)))
-
+    print "Using backend at\n  \x1b[33m<%s>\x1b[0m\nwith enfilade from\n \x1b[33m<%s>\x1b[0m" % tuple(map(os.path.realpath, (backend, enf)))
 
     # Start Xu88.1 session
+    def start_session():
+        global ps, log, stream, be, xs
 
-    print ""
-
-    ps = PipeStream(be)
-    print "\x1b[36mps\x1b[0m = \x1b[32m%s \x1b[33m(fifo: %s)\x1b[0m" % (ps, ps.outpipe)
-    print "Created FIFO to backend using named pipe."
-    print ""
-
-    if log:
-        stream= StreamDebug(ps, sys.stderr)
-        print "\x1b[36mstream\x1b[0m = \x1b[32m%s \x1b[33m(log: %s)\x1b[0m" % (stream,
-                sys.stderr)
-        print "Wrapped FIFO stream IO with for visual protocol chatter."
+        ps = PipeStream(backend)
+        print "\x1b[36mps\x1b[0m = \x1b[32m%s \x1b[33m(fifo: %s)\x1b[0m" % (ps, ps.outpipe)
+        print "Created FIFO to backend using named pipe."
         print ""
-    else:
-        stream = ps
 
-    be = XuConn(stream)
-    print "\x1b[36mbe\x1b[0m = \x1b[32m%s\x1b[0m" % (be,)
-    print "Initialized Xu88 connection to server."
+        if log:
+            stream= StreamDebug(ps, sys.stderr)
+            print "\x1b[36mstream\x1b[0m = \x1b[32m%s \x1b[33m(log: %s)\x1b[0m" % (stream,
+                    sys.stderr)
+            print "Wrapped FIFO stream IO with for visual protocol chatter."
+            print ""
+        else:
+            stream = ps
 
-    print ""
+        be = XuConn(stream)
+        print "\x1b[36mbe\x1b[0m = \x1b[32m%s\x1b[0m" % (be,)
+        print "Initialized Xu88 connection to server."
+        print ""
 
-    print "Starting session now, handshaking with backend:"
-    xs = XuSession(be)
-    #be.handshake()
-    print "\x1b[36mxs\x1b[0m = \x1b[32m%s\x1b[0m" % (xs,)
-    print "Xu88 session ready."
+        print "Starting session now, handshaking with backend:"
+        xs = XuSession(be)
+        #be.handshake()
+        print "\x1b[36mxs\x1b[0m = \x1b[32m%s\x1b[0m" % (xs,)
+        print "Xu88 session ready."
+        print ""
 
-    def example_session():
+    def example_session1():
+        global xs, stream
+
         doc_addr = Address('1.1.0.1.0.1')
         xs.open_document(doc_addr, READ_ONLY, CONFLICT_FAIL)
         stream.flush()
@@ -92,6 +93,13 @@ if __name__ == "__main__":
         stream.flush()
         print "Retrieved content", content
         print
+
+    def example_session2():
+        global xs, stream
+
+        doc_addr = Address('1.1.0.1.0.1')
+        xs.open_document(doc_addr, READ_ONLY, CONFLICT_FAIL)
+
         docspec2 = xs.retrieve_vspanset(doc_addr)
         stream.flush()
         print "Retrieved vspanset", docspec2
@@ -105,6 +113,9 @@ if __name__ == "__main__":
         print "Retrieved vspan", docvspan
         print
 
+    print ""
+    start_session()
+
     print """
 ----
 
@@ -114,22 +125,28 @@ Now for example to open a document, and get its contents both data and links::
     >>> xs.open_document(doc_addr, READ_ONLY, CONFLICT_FAIL)
     Address(1L, 1L, 0L, 1L, 0L, 1L)
     >>> docspecset = SpecSet(VSpec(doc_addr, [ENTIRE_DOC]))
+    >>> docspecset
+    <SpecSet [<VSpec in 1.1.0.1.0.1, at 0.0 for 2.0>]>
     >>> xs.retrieve_contents(docspecset)
     ['contents...']
 
-One could also request the spec-set for the data/link space.
+One could also request the spec-set or a vspan for the data/link space,
+and see how large it is:
 
     >>> docspec2 = xs.retrieve_vspanset(doc_addr)
     >>> docspec2
-    <SpecSet [<VSpec in 1.1.0.1.0.1, at 0.0 for 2.0>]>
+    <VSpec in 1.1.0.1.0.1, at 1.1 for 0.180>
     >>> xs.retrieve_contents(SpecSet(docspec2))
     ['contents...']
+    >>> docvspan = xs.retrieve_vspan(doc_addr)
+    >>> docvspan
+    <VSpan in 1.1.0.1.0.1 at 1.1 for 0.180>
 
-But that always (afaik) is the span of 1.
-This example is provided by function example_session().
+These example sessions are run by function example_session1 and
+example_session2.
+To reintialize the session use start_session().
 
 When using the '-l' flag you may want to use stream.flush() regularly.
-
 
 For further reference, see FEBE protocol specification for Xu88.1 [1] and 
 read the source, in particulary x88.py
