@@ -28,7 +28,7 @@ def main(argv):
         elif opt[0] == '-a':
             doc_addr = opt[1]
 
-    os.chdir('be')
+    os.chdir('bin/be')
 
     # get Xu session
     if debug and tcp_addr:
@@ -48,7 +48,8 @@ def main(argv):
         xs = x88.pipeconnect("./backend")
 
     #addr = testcreatelink(xs)
-    tryout(xs, doc_addr)
+    #tryout(xs, doc_addr)
+    test2(xs, doc_addr)
 
 def testcreatelink(xs):
     addr = xs.create_document()
@@ -224,6 +225,39 @@ def tryout(xs, doc_addr):
         print '> retrieve-doc-vspanset', addr
         print '<', xs.retrieve_vspanset(addr)
         xs.close_document(addr)
+
+
+def test2(xs, doc_addr):
+    """
+    I found these non-documented commands in pyxu/green,
+    a list like that turns out to be in green/be_source/requests.h.
+
+    Rush's list is longer, the Green source I have goes to command 38.
+    
+    Command nr/function maps appears to be in init.c, but it does not list 40 or
+    41, which are outside NREQUESTS (=40) anyway.
+    The diagnostic commands seem to be unavailable looking at be_source/init.c
+    """
+    print xs, doc_addr
+
+    # incomplete
+    #print xs.xc.stream.read(5) # RETRIEVEV, documented
+    #xs.xc.command(4) #
+    #xs.xc.command(39) # nullfun -> putrequestfailed
+    #xs.xc.command(40) # DUMP_GRAN?
+    #xs.xc.command(41) # DUMP_SPAN?
+    #xs.xc.command(42) # Green does not go beyond 39..
+
+    # error
+    #xs.xc.command(15) # debug
+    #xs.xc.command(17) # dump enfilade
+    #xs.xc.command(24) # JUSTEXIT
+    #xs.xc.command(20) # EXAMINE
+    #xs.xc.command(23) # DUMPGRANFWIDS
+    #xs.xc.command(25) # IOINFO
+
+    #docid = xs.open_document(x88.Address(doc_addr), x88.READ_WRITE, x88.CONFLICT_COPY)
+    #xs.close_document(docid)
 
 if __name__ == '__main__':
     import sys

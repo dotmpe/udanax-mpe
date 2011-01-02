@@ -625,7 +625,8 @@ NOWIDTH = Offset()
 NOSPECS = SpecSet([])
 
 # exceptions
-XuError = "UdanaxError"
+#XuError = "UdanaxError"
+class XuError(Exception): pass
 
 # access modes
 (READ_ONLY, READ_WRITE) = (1, 2)
