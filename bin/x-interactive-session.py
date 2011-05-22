@@ -3,8 +3,8 @@
 """
 import os
 import sys
-from pyxi.x88 import *
-from pyxi.udxutil import DOC_CONTENTS, DOC_LINKS, ENTIRE_DOC
+from xu88.x88 import *
+from xu88.udxutil import DOC_CONTENTS, DOC_LINKS, ENTIRE_DOC
 
 
 if __name__ == "__main__":

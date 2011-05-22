@@ -35,7 +35,7 @@ CLN += $(shell find $/ -iname '*.pyc')
 
 ### Special targets
 
-T                 := $(call mkid,$d_enf)
+T                 := $(call mkid,$(d)enf)
 DESCRIPTION       += $(T)='Build an enfilade from CONTENT_SCRIPT and LINK_SCRIPT'
 STRGT             += $(T)
 
@@ -51,7 +51,7 @@ $(T): $(CONTENT_SCRIPT) $(LINK_SCRIPT)
 		rm gmon.out backenderror
 
 
-T                 := $(call mkid,$d_run)
+T                 := $(call mkid,$drun)
 DESCRIPTION       += $(T)='Run pyxi normally'
 STRGT             += $(T)
 
@@ -59,7 +59,7 @@ $(T):              $/bin/pyxi
 	@cd $(<D); ./$(<F)
 
 
-T                 := $(call mkid,$d_debug)
+T                 := $(call mkid,$ddebug)
 DESCRIPTION       += $(T)='Run pyxi in verbose mode'
 STRGT             += $(T)
 
@@ -70,7 +70,7 @@ _test:
 	python test/Tumbler.py
 
 
-T                 := $(call mkid,$d_server)
+T                 := $(call mkid,$(d)server)
 DESCRIPTION       += $T='Run server with -t CONN -b BE'
 STRGT             += $T
 
@@ -81,7 +81,7 @@ $T:                  $/bin/x-be-pipestream-tcpwrapper.py
 	cd $(DIR); ./bin/$(<F) -l -t $(CONN) -b $(BE)
 
 
-T                 := $(call mkid,$d_prompt)
+T                 := $(call mkid,$(d)prompt)
 DESCRIPTION       += $T='Interactive session (Python) for Xu88.1 backend'
 STRGT             += $T
 
@@ -91,7 +91,6 @@ $T:                  $/bin/x-interactive-session.py
 	@$(ll) file_target "$@" "Starting interactive session"
 	@cd $(<D);$(PY) -i -- $(<F) -l -b $(BE)
 	@$(ll) file_done "$@" "Interactive session ended"
-
 
 ###
 

@@ -1454,6 +1454,21 @@ class ProcStream(x88.XuStream):
         self.outpipe.close()
         self.open = 0
 
+__options__ = """
+    -D NAME
+      Set the daemon name.
+    -d 
+      Enable debug wrappers on each component.
+    -h
+      Display this help.
+    -p 
+      Use process mode instead of pipe.
+    -S HOSTINFO
+      Set 'net' mode and provide the host:port, default: localhost:55146.
+    -t 
+      Use default net mode instead of pipe.
+      
+"""
 if __name__ == "__main__":
     print "Pyxi (Python Udanax Interface) v" + str(VERSION)
     print "Copyright 1999 by Ka-Ping Yee.  All rights reserved."
@@ -1475,29 +1490,60 @@ if __name__ == "__main__":
         print "No enfilade file at be/enf.enf; copying in the default."
         os.system("cp -f ../enfs/sample.enf be/enf.enf")
         
+    import getopt
+    opts, extra = getopt.getopt(sys.argv[1:], "D:dsthS:v")
+
+    mode = 'pipe'
+    debug = False
+
+    host = "localhost"
+    port = 55146
+    be = "./backend"
+
+    for opt, val in opts:
+        if opt == '-D':
+            be = val
+        if opt == '-d':
+            debug = True
+        elif opt == '-v':
+            debug = True
+        elif opt == '-t':
+            mode = 'net'
+        elif opt == '-p':
+            mode = 'proc'
+        elif opt == '-h':
+            print __options__
+            sys.exit()
+        elif opt == '-S':
+            mode = 'net'
+            if ':' in val:
+                host, port = val.split(':')
+                port = int(port)
+            else:
+                host = val
+   
     os.chdir("be")
 
-    import getopt
-    opts, extra = getopt.getopt(sys.argv[1:], ":dst")
-    if ('-d', '') in opts:
-        ps = x88.DebugWrapper(ProcStream("./backend"), sys.stderr)
-        xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
-        xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
-    elif ('-s', '') in opts:
-        
-        port = 55146
-        host = "localhost"
-        ps = x88.DebugWrapper(x88.TcpStream(host,port), sys.stderr)
-        xc = x88.DebugWrapper(x88.XuConn(ps), sys.stderr)
-        xs = x88.DebugWrapper(x88.XuSession(xc), sys.stderr)
+    if mode == 'proc':
+        ps = ProcStream(be)
+    elif mode == 'pipe':
+        ps = x88.PipeStream(be)
+    elif mode == 'net':
+        ps = x88.TcpStream(host, port)
+
 #        ps.write("34~0.1.0.1.1~")
-    elif ('-t', '') in opts:
-        host = "iris"
-        host = "192.168.0.103"
-        port = 55146
-        xs = x88.tcpconnect(host,port)
-    else:
-        xs = x88.pipeconnect("./backend")
+
+    if debug:
+        ps = x88.DebugWrapper(ps, sys.stderr)
+        
+    xc = x88.XuConn(ps)
+    if debug:
+        xc = x88.DebugWrapper(xs, sys.stderr)
+
+    xs = x88.XuSession(xc)
+    if debug:
+        xs = x88.DebugWrapper(xs, sys.stderr)
+
     os.chdir(cwd)
 
     Tk().withdraw()
@@ -1511,3 +1557,4 @@ if __name__ == "__main__":
         window.quit()
     xs.quit()
     time.sleep(10.0)
+
