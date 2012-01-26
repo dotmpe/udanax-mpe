@@ -13,7 +13,7 @@ editable text-view and text highlighting and linking.
 
 My hacks include:
 
-- x-be-pipestream-tcpwrapper.py, circumvent bug and have single user network
+- x-be-pipestream-tcpwrapper.py, circumvent bug? and have single user network
   access.
 - udxdot, create dot network diagrams for nodes/links
 - htdoc with some tools to generate and backup enfilades

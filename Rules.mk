@@ -30,7 +30,7 @@ CONTENT_SCRIPT=$(ENF_DIR)/init-content.febe
 LINK_SCRIPT=$(ENF_DIR)/init-links.febe
 
 
-CLN += $(shell find $/ -iname '*.pyc')
+CLN += $(shell find $/ -iname '*.pyc' -or -path 'bin/be/x88.*' -or -name 'gmon.out' -or -name 'backenderror')
 
 
 ### Special targets
@@ -39,16 +39,16 @@ T                 := $(call mkid,$(d)enf)
 DESCRIPTION       += $(T)='Build an enfilade from CONTENT_SCRIPT and LINK_SCRIPT'
 STRGT             += $(T)
 
+$(T): DIR := $d
 $(T): $(CONTENT_SCRIPT) $(LINK_SCRIPT)
-	if test -f enf.enf; then rm enf.enf; fi;
-	@echo "Insert contents end let xumain create a new enfilade"
-	@(cd $(ENF_DIR);\
-		$d/bin/green/be_source/xumain < ../../../$(CONTENT_SCRIPT);\
-		mv enf.enf $d);
-	@echo "Edit links into the enfilade"
-	@bin/green/be_source/backend < $(LINK_SCRIPT); echo
-	@mv enf.enf var/enf/`basename $(ENF_DIR)`.enf;\
-		rm gmon.out backenderror
+	@-if test -f enf.enf; then rm enf.enf; fi;
+	@\
+    echo "Insert contents end let xumain create a new enfilade";\
+	cd $(ENF_DIR);\
+	../../../bin/green/be_source/xumain < ../../../$(CONTENT_SCRIPT);\
+	echo "Edit links into the enfilade";\
+	../../../bin/green/be_source/backend < ../../../$(LINK_SCRIPT); echo;\
+	mv enf.enf ../../enf/$$(basename $(ENF_DIR)).enf
 
 
 T                 := $(call mkid,$drun)

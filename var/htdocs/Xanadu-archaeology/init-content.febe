@@ -9,139 +9,139 @@
 21
 cat README.rst
 21
-cat "articles/AboutTrees"
+cat "articles/text/AboutTrees"
 21
-cat "articles/AvlTree"
+cat "articles/text/AvlTree"
 21
-cat "articles/BTree"
+cat "articles/text/BTree"
 21
-cat "articles/Byte 81"
+cat "articles/text/Byte 81"
 21
-cat "articles/Client - Graphical Mode"
+cat "articles/text/Client - Graphical Mode"
 21
-cat "articles/CoordinateSpaces"
+cat "articles/text/CoordinateSpaces"
 21
-cat "articles/CopyOnWrite"
+cat "articles/text/CopyOnWrite"
 21
-cat "articles/DSPative"
+cat "articles/text/DSPative"
 21
-cat "articles/DSPativity"
+cat "articles/text/DSPativity"
 21
-cat "articles/DelaunayTriangulation"
+cat "articles/text/DelaunayTriangulation"
 21
-cat "articles/Desiderata"
+cat "articles/text/Desiderata"
 21
-cat "articles/Dictionaries"
+cat "articles/text/Dictionaries"
 21
-cat "articles/EnfiladeTheory"
+cat "articles/text/EnfiladeTheory"
 21
-cat "articles/Ent class 2"
+cat "articles/text/Ent class 2"
 21
-cat "articles/Ent class 3"
+cat "articles/text/Ent class 3"
 21
-cat "articles/Ent class 4"
+cat "articles/text/Ent class 4"
 21
-cat "articles/Ent class 5"
+cat "articles/text/Ent class 5"
 21
-cat "articles/EntTheory"
+cat "articles/text/EntTheory"
 21
-cat "articles/Finding your Way"
+cat "articles/text/Finding your Way"
 21
-cat "articles/FrontEndDesign"
+cat "articles/text/FrontEndDesign"
 21
-cat "articles/FrontEndManifesto"
+cat "articles/text/FrontEndManifesto"
 21
-cat "articles/FrontPage"
+cat "articles/text/FrontPage"
 21
-cat "articles/General Enfilade Theory"
+cat "articles/text/General Enfilade Theory"
 21
-cat "articles/Glossary"
+cat "articles/text/Glossary"
 21
-cat "articles/GoldBackEndDesign"
+cat "articles/text/GoldBackEndDesign"
 21
-cat "articles/HTrees"
+cat "articles/text/HTrees"
 21
-cat "articles/HierarchicalStucture"
+cat "articles/text/HierarchicalStucture"
 21
-cat "articles/History"
+cat "articles/text/History"
 21
-cat "articles/ImagesDatatype"
+cat "articles/text/ImagesDatatype"
 21
-cat "articles/Johndougan"
+cat "articles/text/Johndougan"
 21
-cat "articles/KDTrees"
+cat "articles/text/KDTrees"
 21
-cat "articles/KTrees"
+cat "articles/text/KTrees"
 21
-cat "articles/LinkTypes"
+cat "articles/text/LinkTypes"
 21
-cat "articles/LogLike"
+cat "articles/text/LogLike"
 21
-cat "articles/Logical Proofs"
+cat "articles/text/Logical Proofs"
 21
-cat "articles/Main"
+cat "articles/text/Main"
 21
-cat "articles/Mark Miller's Ent Class -a transcript"
+cat "articles/text/Mark Miller's Ent Class -a transcript"
 21
-cat "articles/Mathematical Equations"
+cat "articles/text/Mathematical Equations"
 21
-cat "articles/ModelT"
+cat "articles/text/ModelT"
 21
-cat "articles/NONOBVIOUS XANADU BEHAVIOR"
+cat "articles/text/NONOBVIOUS XANADU BEHAVIOR"
 21
-cat "articles/Notes from David"
+cat "articles/text/Notes from David"
 21
-cat "articles/OTrees"
+cat "articles/text/OTrees"
 21
-cat "articles/OrFilter"
+cat "articles/text/OrFilter"
 21
-cat "articles/Permutation-Of-Order-Matrix"
+cat "articles/text/Permutation-Of-Order-Matrix"
 21
-cat "articles/Philosophy of Linking"
+cat "articles/text/Philosophy of Linking"
 21
-cat "articles/Pictures"
+cat "articles/text/Pictures"
 21
-cat "articles/Prior Art"
+cat "articles/text/Prior Art"
 21
-cat "articles/SmallTalk"
+cat "articles/text/SmallTalk"
 21
-cat "articles/Somebody's paper on the Ent"
+cat "articles/text/Somebody's paper on the Ent"
 21
-cat "articles/SplayTree"
+cat "articles/text/SplayTree"
 21
-cat "articles/StructuredTextRules"
+cat "articles/text/StructuredTextRules"
 21
-cat "articles/SubsetFilter"
+cat "articles/text/SubsetFilter"
 21
-cat "articles/TextCrums"
+cat "articles/text/TextCrums"
 21
-cat "articles/TextFormattingRules"
+cat "articles/text/TextFormattingRules"
 21
-cat "articles/TransClusion"
+cat "articles/text/TransClusion"
 21
-cat "articles/Types of Information"
+cat "articles/text/Types of Information"
 21
-cat "articles/UdanaxAssignedNumbersAuthority"
+cat "articles/text/UdanaxAssignedNumbersAuthority"
 21
-cat "articles/UdanaxGold"
+cat "articles/text/UdanaxGold"
 21
-cat "articles/Uses for Xanadu"
+cat "articles/text/Uses for Xanadu"
 21
-cat "articles/XanaLogical"
+cat "articles/text/XanaLogical"
 21
-cat "articles/Xanalogical"
+cat "articles/text/Xanalogical"
 21
-cat "articles/XuGlossary"
+cat "articles/text/XuGlossary"
 21
-cat "articles/XuHistory"
+cat "articles/text/XuHistory"
 21
-cat "articles/a post from Andrew Pam"
+cat "articles/text/a post from Andrew Pam"
 21
-cat "articles/the fabled Ent"
+cat "articles/text/the fabled Ent"
 21
-cat "articles/the question"
+cat "articles/text/the question"
 21
-cat "articles/versioning"
+cat "articles/text/versioning"
 21
-cat "articles/wiki_map"
+cat "articles/text/wiki_map"
 16

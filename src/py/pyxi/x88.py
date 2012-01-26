@@ -163,7 +163,7 @@ class Tumbler:
 
     def __cmp__(self, other):
         """Compare two address tumblers or offset tumblers."""
-        if not isinstance(Tumbler, other): 
+        if not isinstance(other, Tumbler): 
             return cmpid(self, other)
         for i in range(min(len(self), len(other))):
             if self[i] > other[i]: return 1

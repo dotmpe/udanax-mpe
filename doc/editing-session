@@ -1,0 +1,105 @@
+Pyxi (Python Udanax Interface) v2.3
+Copyright 1999 by Ka-Ping Yee.  All rights reserved.
+This program and the Udanax Green hypertext server are part of the
+Udanax project.  Please see http://www.udanax.com/ for details.
+
+<XuConn on <PipeStream to ./backend>> handshake(): 
+  <PipeStream to ./backend> write('\nP0~'): None
+  <PipeStream to ./backend> read(1): '\n'
+  <PipeStream to ./backend> read(2): 'P0'
+  <PipeStream to ./backend> read(1): '~'
+  <PipeStream to ./backend> flush(): None
+XuConn.handshake: None
+<XuSession on <PipeStream to ./backend>> open_document(1.1.0.1.0.1, 1, 2): 
+  <XuConn on <PipeStream to ./backend>> command(35, 1.1.0.1.0.1, 1, 2): 
+    <PipeStream to ./backend> write('35~'): None
+    <PipeStream to ./backend> write('0.1.1.0.1.0.1~'): None
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('2~'): None
+    <PipeStream to ./backend> readchunk(): '35'
+  XuConn.command: None
+  <XuConn on <PipeStream to ./backend>> Address(): 
+    <PipeStream to ./backend> readchunk(): '0.1.1.0.1.0.1'
+  XuConn.Address: 1.1.0.1.0.1
+XuSession.open_document: 1.1.0.1.0.1
+<XuSession on <PipeStream to ./backend>> retrieve_vspanset(1.1.0.1.0.1): 
+  <XuConn on <PipeStream to ./backend>> command(1, 1.1.0.1.0.1): 
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('0.1.1.0.1.0.1~'): None
+    <PipeStream to ./backend> readchunk(): '1'
+  XuConn.command: None
+  <XuConn on <PipeStream to ./backend>> Number(): 
+    <PipeStream to ./backend> readchunk(): '1'
+  XuConn.Number: 1
+  <XuConn on <PipeStream to ./backend>> Span(): 
+    <PipeStream to ./backend> readchunk(): '0.1.1'
+    <PipeStream to ./backend> readchunk(): '1.553'
+  XuConn.Span: <Span at 1.1 for 0.553>
+XuSession.retrieve_vspanset: <VSpec in 1.1.0.1.0.1, at 1.1 for 0.553>
+<XuSession on <PipeStream to ./backend>> retrieve_contents(<SpecSet [<VSpec in 1.1.0.1.0.1, at 1.1 for 0.553>]>): 
+  <XuConn on <PipeStream to ./backend>> command(5, <SpecSet [<VSpec in 1.1.0.1.0.1, at 1.1 for 0.553>]>): 
+    <PipeStream to ./backend> write('5~'): None
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('v~'): None
+    <PipeStream to ./backend> write('0.1.1.0.1.0.1~'): None
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('0.1.1~'): None
+    <PipeStream to ./backend> write('1.553~'): None
+    <PipeStream to ./backend> readchunk(): '5'
+  XuConn.command: None
+  <XuConn on <PipeStream to ./backend>> Number(): 
+    <PipeStream to ./backend> readchunk(): '1'
+  XuConn.Number: 1
+  <XuConn on <PipeStream to ./backend>> Content(): 
+    <PipeStream to ./backend> read(1): 't'
+    <PipeStream to ./backend> readchunk(): '553'
+    <PipeStream to ./backend> read(553): '\nXanadu Front-End Co'...
+  XuConn.Content: '\nXanadu Front-End Co'...
+XuSession.retrieve_contents: ['\nXanadu Front-End Co'...]
+<XuSession on <PipeStream to ./backend>> retrieve_endsets(<SpecSet [<VSpec in 1.1.0.1.0.1, at 1.1 for 0.553>]>): 
+  <XuConn on <PipeStream to ./backend>> command(28, <SpecSet [<VSpec in 1.1.0.1.0.1, at 1.1 for 0.553>]>): 
+    <PipeStream to ./backend> write('28~'): None
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('v~'): None
+    <PipeStream to ./backend> write('0.1.1.0.1.0.1~'): None
+    <PipeStream to ./backend> write('1~'): None
+    <PipeStream to ./backend> write('0.1.1~'): None
+    <PipeStream to ./backend> write('1.553~'): None
+    <PipeStream to ./backend> readchunk(): '28'
+  XuConn.command: None
+  <XuConn on <PipeStream to ./backend>> SpecSet(): 
+    <PipeStream to ./backend> readchunk(): '1'
+    <PipeStream to ./backend> read(2): 'v~'
+    <PipeStream to ./backend> readchunk(): '0.1.1.0.1.0.1'
+    <PipeStream to ./backend> readchunk(): '1'
+    <PipeStream to ./backend> readchunk(): '0.1.504'
+    <PipeStream to ./backend> readchunk(): '1.49'
+  XuConn.SpecSet: <SpecSet [<VSpec in 1.1.0.1.0.1, at 1.504 for 0.49>]>
+  <XuConn on <PipeStream to ./backend>> SpecSet(): 
+    <PipeStream to ./backend> readchunk(): '1'
+    <PipeStream to ./backend> read(2): 'v~'
+    <PipeStream to ./backend> readchunk(): '0.1.1.0.1.0.1'
+    <PipeStream to ./backend> readchunk(): '1'
+    <PipeStream to ./backend> readchunk(): '0.1.2'
+    <PipeStream to ./backend> readchunk(): '1.6'
+  XuConn.SpecSet: <SpecSet [<VSpec in 1.1.0.1.0.1, at 1.2 for 0.6>]>
+  <XuConn on <PipeStream to ./backend>> SpecSet(): 
+    <PipeStream to ./backend> readchunk(): '0'
+  XuConn.SpecSet: <SpecSet []>
+XuSession.retrieve_endsets: (<SpecSet [<VSpec in 1.1.0.1.0.1, at 1.504 for 0.49>]>, <SpecSet [<VSpec in 1.1.0.1.0.1, at 1.2 for 0.6>]>, <SpecSet []>)
+<XuSession on <PipeStream to ./backend>> close_document(1.1.0.1.0.1): 
+  <XuConn on <PipeStream to ./backend>> command(36, 1.1.0.1.0.1): 
+    <PipeStream to ./backend> write('36~'): None
+    <PipeStream to ./backend> write('0.1.1.0.1.0.1~'): None
+    <PipeStream to ./backend> readchunk(): '36'
+  XuConn.command: None
+XuSession.close_document: None
+<XuSession on <PipeStream to ./backend>> quit(): 
+  <XuConn on <PipeStream to ./backend>> command(16): 
+    <PipeStream to ./backend> write('16~'): None
+    <PipeStream to ./backend> readchunk(): '16'
+  XuConn.command: None
+  <XuConn on <PipeStream to ./backend>> close(): 
+    <PipeStream to ./backend> close(): None
+  XuConn.close: None
+XuSession.quit: None

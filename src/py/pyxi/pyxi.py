@@ -647,7 +647,6 @@ class Browser(Notifier, Frame):
                 "Invalid Address")
             self.loc_var.set(self.docid)
             return
-        print 'doc exists --> browse', addr
         self.browse(addr)
 
     def eh_fwd(self, event):
@@ -1066,7 +1065,7 @@ class Browser(Notifier, Frame):
         self.busy()
         try:
             if x88.istype(x88.Address, spec):
-                if spec != self.docid:
+                if not self.docid or spec != self.docid:
                     self.loaddoc(spec, editable)
                 if top: self.doc_text.scroll(top)
 
@@ -1088,7 +1087,8 @@ class Browser(Notifier, Frame):
             elif x88.istype(x88.VSpec, spec):
                 if len(spec): self.goto(spec[0], top, editable)
                 self.doc_text.setsel(spec)
-
+            else:
+            	assert False, spec
         finally:
             self.ready()
 
@@ -1100,7 +1100,6 @@ class Browser(Notifier, Frame):
         self.history[self.histindex:] = [(here, spec)]
         self.histindex = self.histindex + 1
         self.updatefwdback()
-        print 'done'
 
     def showendsets(self):
         """Highlight all the link ends in the current document."""
@@ -1126,7 +1125,6 @@ class Browser(Notifier, Frame):
         mode = editable and x88.READ_WRITE or x88.READ_ONLY
         docid = self.xs.open_document(docid, mode, x88.CONFLICT_COPY)
 
-        print 'open_document', docid
         self.textvspan = self.linkvspan = None
         for vspan in self.xs.retrieve_vspanset(docid):
             span = vspan.span
@@ -1538,7 +1536,7 @@ if __name__ == "__main__":
         
     xc = x88.XuConn(ps)
     if debug:
-        xc = x88.DebugWrapper(xs, sys.stderr)
+        xc = x88.DebugWrapper(xc, sys.stderr)
 
     xs = x88.XuSession(xc)
     if debug:
