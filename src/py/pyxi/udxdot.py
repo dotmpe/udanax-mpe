@@ -10,13 +10,9 @@ Bugs:
 """
 import sys
 import os
-#from udxexp import mutter
 import x88, udxutil
-from udxutil import DOC_CONTENTS, DOC_LINKS, ENTIRE_DOC
+from udxutil import mutter, DOC_CONTENTS, DOC_LINKS, ENTIRE_DOC
 
-
-def mutter(lvl, *args):
-    print lvl, args
 
 def write_dot(fh, links):
     fh.write("""digraph doc_connections{
