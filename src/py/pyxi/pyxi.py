@@ -658,6 +658,7 @@ class Browser(Notifier, Frame):
         return "break"
 
     def eh_destroy(self, event):
+        print "Browser destroy requested"
         if not event.widget == str(self): return
         try: self.closedoc()
         except (IOError, x88.XuError): pass
@@ -1181,7 +1182,7 @@ class BrowserWindow(Toplevel):
         self.title(title)
         self.browser = Browser(self, xusession, scrollside=LEFT)
         self.browser.pack(fill=BOTH, expand=1)
-        self.bind("<Destroy>", self.eh_destroy)
+        #self.bind("<Destroy>", self.eh_destroy)
         self.bind("<Alt-q>", self.eh_quit)
 
     def goto(self, spec, top=None, editable=0):
@@ -1191,15 +1192,18 @@ class BrowserWindow(Toplevel):
         self.browser.browse(spec, origin)
 
     def quit(self):
+        print self,"quit"
         try: self.browser.closedoc()
         except (IOError, x88.XuError): pass
         Toplevel.quit(self)
 
     def eh_quit(self, event):
+        print "BrowserWindow exit requested"
         self.quit()
 
     def eh_destroy(self, event):
         """Close the window; quit the application if this is the last one."""
+        print "BrowserWindow destroy requested"
         if not event.widget == str(self): return
         try: self.browser.closedoc()
         except (IOError, x88.XuError): pass
