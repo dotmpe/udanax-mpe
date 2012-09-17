@@ -709,14 +709,14 @@ class XuConn:
 
     def command(self, code, *args):
         """Issue a command with the given order code and arguments."""
-        if VERBOSE:
-            self.stream.flush()
-            print 'Starting:', code
+        self.stream.flush()
+        #if VERBOSE:
+        #    print 'Starting:', code
         Number_write(code, self.stream)
         for arg in args: self.write(arg)
-        if VERBOSE:
-            self.stream.flush()
-            print 'Reading'
+        self.stream.flush()
+        #if VERBOSE:
+        #    print 'Reading'
         try:
             response = self.Number()
         except ValueError, ( errno):
@@ -724,9 +724,9 @@ class XuConn:
             raise XuError("error response to %d from back-end" % code)
         if response != code:
             raise XuError("non-matching response to %d from back-end" % code)
-        if VERBOSE:
-            self.stream.flush()
-            print "Got:", response
+        self.stream.flush()
+        #if VERBOSE:
+        #    print "Got:", response
 
 # --------------------------------------------------------------- XuSession
 class XuSession:
