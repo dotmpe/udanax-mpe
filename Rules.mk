@@ -26,12 +26,13 @@ MK				  += $/Rules.mk
 
 ENFS = \
 		   EMPTY=var/enf/0.empty.enf;\
-		   DEMO=var/enf/1.olddemo.enf;\
-		   WIKI=var/enf/Xanadu-archaeology.enf;
+		   OLDDEMO=var/enf/1.olddemo.enf;\
+		   WIKI=var/enf/Xanadu-archaeology.enf;\
+		   DEMO=var/enf/sample.enf;
 
 ENF_DIRS = \
 		   EMPTY=var/htdocs/0.empty/;\
-		   DEMO=var/htdocs/1.olddemo/;\
+		   OLDDEMO=var/htdocs/1.olddemo/;\
 		   WIKI=var/htdocs/Xanadu-archaeology/;
 
 # Current enfilade directory
