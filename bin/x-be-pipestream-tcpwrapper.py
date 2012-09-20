@@ -139,10 +139,10 @@ class XuProxy(XuConn):
             def perform(be):
                 be.command(cmd, docid)
                 span = be.Span()
-
-                vspan = VSpan(docid, span)
                 self.write(cmd)
-                vspan.write(self.stream)
+                self.write(span)
+                #vspan = VSpan(docid, span)
+                #vspan.write(self.stream)
 
         elif cmd == 16: # quit
             def perform(be):
@@ -270,10 +270,13 @@ class WrappedPipeHandler(SocketServer.BaseRequestHandler):
             c = fe.forward_command()
             try:
                 r = c(be)
+                if r:
+                    print "Going to close stream"
             except XuError:
                 fe.stream.write('?')
             fe.stream.input.flush()
             if r:
+                print "Breaking to close stream"
                 break;
 
         ps.close()

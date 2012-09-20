@@ -33,6 +33,8 @@
 
 import sys, os, string, socket
 
+VERBOSE = 1
+
 # ==================================================== OBJECT TYPES AND I/O
 
 # -------------------------------------------------- helpers for comparison
@@ -707,8 +709,14 @@ class XuConn:
 
     def command(self, code, *args):
         """Issue a command with the given order code and arguments."""
+        self.stream.flush()
+        #if VERBOSE:
+        #    print 'Starting:', code
         Number_write(code, self.stream)
         for arg in args: self.write(arg)
+        self.stream.flush()
+        #if VERBOSE:
+        #    print 'Reading'
         try:
             response = self.Number()
         except ValueError, ( errno):
@@ -716,6 +724,9 @@ class XuConn:
             raise XuError("error response to %d from back-end" % code)
         if response != code:
             raise XuError("non-matching response to %d from back-end" % code)
+        self.stream.flush()
+        #if VERBOSE:
+        #    print "Got:", response
 
 # --------------------------------------------------------------- XuSession
 class XuSession:
@@ -814,7 +825,11 @@ class XuSession:
         return collapse_sharedspans(sharedspans)
 
     def find_documents(self, specset):
+        if VERBOSE:
+            print 'find-docs-containing', specset
         self.xc.command(22, specset)
+        if VERBOSE:
+            print 'find_documents continue'
         docids = []
         for i in range(self.xc.Number()):
             docids.append(self.xc.Address())
