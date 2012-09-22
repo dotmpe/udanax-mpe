@@ -77,7 +77,14 @@ def Content_read(stream):
     ch = stream.read(1)
     if ch == "t":
         length = Number_read(stream)
-        return stream.read(length)
+        import time
+        t = ''
+        while len(t) < length:
+            t += stream.read(length-len(t))
+            time.sleep(1)
+        assert len(t) == length, "Stream retrieved too little data: %s vs. %s" \
+                % (len(t), length)
+        return t
     elif ch in string.digits:
         return Address_read(stream, ch)
     else:
@@ -1030,7 +1037,7 @@ def shortrepr(object):
     elif type(object) is type(()):
         return "(" + string.join(map(shortrepr, object), ", ") + ")"
     elif type(object) is type(''):
-        if len(object) > 20: return repr(object[:20]) + "..."
+        if len(object) > 20: return repr(object[:20]) + "...(%s)" % len(object)
         else: return repr(object)
     else:
         return str(object)

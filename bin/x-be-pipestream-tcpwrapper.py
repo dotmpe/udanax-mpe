@@ -89,11 +89,13 @@ class XuProxy(XuConn):
             specset = self.SpecSet()
             def perform(be):
                 be.command(cmd, specset)
-                data = []
-                for i in range(be.Number()):
-                    data.append(be.Content())
                 self.write(cmd)
-                self.write(data)
+                runs = be.Number()
+                #data = []
+                self.write(runs)
+                for i in range(runs):
+                    #data.append(be.Content())
+                    self.write(be.Content())
 
         elif cmd == 10: # show-relations-of-2-versions
             specseta = self.SpecSet()
