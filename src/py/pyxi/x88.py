@@ -77,11 +77,7 @@ def Content_read(stream):
     ch = stream.read(1)
     if ch == "t":
         length = Number_read(stream)
-        import time
-        t = ''
-        while len(t) < length:
-            t += stream.read(length-len(t))
-            time.sleep(1)
+        t = stream.read(length)
         assert len(t) == length, "Stream retrieved too little data: %s vs. %s" \
                 % (len(t), length)
         return t
