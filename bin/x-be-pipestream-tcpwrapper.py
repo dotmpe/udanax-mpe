@@ -91,11 +91,13 @@ class XuProxy(XuConn):
                 be.command(cmd, specset)
                 self.write(cmd)
                 #be.stream.flush()
+                #self.stream.flush()
                 runs = be.Number()
                 self.write(runs)
                 for i in range(runs):
                     #be.stream.flush()
                     self.write(be.Content())
+                    #self.stream.flush()
 
         elif cmd == 10: # show-relations-of-2-versions
             specseta = self.SpecSet()

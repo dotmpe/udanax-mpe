@@ -63,6 +63,7 @@ def String_write(data, stream):
     """Write a string to an 88.1 protocol stream."""
     stream.write("t%d~" % len(data))
     stream.write(data)
+    #stream.flush()
 
 def String_read(stream):
     """Read a string from an 88.1 protocol stream."""
@@ -77,7 +78,14 @@ def Content_read(stream):
     ch = stream.read(1)
     if ch == "t":
         length = Number_read(stream)
-        t = stream.read(length)
+        #stream.flush() # has no effect by itself.
+        #t = stream.read(length)
+        #import time
+        t = ''
+        while len(t) < length:
+            t += stream.read(length-len(t))
+            #stream.flush()
+            #time.sleep(1)
         assert len(t) == length, "Stream retrieved too little data: %s vs. %s" \
                 % (len(t), length)
         return t
