@@ -47,6 +47,12 @@ LINK_SCRIPT=$(ENF_DIR)/init-links.febe
 CLN            += $(shell find $/ -iname '*.pyc' -or -path 'bin/be/x88.*' -or -name 'gmon.out' -or -name 'backenderror')
 
 
+### Tests
+
+_test:
+	python test/Tumbler.py
+
+
 ### Special targets
 
 T				 := $(call mkid,$(d)enf)
@@ -98,7 +104,7 @@ endef
 
 
 T				 := $(call mkid,$drun)
-DESCRIPTION	     += $(T)='Run pyxi normally'
+DESCRIPTION	     += $(T)='Run pyxi normally (autoruns backend and connects through pipe). Use ENF=.. to select enfilade. '
 STRGT			 += $(T)
 
 $T:		   ENF := EMPTY
@@ -108,16 +114,13 @@ $(T):			  $/bin/pyxi
 
 
 T				 := $(call mkid,$ddebug)
-DESCRIPTION	     += $(T)='Run pyxi in verbose mode'
+DESCRIPTION	     += $(T)='Run pyxi in verbose mode, use ENF=.. to select enfilade.'
 STRGT			 += $(T)
 
 $T:		   ENF := EMPTY
 $(T):				$/bin/pyxi
 	@$(install-enf)
 	@$(run-pyxi) -d
-
-_test:
-	python test/Tumbler.py
 
 
 T				 := $(call mkid,$(d)server)
@@ -131,6 +134,14 @@ $T:			BE := be/backend
 $T:				  $/bin/x-be-pipestream-tcpwrapper.py
 	@$(install-enf)
 	@cd $(DIR); ./bin/$(<F) -l -t $(CONN) -b $(BE)
+
+
+T				 := $(call mkid,$dclient)
+DESCRIPTION	     += $(T)='Run pyxi verbose and in client mode (connects to localhost:55146)'
+STRGT			 += $(T)
+
+$(T):				$/bin/pyxi
+	@$(run-pyxi) -d -t
 
 
 T				 := $(call mkid,$(d)prompt)
