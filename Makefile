@@ -1,1 +1,1 @@
-/srv/project-mpe/mkdoc/Makefile
+/usr/local/share/mkdoc/Mkdoc-full.mk
